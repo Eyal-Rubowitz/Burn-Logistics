@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('server:server');
+var http = require('http');
+const WebSocket = require('ws');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '9000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+const wss = new WebSocket.Server({ server: server, path: '/ws' });
+
+wss.on("connection", (ws) => {
+  console.log("Someone connected to WS!!!!!!!!");
+  // console.log('Clients on air:', wss.clients.size);
+  // ws.on("message", (msg) => {
+  //   console.log('ws msg:', msg);
+  // })
+  //app.locals.clients = wss.clients;
+});
+// wss.close((err) => {
+//   if(err) console.log(err);
+//   console.log("Someone went away!");
+//   console.log('Clients on air:',wss.clients.size);
+//   //app.locals.clients = wss.clients;
+// });
+
+wss.on("disconnect", () => {
+  console.log("Someone went away!");
+  console.log('Clients on air:', wss.clients.size);
+  //app.locals.clients = wss.clients;
+});
+
+// wss.on("close", () => {
+//   console.log("Someone went away!");
+//   console.log('Clients on air:',wss.clients.size);
+//   //app.locals.clients = wss.clients;
+// });
+
+app.locals.wss = wss;
+
+wss.broadcast = function broadcast(msg) {
+  wss.clients.forEach(function each(client) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(msg);
+    }
+  });
+};
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

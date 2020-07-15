@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "./dist/server",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    //"isolatedModules": true,
+    //"noEmit": true,
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "node_modules/@types"
+  ]
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+]
+  // "include": [
+  //   "src"
+  // ]
+}
