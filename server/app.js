@@ -36,11 +36,15 @@ app.use('/api/allergans', allergansRouter);
 app.use('/api/kitchenTools', kitchenToolsRouter);
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/burn-logistics', { 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/burn-logistics', { 
   useNewUrlParser: true, 
   useFindAndModify: false, 
   useUnifiedTopology: true 
 });
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('burn-logistics/build'));
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
