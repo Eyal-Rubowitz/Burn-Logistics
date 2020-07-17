@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { Typography, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { observable, computed } from 'mobx';
-import { observer, useLocalStore } from "mobx-react";
+import { observer } from "mobx-react";
 import { Meal } from '../../models/mealModel';
 import { AppRootModel } from '../../modelsContext';
 

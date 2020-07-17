@@ -1,5 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Paper, Typography, TextField, Fab, Icon, IconButton, Switch, Box, FormControl, RadioGroup, FormControlLabel, Radio, ExpansionPanel, ExpansionPanelSummary } from '@material-ui/core';
+import { Paper, Typography, TextField, Fab, 
+         Icon, IconButton, Box, FormControl, 
+         RadioGroup, FormControlLabel, Radio, 
+         ExpansionPanel, ExpansionPanelSummary } from '@material-ui/core';
 import { observer } from "mobx-react";
 import { observable, computed, IReactionDisposer, autorun, action } from 'mobx';
 import { Meal } from '../../models/mealModel';
