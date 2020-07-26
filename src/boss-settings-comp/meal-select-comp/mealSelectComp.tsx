@@ -7,7 +7,7 @@ import { Autocomplete } from '@material-ui/lab';
 import { AppRootModel } from '../../modelsContext';
 import SelectedMealStore from '../../stores/SelectedMealStore';
 
-type MealSelectCompProps = { store: SelectedMealStore }
+type MealSelectCompProps = { store: SelectedMealStore };
 
 @observer
 class MealSelectComp extends PureComponent<MealSelectCompProps> {
@@ -22,23 +22,17 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
     constructor(props: MealSelectCompProps) {
         super(props);
         this.disposeAutorun = autorun(() => {
-            this.initDateList();
-        })
+            this.dateList = this.props.store.dateList;
+        });
     }
 
     componentWillUnmount() {
         this.disposeAutorun();
     }
 
-    @action initDateList() {
-        let dates: Set<string> = new Set(this.meals.map(m => m.date.toLocaleDateString()));
-        this.dateList = (dates) ? Array.from(dates).map(date => date) : [];
-        this.dateList = [...this.dateList.slice().sort((a, b) => (a > b) ? 1 : -1)];
-        this.props.store.dateList = this.dateList;
-    }
-
     @computed get meals(): Meal[] {
-        return AppRootModel.mealModel.items.map(m => m);
+        let ml = AppRootModel.mealModel.items.map(m => m);
+        return ml;
     }
 
     @action onSelectDate(date: string): void {

@@ -1,8 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Paper, Typography, TextField, 
-         Fab, Icon, IconButton } from '@material-ui/core';
+import {
+    Paper, Typography, TextField,
+    Fab, Icon, IconButton
+} from '@material-ui/core';
 import { observer } from "mobx-react";
-import { observable, computed } from 'mobx';
+import { observable, computed, IReactionDisposer, autorun } from 'mobx';
 import { Meal } from '../../models/mealModel';
 import { AppRootModel } from '../../modelsContext';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -12,14 +14,28 @@ import MealSelectComp from '../meal-select-comp/mealSelectComp';
 @observer
 class CleaningCrewComp extends PureComponent {
 
+    disposeAutorun: IReactionDisposer;
+
     @observable cleaningMemberName: string = "";
-    selectedMealStore = new SelectedMealStore();
+    @observable selectedMealStore = new SelectedMealStore();
+
+    constructor(props: {}) {
+        super(props);
+        this.disposeAutorun = autorun(() => {
+                let dates: Set<string> = new Set(this.meals.map(m => m.date.toLocaleDateString()));
+                this.selectedMealStore.dateList = (dates) ? [...Array.from(dates).map(date => date)] : [];
+        });
+    }
+
+    componentWillUnmount(): void {
+        this.disposeAutorun();
+    }
 
     @computed get meals(): Meal[] {
         return AppRootModel.mealModel.items.map(m => m);
     }
 
-    @computed get meal() : Meal | undefined {
+    @computed get meal(): Meal | undefined {
         return this.selectedMealStore.meal;
     }
 
@@ -62,6 +78,7 @@ class CleaningCrewComp extends PureComponent {
     }
 
     render() {
+        // console.log('this.selectedMealStore: ', this.selectedMealStore);
         return (
             <Fragment>
                 <Paper style={{ display: 'block', width: '40%', margin: 'auto' }}>

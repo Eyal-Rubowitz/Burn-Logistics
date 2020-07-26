@@ -38,6 +38,8 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
     constructor(props: {}) {
         super(props)
         this.disposeAutorun = autorun(() => {
+            let dates: Set<string> = new Set(this.meals.map(m => m.date.toLocaleDateString()));
+            this.selectedMealStore.dateList = (dates) ? [...Array.from(dates).map(date => date)] : [];
             let mealList: Meal[] = this.meals.map(m => m);
             let ttlBgtList: number[] = mealList.map(m => m.budget);
             this.totalBudget = (ttlBgtList && ttlBgtList[ttlBgtList.length - 1] !== undefined) ? ttlBgtList.reduce((ttl, bgt) => ttl + bgt) : 0;
