@@ -6,6 +6,7 @@ export abstract class DataModel<TypeModel extends ClassType> {
     @observable items: Array<TypeModel>;
     root: RootModel;
     modelFactory: { new(a: DataModel<any>, n: TypeModel): TypeModel }
+    port = process.env.port || 3000;
 
     constructor(root: RootModel, grr: { new(a: DataModel<any>, n: TypeModel): TypeModel }) {
         this.root = root;
@@ -17,7 +18,7 @@ export abstract class DataModel<TypeModel extends ClassType> {
     abstract resourcePath(): String
 
     get resourceUrl() {
-        return `http://localhost:3000/api/${this.resourcePath()}`
+        return `http://localhost:${this.port}/api/${this.resourcePath()}`
     }
 
     getItemsFromServer(): void {

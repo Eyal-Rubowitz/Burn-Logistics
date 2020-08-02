@@ -22,7 +22,9 @@ import BuyingList from './assets/buyingList.png';
 import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
 
-const ws = new WebSocket("ws://localhost:3000/ws");
+const port = process.env.port || 3000;
+
+const ws = new WebSocket(`ws://localhost:${port}/ws`);
 ws.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
