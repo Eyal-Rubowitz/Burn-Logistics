@@ -1,0 +1,33 @@
+.inlinblock {
+  display: inline-block;
+}
+
+.tgMealInfo {
+  margin-top: 70px !important;
+  margin-bottom: 40px !important;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.txtFldSousInput {
+  width: 35%;
+  text-align: center;
+}
+
+.btnAddSous {
+  margin-left: 20px !important;
+  height: 56px !important;
+  width: 180px !important;
+}
+
+.btnAddSous #icon {
+  position: relative;
+  top: -2px !important;
+}
+
+.sousTtl {
+  text-decoration: underline;
+  font-weight: bolder;
+  margin-top: 20px !important;
+}
+/*# sourceMappingURL=sousChefsStyle.css.map */

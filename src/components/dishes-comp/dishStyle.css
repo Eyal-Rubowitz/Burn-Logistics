@@ -1,0 +1,43 @@
+#unVisLrgDiv {
+  height: 0px !important;
+}
+
+#ingTable {
+  width: 100% !important;
+}
+
+.addIngDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.addIngDiv .icon {
+  position: relative;
+  top: 14px !important;
+  font-size: large;
+  margin-right: 4px !important;
+}
+
+.addIngDiv .p {
+  font-size: 16px !important;
+  color: #3f51b5;
+}
+
+.lrgAlert {
+  width: 250px !important;
+  color: red;
+  font-size: 16px !important;
+  font-weight: bold;
+}
+
+.lrgFree {
+  color: green;
+  font-weight: bold;
+}
+
+.noteNav {
+  text-decoration: none;
+  color: white;
+}
+/*# sourceMappingURL=dishStyle.css.map */

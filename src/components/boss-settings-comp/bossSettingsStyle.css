@@ -1,0 +1,79 @@
+#toolBar {
+  position: fixed;
+  height: 100%;
+  left: 0px !important;
+  top: 60px !important;
+  width: 230px !important;
+  background-color: #3646A3;
+}
+
+#toolBar .navLink {
+  text-decoration: none;
+  color: #91FFFF;
+  margin-left: 1%;
+  position: absolute;
+  left: 0px !important;
+}
+
+#toolBar .navLink#mealType {
+  top: 10px !important;
+}
+
+#toolBar .navLink#addDate {
+  top: 110px !important;
+}
+
+#toolBar .navLink#customUnit {
+  top: 210px !important;
+}
+
+#toolBar .navLink#settings {
+  top: 310px !important;
+}
+
+#toolBar .navLink#allergens {
+  top: 410px !important;
+}
+
+#toolBar .navLink#chefsCrew {
+  top: 510px !important;
+}
+
+#toolBar .navLink#dinersDiet {
+  top: 610px !important;
+}
+
+#toolBar .navLink#cleaningCrew {
+  top: 710px !important;
+  left: -12px !important;
+}
+
+#toolBar .navLink .tgNav {
+  line-height: 3.2px !important;
+  margin-left: 5px !important;
+}
+
+#toolBar .navLink .tgNav .img {
+  vertical-align: middle;
+}
+
+#toolBar .navLink .tgNav .sSize {
+  margin-left: 16px !important;
+  width: 60px !important;
+  margin-right: 40px !important;
+}
+
+#toolBar .navLink .tgNav .midSize {
+  width: 100px !important;
+  margin-right: 15px !important;
+}
+
+#toolBar .navLink .tgNav .lSize {
+  width: 110px !important;
+  margin-right: 15px !important;
+}
+
+#toolBar .navLink .tgNav #switchContainer {
+  margin-top: 5%;
+}
+/*# sourceMappingURL=bossSettingsStyle.css.map */

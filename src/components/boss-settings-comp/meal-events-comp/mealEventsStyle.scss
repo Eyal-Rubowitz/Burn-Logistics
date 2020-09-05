@@ -1,0 +1,12 @@
+.unVisBox {
+    height: 0px !important;
+}
+
+.formMealName {
+    margin: 6px !important;
+
+    & #icon {
+        position: relative;
+        top: -1px !important;
+    }
+}

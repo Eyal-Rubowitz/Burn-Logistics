@@ -1,0 +1,30 @@
+.cleaningTitle {
+  margin-top: 70px !important;
+  margin-bottom: 40px !important;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.addClnMmbr {
+  margin-left: 20px !important;
+  height: 56px !important;
+  width: 180px !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+
+.addClnMmbr #icon {
+  position: relative;
+  top: 6px !important;
+}
+
+.tgClnName {
+  display: inline-block !important;
+}
+
+.tgClnTitle {
+  text-decoration: underline;
+  font-weight: bolder !important;
+  margin-top: 20px !important;
+}
+/*# sourceMappingURL=cleaningCrewStyle.css.map */

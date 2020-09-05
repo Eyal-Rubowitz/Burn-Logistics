@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACD,WAAW,EAAE,eAAe;CAM/B;;AAPD,AAGI,IAHA,CAGA,KAAK,CAAC;EACF,eAAe,EAAE,IAAI;EACrB,KAAK,EAAE,OAAO;CACjB",
+    "sources": [
+        "mealListItemStyle.scss"
+    ],
+    "names": [],
+    "file": "mealListItemStyle.css"
+}

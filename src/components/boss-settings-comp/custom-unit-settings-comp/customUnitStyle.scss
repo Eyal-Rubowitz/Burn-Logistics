@@ -1,0 +1,35 @@
+.btnDltCstmUn {
+    display: inline-block !important;
+
+    &.dltIcon {
+        display: inline-block !important;
+    }
+}
+
+#cstmUnLs {
+    margin: 20px !important;
+} 
+
+.formInput {
+    width: 100%;
+    margin: 1px !important; 
+}
+
+.itemData {
+    display: inline-block !important;
+    width: 27% !important;
+    margin: 4px 0px 4px 0px !important;
+
+    #noPointer {
+        pointer-events: none !important;
+    }
+}
+
+.btnUn {
+    margin: 6px !important;
+
+    #icon {
+        position: relative;
+        top: -2px !important;
+    }
+}

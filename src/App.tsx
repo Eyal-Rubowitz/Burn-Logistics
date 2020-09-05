@@ -4,15 +4,15 @@ import { Switch, Route } from 'react-router';
 import { AppBar, Typography, Container, Toolbar } from '@material-ui/core';
 
 import { AppRootModel } from './modelsContext';
-import MealComp from './meals-comp/mealComp';
-import MealListComp from './meals-comp/mealListComp';
-import ScheduleTableComp from './schedule-comp/scheduleComp';
-import FoodItemListComp from './foodItems-comp/foodItemListComp';
-import InventoryListComp from './inventory-comp/inventoryComp';
-import BuyingListComp from './buying-comp/buyingListComp';
-import BossSettingsComp from './boss-settings-comp/bossSettingsComp';
-import IngredientNoteComp from './dishes-comp/igredient-note-comp/ingredientNoteComp';
-import KitchenToolsFunc from './kitchen-tools-comp/kitchenToolsComp';
+import MealComp from './components/meals-comp/mealComp';
+import MealListComp from './components/meals-comp/mealListComp';
+import ScheduleTableComp from './components/schedule-comp/scheduleComp';
+import FoodItemListComp from './components/foodItems-comp/foodItemListComp';
+import InventoryListComp from './components/inventory-comp/inventoryComp';
+import BuyingListComp from './components/buying-comp/buyingListComp';
+import BossSettingsComp from './components/boss-settings-comp/bossSettingsComp';
+import IngredientNoteComp from './components/dishes-comp/igredient-note-comp/ingredientNoteComp';
+import KitchenToolsFunc from './components/kitchen-tools-comp/kitchenToolsComp';
 
 import ChefMeal from './assets/chefMeal.png';
 import Calander from './assets/calendar.png';
@@ -22,9 +22,9 @@ import BuyingList from './assets/buyingList.png';
 import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
 
-const port = process.env.port || 3000;
+const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
 
-const ws = new WebSocket(`ws://localhost:${port}/ws`);
+const ws = new WebSocket(`ws://${wsEndpoint}`);
 ws.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);

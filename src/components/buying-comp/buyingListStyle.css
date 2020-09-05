@@ -1,0 +1,92 @@
+#shoppingDiv {
+  width: 100%;
+  padding-top: 0px !important;
+}
+
+#shoppingDiv #unVisData {
+  height: 0px !important;
+}
+
+#shoppingDiv #filtersDiv {
+  border: solid 1px #D3D3D3;
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
+  height: 135px !important;
+}
+
+#shoppingDiv #filtersDiv #filtersTitle {
+  text-decoration: underline;
+  position: relative;
+  left: 46px !important;
+}
+
+#shoppingDiv #filtersDiv #combo-box-filters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 40px !important;
+}
+
+#shoppingDiv #filtersDiv #combo-box-filters .w {
+  width: 300px !important;
+}
+
+#shoppingDiv #filtersDiv #combo-box-filters .left {
+  margin-left: 6px !important;
+}
+
+#shoppingDiv #filtersDiv #combo-box-filters #switchCtrl {
+  margin-left: 2px !important;
+  width: 200px !important;
+}
+
+#shoppingDiv #colsReveal {
+  border: solid 1px #D3D3D3;
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
+  height: 110px !important;
+}
+
+#shoppingDiv #colsReveal #colsTitle {
+  margin-left: 50px !important;
+  text-decoration: underline;
+  height: 0px !important;
+}
+
+#shoppingDiv #colsReveal #checkbox-hide-columns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#shoppingDiv #colsReveal .checkBox {
+  margin-left: 50px !important;
+}
+
+#shoppingDiv #tableTitle {
+  margin-left: 30px !important;
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
+#shoppingDiv .unPurched {
+  height: 5px !important;
+}
+
+#shoppingDiv .purched {
+  font-weight: bolder;
+}
+
+#shoppingDiv #btnPurchItems {
+  margin-top: 10px !important;
+}
+
+#shoppingDiv #btnPurchItems #btn {
+  background-color: #e8f4f8;
+}
+
+#shoppingDiv #btnPurchItems #btn #tg {
+  font-weight: bolder;
+  word-spacing: 4px;
+}
+/*# sourceMappingURL=buyingListStyle.css.map */

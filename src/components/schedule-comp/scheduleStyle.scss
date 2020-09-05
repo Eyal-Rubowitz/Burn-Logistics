@@ -1,0 +1,94 @@
+#mealScheduleTable {
+    border: solid 1px black; 
+    text-align: left; 
+    white-space: nowrap;
+
+    #head {
+        background-color: #3f51b5; 
+        color: #00FFFF; 
+        width: auto;
+
+        #headTr {
+            white-space: nowrap; 
+            font-size: 24px; 
+            line-height: 35px;
+        }
+
+        #headTh {
+            width: auto;
+        }
+
+        #headThClean {
+            background-color: darkGreen; 
+            color: lightGreen;
+        }
+    }
+}
+
+.sousName {
+    display: inline-block;
+    white-space: nowrap; 
+    width: 125px;
+    background-color: lightblue;
+    height: 40px;
+}
+
+.cleanName {
+    line-height: 270%; 
+    white-space: nowrap; 
+    width: 125px; 
+    display: inline-block; 
+    background-color: darkGreen; 
+    color: lightGreen;
+}
+
+.tableTr {
+    line-height: auto; 
+    border-bottom: 1px solid black; 
+}
+
+.servingTd {
+    text-indent: 40px;
+}
+
+.checkBox {
+    transform: scale(1.3);
+}
+
+.dishInfo {
+    display: blick;
+    text-align: left;
+    vertical-align: text-top;
+    min-width:220px !important;
+    max-width: auto;
+
+    .dishIng {
+        margin: 0px !important; 
+        height: 26px !important;
+    }
+
+
+    .dishNameInfoTh {
+        text-align: center;
+        min-width: 220px !important;
+        max-width: auto;
+        display: blick;
+    }
+}
+
+        #scheduleTable {
+            margin-top: 20px !important;
+            border: solid 1px black; 
+            text-align: left; 
+            width: auto;
+    
+            #tableHead {
+                display: block;
+                background-color: #3f51b5; 
+                color: #00FFFF;
+            }
+
+            #tableBody {
+                display: block;
+            }
+        }

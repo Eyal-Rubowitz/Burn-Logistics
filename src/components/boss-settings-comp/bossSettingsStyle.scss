@@ -1,0 +1,79 @@
+#toolBar {
+    position: fixed; 
+    height: 100%; 
+    left: 0px !important; 
+    top: 60px !important;
+    width: 230px !important;
+    background-color: #3646A3; 
+
+    .navLink {
+        text-decoration: none; 
+        color: #91FFFF; 
+        margin-left: 1%; 
+        position: absolute; 
+        left: 0px !important;
+
+        &#mealType {
+            top: 10px !important;
+        }
+
+        &#addDate {
+            top: 110px !important;
+        }
+
+        &#customUnit {
+            top: 210px !important;
+        }
+
+        &#settings {
+            top: 310px !important;
+        }
+
+        &#allergens {
+            top: 410px !important;
+        }
+
+        &#chefsCrew {
+            top: 510px !important;
+        }
+
+        &#dinersDiet {
+            top: 610px !important;
+        }
+
+        &#cleaningCrew {
+            top: 710px !important;
+            left: -12px !important;
+        }
+
+        .tgNav {
+            line-height: 3.2px !important;
+            margin-left: 5px !important;
+
+            .img {
+                vertical-align: middle;
+            }
+
+            .sSize {
+                margin-left: 16px !important;
+                width: 60px !important; 
+                margin-right: 40px !important;
+            }
+
+            .midSize {
+                width: 100px !important;
+                margin-right: 15px !important;
+            }
+
+            .lSize {
+                width: 110px !important; 
+                margin-right: 15px !important;
+            }
+            
+            #switchContainer {
+                margin-top: 5%;
+            }
+
+        }
+    }
+}

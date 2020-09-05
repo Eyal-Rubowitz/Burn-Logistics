@@ -1,0 +1,95 @@
+#mealScheduleTable {
+  border: solid 1px black;
+  text-align: left;
+  white-space: nowrap;
+}
+
+#mealScheduleTable #head {
+  background-color: #3f51b5;
+  color: #00FFFF;
+  width: auto;
+}
+
+#mealScheduleTable #head #headTr {
+  white-space: nowrap;
+  font-size: 24px;
+  line-height: 35px;
+}
+
+#mealScheduleTable #head #headTh {
+  width: auto;
+}
+
+#mealScheduleTable #head #headThClean {
+  background-color: darkGreen;
+  color: lightGreen;
+}
+
+.sousName {
+  display: inline-block;
+  white-space: nowrap;
+  width: 125px;
+  background-color: lightblue;
+  height: 40px;
+}
+
+.cleanName {
+  line-height: 270%;
+  white-space: nowrap;
+  width: 125px;
+  display: inline-block;
+  background-color: darkGreen;
+  color: lightGreen;
+}
+
+.tableTr {
+  line-height: auto;
+  border-bottom: 1px solid black;
+}
+
+.servingTd {
+  text-indent: 40px;
+}
+
+.checkBox {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+}
+
+.dishInfo {
+  display: blick;
+  text-align: left;
+  vertical-align: text-top;
+  min-width: 220px !important;
+  max-width: auto;
+}
+
+.dishInfo .dishIng {
+  margin: 0px !important;
+  height: 26px !important;
+}
+
+.dishInfo .dishNameInfoTh {
+  text-align: center;
+  min-width: 220px !important;
+  max-width: auto;
+  display: blick;
+}
+
+#scheduleTable {
+  margin-top: 20px !important;
+  border: solid 1px black;
+  text-align: left;
+  width: auto;
+}
+
+#scheduleTable #tableHead {
+  display: block;
+  background-color: #3f51b5;
+  color: #00FFFF;
+}
+
+#scheduleTable #tableBody {
+  display: block;
+}
+/*# sourceMappingURL=scheduleStyle.css.map */

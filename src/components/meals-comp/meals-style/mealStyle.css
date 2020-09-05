@@ -1,0 +1,43 @@
+.mealDataDiv1 {
+  margin-top: 12px;
+}
+
+.mealDataDiv1 #txtFldPreparing {
+  display: block !important;
+}
+
+.mealDataDiv1 #txtFldServing {
+  display: block !important;
+}
+
+.mealDataDiv1 .noPointer {
+  pointer-events: none;
+}
+
+.mealDataDiv1 .txtFld {
+  display: inline-block;
+  margin-bottom: 12px !important;
+}
+
+.mealDataDiv1 .w {
+  width: 220px;
+}
+
+.mealDataDiv2 {
+  margin-bottom: 12px;
+}
+
+.mealDataDiv2 .noPointer {
+  pointer-events: none;
+}
+
+.mealDataDiv2 .txtFld {
+  display: inline-block;
+  margin-bottom: 12px !important;
+  margin-right: 2px !important;
+}
+
+#exPanel {
+  margin-top: 8px;
+}
+/*# sourceMappingURL=mealStyle.css.map */

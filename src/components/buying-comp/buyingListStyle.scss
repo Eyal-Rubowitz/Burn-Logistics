@@ -1,0 +1,87 @@
+#shoppingDiv {
+    width: 100%; 
+    padding-top: 0px !important;
+
+    #unVisData {
+        height: 0px !important;
+    }
+
+    #filtersDiv {
+        border: solid 1px #D3D3D3;
+        border-radius: 5px !important;
+        margin-bottom: 10px !important;
+        height: 135px !important;
+
+        #filtersTitle {
+            text-decoration: underline;
+            position: relative;
+            left: 46px !important;
+         }
+
+         #combo-box-filters {
+            display: flex;
+            margin-left: 40px !important; 
+
+            .w {
+                width: 300px !important;
+            }
+
+            .left {
+                margin-left: 6px !important;
+            }
+
+            #switchCtrl {
+                margin-left: 2px !important; 
+                width: 200px !important;
+            }
+         }
+    }
+
+    #colsReveal {
+        border: solid 1px #D3D3D3; 
+        border-radius: 5px !important; 
+        margin-bottom: 10px !important; 
+        height: 110px !important;
+
+        #colsTitle {
+            margin-left: 50px !important;
+            text-decoration: underline; 
+            height: 0px !important;
+        }
+
+        #checkbox-hide-columns {
+            display: flex;
+        }
+
+        .checkBox {
+            margin-left: 50px !important;
+        }
+    }
+
+    #tableTitle {
+        margin-left: 30px !important;
+        text-decoration: underline; 
+        font-weight: bolder;
+    }
+
+    .unPurched {
+        height: 5px !important;
+    }
+
+    .purched {
+        font-weight: bolder;
+    }
+
+    #btnPurchItems {
+        margin-top: 10px !important;
+
+        #btn {
+            background-color: lighten(lightblue, 15%);
+            
+            #tg {
+                font-weight: bolder;
+                word-spacing: 4px;
+            }
+        }
+    }
+}

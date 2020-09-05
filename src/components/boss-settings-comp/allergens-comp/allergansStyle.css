@@ -1,0 +1,55 @@
+.paper {
+  position: relative !important;
+  width: 800px !important;
+  padding: 8px !important;
+  left: 34% !important;
+  top: 10%;
+}
+
+.title {
+  text-decoration: underline;
+}
+
+.deleteDiners .tg, .deleteItems .tg {
+  display: inline-block;
+}
+
+.deleteDiners .dfi, .deleteItems .dfi {
+  display: inline-block;
+}
+
+.coverdData {
+  height: "0px";
+}
+
+.coverdData #mobx-update-date-call {
+  visibility: hidden;
+}
+
+.add {
+  margin: 6px !important;
+  margin-top: 0px !important;
+  display: inline-block !important;
+  height: 56px !important;
+}
+
+.add #icon {
+  position: relative;
+  top: 5px;
+}
+
+.selectLrgForm {
+  width: 100%;
+  margin: 1px !important;
+  margin-bottom: 16px !important;
+}
+
+.selectIngForm {
+  margin: 1px !important;
+  width: 50%;
+}
+
+.txtFld {
+  margin: 1px !important;
+}
+/*# sourceMappingURL=allergansStyle.css.map */

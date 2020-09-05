@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,EAAE;CAgBlB;;AAlBD,AAII,WAJO,CAIP,cAAc,CAAC;EACX,OAAO,EAAE,IAAI;CAYhB;;AAjBL,AAOQ,WAPG,CAIP,cAAc,CAGV,KAAK,CAAC;EACF,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,IAAI;EACT,YAAY,EAAE,GAAG;CACpB;;AAXT,AAaQ,WAbG,CAIP,cAAc,CASV,EAAE,CAAC;EACC,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,OAAO;CACjB",
+    "sources": [
+        "kitchenToolsStyle.scss"
+    ],
+    "names": [],
+    "file": "kitchenToolsStyle.css"
+}
