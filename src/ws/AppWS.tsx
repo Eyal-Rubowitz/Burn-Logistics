@@ -1,6 +1,6 @@
 import { AppRootModel } from '../modelsContext';
 
-const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
+const wsEndpoint = process.env.wsEndpoint || 'burnlogisticsserver-env.eba-d3akqtwa.eu-central-1.elasticbeanstalk.com/ws' || "localhost:9000/ws";
 
 const AppWS = new WebSocket(`ws://${wsEndpoint}`);
 AppWS.addEventListener('message', (msg) => {

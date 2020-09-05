@@ -22,7 +22,7 @@ import BuyingList from './assets/buyingList.png';
 import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
 
-const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
+const wsEndpoint = process.env.wsEndpoint || 'burnlogisticsserver-env.eba-d3akqtwa.eu-central-1.elasticbeanstalk.com/ws' || "localhost:9000/ws";
 
 const ws = new WebSocket(`ws://${wsEndpoint}`);
 ws.addEventListener('message', (msg) => {

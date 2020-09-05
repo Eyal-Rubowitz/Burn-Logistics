@@ -47,7 +47,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "(cd server && npm run start ) &  npm run start",
-    "build": "cd burn-logistics && npm run build",
+    "build": "react-scripts build",
     "install-client": "cd burn-logistics && npm install",
     "heroku-client": "npm run install-client && npm run build",
     "test": "react-scripts test",

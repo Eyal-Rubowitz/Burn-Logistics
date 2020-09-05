@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/api/meals', mealsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/foodItems', foodItemsRouter);
@@ -42,9 +42,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/burn-logi
   useUnifiedTopology: true 
 });
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('burn-logistics/build'));
-}
+// if(process.env.NODE_ENV === 'production') {
+  // app.use(express.static('burn-logistics/build'));
+// }
+app.use(express.static('./build'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
