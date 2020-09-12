@@ -111,7 +111,7 @@ class DinersNutritionComp extends PureComponent {
     render() {
         let dietTypes: JSX.Element[] = [];
         dietTypes = Object.keys(this.dinersNumber).map(dietType =>
-            <div key={dietType} className="dietType">
+            <div key={dietType} id="dietType">
                 <Typography variant="h5" className="tgDiet">{dietType}: </Typography>
                 <TextField label="Diners number"
                     value={this.dinersNumber[dietType]}

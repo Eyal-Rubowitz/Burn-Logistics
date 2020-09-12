@@ -1,6 +1,6 @@
 import { AppRootModel } from '../modelsContext';
 
-const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
+const wsEndpoint = process.env.wsEndpoint || "localhost:3000/ws";
 
 const AppWS = new WebSocket(`ws://${wsEndpoint}`);
 AppWS.addEventListener('message', (msg) => {

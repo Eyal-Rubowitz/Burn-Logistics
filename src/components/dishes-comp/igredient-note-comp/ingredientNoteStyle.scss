@@ -3,28 +3,30 @@
 }
 
 #returnBtn {
-    margin-bottom: 12px !important;
-    width: 120px !important;
+    margin-bottom: 1.2vh !important;
+    width: 6vw !important;
 }
 
 #tgIngTitleData {
     text-align: center; 
     font-weight: bold; 
     text-decoration: underline; 
-    word-spacing: 8px !important;
-    margin-bottom: 10px !important;
+    word-spacing: 0.4vw !important;
+    margin-bottom: 1vh !important;
 }
 
 #ingNote {
     width: 95%;
-    min-height: 100px !important;
+    min-height: 11vh !important;
     display: block;
+    font-size: 1.4em;
 }
 
 #saveBtn {
-    margin-top: 12px !important;
-    margin-right: 70px !important;
+    margin-top: 1.2vh !important;
+    margin-right: 3.2vw !important;
     float: right !important;
     left: -24px !important;
-    word-spacing: 6px;
+    left: -1.4vw !important;
+    word-spacing: 0.3vw;
 }

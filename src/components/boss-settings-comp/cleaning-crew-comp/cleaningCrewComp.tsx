@@ -96,7 +96,7 @@ class CleaningCrewComp extends PureComponent {
                             className="addClnMmbr">
                             <Icon id="icon">add</Icon>Assign to shift
                         </Fab>
-                        <Typography variant="h5" className="tgClnTitle">Cleaning Crew</Typography>
+                        <Typography variant="h5" id="tgClnTitle">Cleaning Crew</Typography>
                         <Typography variant="h6">{this.getKitchenCrew()}</Typography>
                     </div>
                 </Paper>

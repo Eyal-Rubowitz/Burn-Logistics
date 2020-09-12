@@ -6,7 +6,7 @@ export abstract class DataModel<TypeModel extends ClassType> {
     @observable items: Array<TypeModel>;
     root: RootModel;
     modelFactory: { new(a: DataModel<any>, n: TypeModel): TypeModel }
-    host = process.env.apiHost || 'localhost:9000';
+    host = process.env.apiHost || 'localhost:3000';
 
     constructor(root: RootModel, grr: { new(a: DataModel<any>, n: TypeModel): TypeModel }) {
         this.root = root;

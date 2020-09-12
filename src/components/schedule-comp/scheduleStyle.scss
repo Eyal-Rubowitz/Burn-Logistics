@@ -10,8 +10,8 @@
 
         #headTr {
             white-space: nowrap; 
-            font-size: 24px; 
-            line-height: 35px;
+            font-size: 1.5em !important; 
+            line-height: 3.5vh !important;
         }
 
         #headTh {
@@ -25,21 +25,23 @@
     }
 }
 
-.sousName {
-    display: inline-block;
+.name {
+    line-height: 270% !important;
+    text-align: center; 
     white-space: nowrap; 
-    width: 125px;
+    display: inline-block;
+    width: 6vw;
+    font-size: 1.1em !important;
+}
+
+.sousName {
     background-color: lightblue;
-    height: 40px;
 }
 
 .cleanName {
-    line-height: 270%; 
-    white-space: nowrap; 
-    width: 125px; 
-    display: inline-block; 
     background-color: darkGreen; 
     color: lightGreen;
+
 }
 
 .tableTr {
@@ -48,7 +50,7 @@
 }
 
 .servingTd {
-    text-indent: 40px;
+    text-indent: 2vw !important;
 }
 
 .checkBox {
@@ -56,39 +58,35 @@
 }
 
 .dishInfo {
-    display: blick;
     text-align: left;
     vertical-align: text-top;
-    min-width:220px !important;
-    max-width: auto;
+    width: 10.5vw !important;
 
     .dishIng {
         margin: 0px !important; 
-        height: 26px !important;
-    }
-
-
-    .dishNameInfoTh {
-        text-align: center;
-        min-width: 220px !important;
-        max-width: auto;
-        display: blick;
+        height: 2.5vh !important;
     }
 }
 
-        #scheduleTable {
-            margin-top: 20px !important;
-            border: solid 1px black; 
-            text-align: left; 
-            width: auto;
-    
-            #tableHead {
-                display: block;
-                background-color: #3f51b5; 
-                color: #00FFFF;
-            }
+.dishNameInfoTh {
+    display: inline-block;
+    text-align: center;
+    width: 10.5vw !important;
+    max-width: auto;
+}
 
-            #tableBody {
-                display: block;
-            }
-        }
+#scheduleTable {
+    margin-top: 1.95vh !important;
+    border: solid 1px black; 
+    text-align: left; 
+    width: auto;
+
+    #tableHead {
+        background-color: #3f51b5; 
+        color: #00FFFF;
+    }
+
+    #tableBody {
+        display: block;
+    }
+}

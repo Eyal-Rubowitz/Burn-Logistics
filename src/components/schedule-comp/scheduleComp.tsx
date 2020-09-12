@@ -23,13 +23,13 @@ class ScheduleTableComp extends PureComponent {
 
             let sousChefNames: JSX.Element[] = m.sousChefList.map(name => {
                 return (
-                    <div key={name} className="sousName">{name}</div>
+                    <div key={name} className="sousName name">{name}</div>
                 )
             })
 
             let cleaningCrewNames: JSX.Element[] = m.cleaningCrewList.map(name => {
                 return (
-                    <div key={name}  className="cleanName">{name}</div>
+                    <div key={name}  className="cleanName name">{name}</div>
                 )
             })
 

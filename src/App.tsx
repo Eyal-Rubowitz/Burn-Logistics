@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
-import { AppBar, Typography, Container, Toolbar } from '@material-ui/core';
+import {
+  AppBar, Typography, Container, Toolbar,
+  createMuiTheme, responsiveFontSizes, MuiThemeProvider
+} from '@material-ui/core';
 
 import { AppRootModel } from './modelsContext';
 import MealComp from './components/meals-comp/mealComp';
@@ -21,8 +24,9 @@ import InvBox from './assets/invBox.png';
 import BuyingList from './assets/buyingList.png';
 import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
+import './AppStyle/style.scss';
 
-const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
+const wsEndpoint = process.env.wsEndpoint || "localhost:3000/ws";
 
 const ws = new WebSocket(`ws://${wsEndpoint}`);
 ws.addEventListener('message', (msg) => {
@@ -68,71 +72,79 @@ ws.addEventListener('message', (msg) => {
   }
 });
 
+// createMuiTheme takes an options object as argument 
+// containing custom colors or typography
+// and return a new theme to the react components. 
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+
 function App() {
   return (
     <div id="rootDiv">
-      <Router>
-        <AppBar>
-          <Toolbar style={{ backgroundColor: '#3646A3' }}>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '1%' }} to={'/meals'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '36px' }} alt="chef plan meal" src={ChefMeal} />  Meals Plan
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <AppBar>
+            <Toolbar className="appNavBar">
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/meals'}>
+                <Typography className="appTg">
+                  <img className="imgs" alt="chef plan meal" src={ChefMeal} />  Meals Plan
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '1%' }} to={'/kitchen-tools'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '86px' }} alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/kitchen-tools'}>
+                <Typography className="appTg" >
+                  <img className="imgs L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '1%' }} to={'/schedule'}>
-              <Typography variant="h6" style={{ marginLeft: 20, marginRight: 5, lineHeight: 3.2 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '36px' }} alt="schedule" src={Calander} /> Meal Schedule & Overview
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/schedule'}>
+                <Typography  className="appTg" >
+                  <img className="imgs" alt="schedule" src={Calander} /> Meal Schedule & Overview
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '3%' }} to={'/food-items'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '40px' }} alt="ingredients basket" src={Ingredients} /> Ingredient Variety
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/food-items'}>
+                <Typography className="appTg" >
+                  <img className="imgs" alt="ingredients basket" src={Ingredients} /> Ingredient Variety
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '3%' }} to={'/inventory'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '40px' }} alt="inventory box" src={InvBox} /> Ingredient Inventory
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/inventory'}>
+                <Typography className="appTg" >
+                  <img className="imgs" alt="inventory box" src={InvBox} /> Ingredient Inventory
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '3%', fontSize: '1.25rem' }} to={'/buying-list'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '38px' }} alt="buing list" src={BuyingList} /> Shopping List
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/buying-list'}>
+                <Typography className="appTg" >
+                  <img className="imgs" alt="buing list" src={BuyingList} /> Shopping List
               </Typography>
-            </NavLink>
-            <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} style={{ textDecoration: 'none', color: '#91FFFF', marginLeft: '3%' }} to={'/settings'}>
-              <Typography variant="h6" style={{ lineHeight: 3.2, marginLeft: 5, marginRight: 5 }} >
-                <img style={{ display: 'inline-block', verticalAlign: 'middle', width: '40px' }} alt="admin settings" src={AdminSettings} />  Admin
+              </NavLink>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px'}} className="appLink" to={'/settings'}>
+                <Typography className="appTg" >
+                  <img className="imgs" alt="admin settings" src={AdminSettings} />  Admin
               </Typography>
-            </NavLink>
-          </Toolbar>
-        </AppBar>
-        <Container maxWidth={false} style={{ marginTop: '5%' }}>
-          <Switch>
-            <Route path={'/meals'} exact component={MealListComp} />
-            <Route path={'/meals/:id'} exact component={MealComp} />
-            <Route path={'/meals/:id/ingredient-note/:id'} exact component={IngredientNoteComp} />
-            <Route path={'/kitchen-tools'} exact component={KitchenToolsFunc} />
-            <Route path={'/schedule'} exact component={ScheduleTableComp} />
-            <Route path={'/food-items'} exact component={FoodItemListComp} />
-            <Route path={'/inventory'} exact component={InventoryListComp} />
-            <Route path={'/buying-list'} exact component={BuyingListComp} />
-            <Route path={'/settings'} exact component={BossSettingsComp} />
-            <Route path={'/settings/meal-types'} exact component={BossSettingsComp} />
-            <Route path={'/settings/add-date'} exact component={BossSettingsComp} />
-            <Route path={'/settings/custom-unit'} exact component={BossSettingsComp} />
-            <Route path={'/settings/allergens'} exact component={BossSettingsComp} />
-            <Route path={'/settings/limitations'} exact component={BossSettingsComp} />
-            <Route path={'/settings/sous-chefs'} exact component={BossSettingsComp} />
-            <Route path={'/settings/diners-nutrition'} exact component={BossSettingsComp} />
-            <Route path={'/settings/cleaning-crew'} exact component={BossSettingsComp} />
-          </Switch>
-        </Container>
-      </Router>
+              </NavLink>
+            </Toolbar>
+          </AppBar>
+          <Container maxWidth={false} id="appContainer">
+            <Switch>
+              <Route path={'/meals'} exact component={MealListComp} />
+              <Route path={'/meals/:id'} exact component={MealComp} />
+              <Route path={'/meals/:id/ingredient-note/:id'} exact component={IngredientNoteComp} />
+              <Route path={'/kitchen-tools'} exact component={KitchenToolsFunc} />
+              <Route path={'/schedule'} exact component={ScheduleTableComp} />
+              <Route path={'/food-items'} exact component={FoodItemListComp} />
+              <Route path={'/inventory'} exact component={InventoryListComp} />
+              <Route path={'/buying-list'} exact component={BuyingListComp} />
+              <Route path={'/settings'} exact component={BossSettingsComp} />
+              <Route path={'/settings/meal-types'} exact component={BossSettingsComp} />
+              <Route path={'/settings/add-date'} exact component={BossSettingsComp} />
+              <Route path={'/settings/custom-unit'} exact component={BossSettingsComp} />
+              <Route path={'/settings/allergens'} exact component={BossSettingsComp} />
+              <Route path={'/settings/limitations'} exact component={BossSettingsComp} />
+              <Route path={'/settings/sous-chefs'} exact component={BossSettingsComp} />
+              <Route path={'/settings/diners-nutrition'} exact component={BossSettingsComp} />
+              <Route path={'/settings/cleaning-crew'} exact component={BossSettingsComp} />
+            </Switch>
+          </Container>
+        </Router>
+      </MuiThemeProvider>
     </div>
   );
 }

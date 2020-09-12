@@ -216,7 +216,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     onChange={(e: React.ChangeEvent<any>) => this.onPortionChange(e, m._id)}
                     value={this.portion[m._id]}
                     variant="outlined"
-                    className="choosenMealForm lrgWidth"
+                    className="choosenMealForm selectedPortionWidth"
                     inputProps={{ type: "number" }} />
                 <Fab
                     onClick={() => { this.onSetLimitations(m); this.isChoosenMealUpdated = true; }}
@@ -226,7 +226,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
                 <ToggleButton value={this.isChoosenMealUpdated} className="tglBtn" style={{ visibility: (this.isChoosenMealUpdated) ? 'visible' : 'hidden' }}>
-                    <CheckIcon className="updateDone" />  Updated Done!
+                    <CheckIcon className="updateDone" />  Updated Done !
                 </ToggleButton>
             </div>);
 
@@ -289,11 +289,11 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                         onClick={() => { this.onSetLimitations() }}
                         variant='extended'
                         color='primary'
-                        className="btnLmtSetBgtDnrs">
+                        id="btnLmtSetBgtDnrs">
                         <Icon id="icon">add</Icon>Set Budget & Diners
                     </Fab>
                 </div> : <div>
-                        <div className="mealSelectComp">
+                        <div id="mealSelectComp">
                             <MealSelectComp store={this.selectedMealStore} />
                         </div>
                         {choosenMealEvent}

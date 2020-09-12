@@ -1,0 +1,62 @@
+#appContainer {
+    margin-top: 10vh;
+    overflow-y: visible;
+}
+
+.appNavBar {
+    background-color: #3646A3;
+    z-index: 1;
+    height: 7.6vh;
+    display: flex;
+
+    .appLink {
+        position: relative;
+        top: 0.8vh;
+        text-decoration: none;
+        color: #91FFFF;
+        margin-left: 0.6vw;
+        height: 100%;
+
+        .appTg {
+            line-height: 6.2vh; 
+            margin: 0.1vw 0.1vw 0vw 0.1vw;
+            font-size: 1.16vw;
+            font-weight: bold;
+
+            .imgs {
+                display: 'inline-block'; 
+                vertical-align: middle;
+                width: 3.4vw;
+                max-height: 6.4vh;
+                min-width: 25px;
+                height: auto;
+                margin: 0.1vw 0vw 0vw 0.1vw;
+            }
+
+            .imgs.L {
+                width: 5.5vw;
+            }
+        }
+    }
+}
+
+.paper {
+    position: relative !important; 
+    width: 38vw !important; 
+    padding: 0.4vw !important; 
+    left: 34% !important; 
+    top: 10%;
+}
+
+.title {
+    text-decoration: underline; 
+}
+
+.noPointer {
+    pointer-events: none;
+}
+
+#mealSelectComp {
+    width: 16vw !important;
+    margin-bottom: 1vh !important;
+}

@@ -1,5 +1,5 @@
 .mealDataDiv1 {
-    margin-top: 12px;
+    margin-top: 1.25vh !important;
     
     #txtFldPreparing {
         display: block !important; 
@@ -9,34 +9,26 @@
         display: block !important; 
     }
 
-    .noPointer {
-        pointer-events: none;
-    }
-
     .txtFld {
         display: inline-block;
-        margin-bottom: 12px !important;
+        margin-bottom: 1.2vh !important;
     }
     
     .w {
-        width: 220px;
+        width: 10.5vw !important;
     }
 }
 
 .mealDataDiv2 {
-    margin-bottom: 12px;
-
-    .noPointer {
-        pointer-events: none;
-    }
+    margin-bottom: 1.2vh !important;
 
     .txtFld {
         display: inline-block;
-        margin-bottom: 12px !important;
-        margin-right: 2px !important;
+        margin-bottom: 1.1vh !important;
+        margin-right: 1vw !important;
     }
 }
 
 #exPanel {
-    margin-top: 8px;
+    margin-top: 0.8vh;
 }
