@@ -66,6 +66,14 @@
         margin: 0px !important; 
         height: 2.5vh !important;
     }
+
+    .evnInfo {
+        background-color: #FFFFFF;
+    }
+
+     .oddInfo {
+        background-color: #dbdbdb;
+     } 
 }
 
 .dishNameInfoTh {
@@ -77,7 +85,7 @@
 
 #scheduleTable {
     margin-top: 1.95vh !important;
-    border: solid 1px black; 
+    border: solid 0.1vw black; 
     text-align: left; 
     width: auto;
 
@@ -89,4 +97,20 @@
     #tableBody {
         display: block;
     }
+}
+
+.evn {
+    background-color: #FFF5EE;
+}
+
+.odd {
+    background-color: #F0F8FF;
+}
+
+.borderDays {
+    border-top: solid 0.25vw black;
+}
+
+.borderInfo {
+    border-left: solid 0.15vw black;
 }

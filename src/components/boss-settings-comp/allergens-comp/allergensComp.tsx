@@ -131,20 +131,19 @@ class AllergensComp extends PureComponent {
                         onChange={(e) => { this.onEnterDinerName(e) }}
                         value={this.newDinerName}
                         variant="outlined"
-                        className="txtFld"
-                        style={{ visibility: (isVisable) ? 'visible' : 'hidden' }} />
+                        className={`txtFld ${(isVisable) ? 'vsbl' : 'hide'}`} />
                     <Fab
                         onClick={() => { this.onAddNewDiner() }}
                         variant='extended'
                         color='primary'
-                        className="addBtn"
-                        style={{ visibility: (isVisable) ? 'visible' : 'hidden' }}>
+                        className={`addBtn ${(isVisable) ? 'vsbl' : 'hide'}`} >
                         <Icon id="icon">add</Icon>Add Diner
                     </Fab>
                     {(lrgDinerList.length > 1) ? lrgDinerList : ""}
                 </div>
                 <div id="lrgnsIngs">
-                    <FormControl variant="outlined" className="selectIngForm" style={{ visibility: (isVisable) ? 'visible' : 'hidden' }} >
+                    <FormControl variant="outlined" 
+                                 className={`selectIngForm ${(isVisable) ? 'vsbl' : 'hide'}`} >
                         <InputLabel>Select ingredient</InputLabel>
                         <Select name='select-fi-id' value={this.selectedFoodItemId} onChange={(e) => this.onSelectAlerganFoodItem(e)} >
                             {foodItemList}
@@ -154,7 +153,7 @@ class AllergensComp extends PureComponent {
                         onClick={(e) => { this.onAddFoodItem(e) }}
                         variant='extended'
                         color='primary'
-                        style={{ margin: 6, visibility: (isVisable) ? 'visible' : 'hidden' }}>
+                        className={`addLrgIng ${(isVisable) ? 'vsbl' : 'hide'}`} >
                         <Icon>add</Icon>Add allergan Ingredient
                     </Fab>
                     {(lrgFoodList.length > 1) ? lrgFoodList : ""}

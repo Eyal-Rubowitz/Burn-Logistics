@@ -22,15 +22,15 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                     title='Kitchen Tools'
                     style={{ width: '45%' }}
                     icons={{
-                        Add: forwardRef((props, ref) => <div className="addKitchenDiv">
-                                                            <AddIcon className="icon" 
-                                                                    {...props} 
-                                                                    ref={ref} 
-                                                                    color="primary" 
-                                                                    fontSize="default" 
-                                                                    viewBox="0 0 20 20" />
-                                                                <p className="p">Add Kitchen Item</p>
-                                                        </div>),
+                    Add: forwardRef((props, ref) => <div className="addKitchenDiv">
+                                                        <AddIcon className="icon" 
+                                                                {...props} 
+                                                                ref={ref} 
+                                                                color="primary" 
+                                                                fontSize="default" 
+                                                                viewBox="0 0 20 20" />
+                                                            <p className="p">Add Kitchen Item</p>
+                                                    </div>),
                         Delete: forwardRef((props, ref) => <DeleteForeverIcon {...props} ref={ref} color="secondary" />)
                     }}
                     columns={[

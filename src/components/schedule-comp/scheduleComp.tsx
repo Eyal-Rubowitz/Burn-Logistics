@@ -34,9 +34,8 @@ class ScheduleTableComp extends PureComponent {
             })
 
             return (
-                <tr key={i} className="tableTr" 
-                            style={{ backgroundColor: (i % 2 === 0) ? "#FFF5EE" : "#F0F8FF", 
-                                     borderTop: (borderBool) ? 'solid 5px black' : 'none' }}>
+                <tr key={i} 
+                    className={`tableTr ${(i % 2 === 0) ? 'evn' : 'odd'} ${(borderBool) ? 'borderDays' : 'none'}`} >
                     <td>{m.chef}</td>
                     <td>{m.date.toLocaleDateString()}</td>
                     <td>{m.name}</td>
@@ -78,8 +77,7 @@ class ScheduleTableComp extends PureComponent {
         let mealDishesNameHeaders: JSX.Element[] = meal.dishes.map((d, i) => {
             return (
                 <th key={d.name}
-                    className="dishNameInfoTh"
-                    style={{ borderLeft: (i !== 0) ? 'solid 3px black' : 'none' }}>
+                    className={`dishNameInfoTh ${ (i !== 0) ? 'borderInfo' : ''}`}>
                     {d.name}
                 </th>
             )
@@ -88,10 +86,9 @@ class ScheduleTableComp extends PureComponent {
         let mealDishesIngInfo: JSX.Element[] = meal.dishes.map((d, i) => {
             return (
                 <td key={d.name}
-                    className="dishInfo"
-                    style={{ borderLeft: (i !== 0) ? 'solid 3px black' : 'none' }}>
+                    className={`dishInfo ${ (i !== 0) ? 'borderInfo' : ''}`}>
                     {d.ingrediants.map((ing, j) => {
-                        return <ul key={j} className="dishIng" style={{ backgroundColor: (j % 2 === 0) ? '#FFFFFF' : '#dbdbdb' }}>{ing.name}</ul>
+                        return <ul key={j} className={`dishIng ${(j % 2 === 0) ? 'evnInfo' : 'oddInfo'}`}>{ing.name}</ul>
                     })}
                 </td>
             )

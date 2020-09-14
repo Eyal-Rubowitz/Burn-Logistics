@@ -199,13 +199,11 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             {
                                 title: 'Expiration Date',
                                 field: 'expirationDate',
-                                render: (ii: InventoryItem) => <div style={{
-                                    color: (this.isExDateAlert(ii.expirationDate, now)) ? 'red' : 'black',
-                                    fontWeight: (this.isExDateAlert(ii.expirationDate, now)) ? 'bolder' : 'normal'
-                                }}>
-                                    <InventoryItemTag ii={ii} attr="toSringDate" />
-                                </div>,
-                                type: "date",
+                                render: (ii: InventoryItem) => 
+                                                <div className={`${(this.isExDateAlert(ii.expirationDate, now)) ? 'ex' : 'ok'}`} >
+                                                    <InventoryItemTag ii={ii} attr="toSringDate" />
+                                                </div>,
+                                type: "date"
                             },
                         ]}
                         data={AppRootModel.inventoryModel.items.map(ii => ii)}

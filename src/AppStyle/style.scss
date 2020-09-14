@@ -46,6 +46,27 @@
     padding: 0.4vw !important; 
     left: 34% !important; 
     top: 10%;
+
+    .switchForm {
+        margin-top: 0.28vw !important; 
+        margin-left: 0.6vw !important; 
+        margin-bottom: 2vh !important;
+    
+        .box {
+            font-size: 1.5em;
+            margin-top: 6px;
+    
+            &.on {
+                color: #3646a3 !important;
+                font-weight: bolder ;
+            }
+    
+            &.off {
+                color: black;
+                font-weight: lighter;
+            }
+        }
+    }
 }
 
 .title {
@@ -60,3 +81,16 @@
     width: 16vw !important;
     margin-bottom: 1vh !important;
 }
+
+.vsbl {
+    visibility: visible;
+    height: auto;
+}
+
+.hide {
+    visibility: hidden;
+    height: 0px !important;
+}
+
+
+

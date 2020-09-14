@@ -225,7 +225,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     className="btn">
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
-                <ToggleButton value={this.isChoosenMealUpdated} className="tglBtn" style={{ visibility: (this.isChoosenMealUpdated) ? 'visible' : 'hidden' }}>
+                <ToggleButton value={this.isChoosenMealUpdated} className={`tglBtn ${(this.isChoosenMealUpdated) ? 'vsbl' : 'hide'}`}>
                     <CheckIcon className="updateDone" />  Updated Done !
                 </ToggleButton>
             </div>);
@@ -235,8 +235,18 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                 <Typography variant="h6" className="title">Budget & Diners Limitations</Typography>
                 <FormControl component="fieldset" className="switchForm">
                     <RadioGroup aria-label="gender" name="gender1" value={this.switchCondition}>
-                        <FormControlLabel value={true} onClick={() => this.switchCondition = true} control={<Radio color="primary" checked={this.switchCondition} />} label={<Box fontSize={18} style={{ marginTop: 6, color: (this.switchCondition) ? '#3646a3' : 'black', fontWeight: (this.switchCondition) ? 'bolder' : 'lighter' }}>Set All Meals At Once</Box>} />
-                        <FormControlLabel value={false} onClick={() => this.switchCondition = false} control={<Radio color="primary" checked={!this.switchCondition} />} label={<Box fontSize={18} style={{ marginTop: 6, color: (!this.switchCondition) ? '#3646a3' : 'black', fontWeight: (!this.switchCondition) ? 'bolder' : 'lighter' }}>Select And Set Specific Meal</Box>} />
+                        <FormControlLabel value={true} 
+                                          onClick={() => this.switchCondition = true} 
+                                          control={<Radio color="primary" checked={this.switchCondition} />} 
+                                          label={<Box className={`box ${(this.switchCondition) ? 'on' : 'off'}`}>
+                                                    Set All Meals At Once
+                                                 </Box>} />
+                        <FormControlLabel value={false} 
+                                          onClick={() => this.switchCondition = false} 
+                                          control={<Radio color="primary" checked={!this.switchCondition} />} 
+                                          label={<Box className={`box ${(this.switchCondition) ? 'off' : 'on'}`}>
+                                                    Select And Set Specific Meal
+                                                 </Box>} />
                     </RadioGroup>
                 </FormControl>
                 {(this.switchCondition) ? <div>

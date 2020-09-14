@@ -83,7 +83,7 @@ class CleaningCrewComp extends PureComponent {
             <Fragment>
                 <Paper className="paper">
                     <MealSelectComp store={this.selectedMealStore} />
-                    <div style={{ visibility: (this.meal !== undefined) ? 'visible' : 'hidden' }}>
+                    <div className={`${(this.meal !== undefined) ? 'vsbl' : 'hide' }`} >
                         <Typography variant="h4" className="cleaningTitle">{this.mealInfo()}</Typography>
                         <TextField label="Enter cleaning member"
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterCleaningMemberName(e) }}

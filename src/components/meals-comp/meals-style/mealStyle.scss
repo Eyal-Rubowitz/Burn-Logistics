@@ -1,31 +1,29 @@
 .mealDataDiv1 {
-    margin-top: 1.25vh !important;
-    
+    margin: 1.25vh 0 1vh 1.1vw !important;
+
     #txtFldPreparing {
-        display: block !important; 
+        display: inline-block !important; 
     }
 
     #txtFldServing {
-        display: block !important; 
-    }
-
-    .txtFld {
-        display: inline-block;
-        margin-bottom: 1.2vh !important;
-    }
-    
-    .w {
-        width: 10.5vw !important;
+        display: inline-block !important; 
     }
 }
+    
+    .mealDataDiv2 {
+  
+        .txtFld {
+            position: relative;
+            display: inline-block;
+            margin: 0.25vh 0 0.25vh 1.25vw !important;
+        }
+}
 
-.mealDataDiv2 {
-    margin-bottom: 1.2vh !important;
+.mealDataDiv3 {
 
     .txtFld {
         display: inline-block;
-        margin-bottom: 1.1vh !important;
-        margin-right: 1vw !important;
+        margin: 1.25vh 0 1.25vh 1.2vw !important;
     }
 }
 

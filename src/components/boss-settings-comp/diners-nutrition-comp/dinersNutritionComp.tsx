@@ -1,8 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Paper, Typography, TextField, Fab, 
-         Icon, IconButton, Box, FormControl, 
-         RadioGroup, FormControlLabel, Radio, 
-         ExpansionPanel, ExpansionPanelSummary } from '@material-ui/core';
+import {
+    Paper, Typography, TextField, Fab,
+    Icon, IconButton, Box, FormControl,
+    RadioGroup, FormControlLabel, Radio,
+    ExpansionPanel, ExpansionPanelSummary
+} from '@material-ui/core';
 import { observer } from "mobx-react";
 import { observable, computed, IReactionDisposer, autorun, action } from 'mobx';
 import { Meal } from '../../../models/mealModel';
@@ -117,16 +119,12 @@ class DinersNutritionComp extends PureComponent {
                     value={this.dinersNumber[dietType]}
                     onChange={(e: React.ChangeEvent<any>) => this.onChangeDinersNumber(e, dietType)}
                     variant="outlined"
-                    className="txtFldDietType"
-                    inputProps={{ type: "number" }}/>
+                    className={`txtFldDietType ${((Object.values(this.dinersNumber).length > 1 && this.isSetForAllMeals)
+                        || (Object.values(this.dinersNumber).length > 1 && this.selectedMealStore.meal)) ? 'vsbl' : 'hide'}`}
+                    inputProps={{ type: "number" }} />
                 <IconButton onClick={() => { this.onDeleteDietType(dietType) }}
                     color="secondary"
-                    size="medium"
-                    style={{
-                        marginLeft: 30,
-                        visibility: ((Object.values(this.dinersNumber).length > 1 && this.isSetForAllMeals) 
-                        || (Object.values(this.dinersNumber).length > 1 && this.selectedMealStore.meal)) ? 'visible' : 'hidden'
-                    }}>
+                    size="medium" >
                     <DeleteForeverIcon className="dltIcon" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                 </IconButton>
             </div>);
@@ -141,15 +139,25 @@ class DinersNutritionComp extends PureComponent {
                     </Box>
                 </div>
                 <Paper className="paper">
-                    <div className="mealSwitchOption">
+                    <div className="switchForm">
                         <FormControl component="fieldset">
                             <RadioGroup aria-label="gender" name="gender1" value={this.isSetForAllMeals}>
-                                <FormControlLabel value={true} onClick={() => this.isSetForAllMeals = true} control={<Radio color="primary" checked={this.isSetForAllMeals} />} label={<Box fontSize={24} style={{ marginTop: 6, color: (this.isSetForAllMeals) ? '#3646a3' : 'black', fontWeight: (this.isSetForAllMeals) ? 'bolder' : 'lighter' }}>Set All Meals At Once</Box>} />
-                                <FormControlLabel value={false} onClick={() => this.isSetForAllMeals = false} control={<Radio color="primary" checked={!this.isSetForAllMeals} />} label={<Box fontSize={24} style={{ marginTop: 6, color: (!this.isSetForAllMeals) ? '#3646a3' : 'black', fontWeight: (!this.isSetForAllMeals) ? 'bolder' : 'lighter' }}>Select And Set Specific Meal</Box>} />
+                                <FormControlLabel value={true}
+                                    onClick={() => this.isSetForAllMeals = true}
+                                    control={<Radio color="primary" checked={this.isSetForAllMeals} />}
+                                    label={<Box className={`box ${(this.isSetForAllMeals) ? 'on' : 'off'}`} >
+                                                Set All Meals At Once
+                                            </Box>} />
+                                <FormControlLabel value={false}
+                                    onClick={() => this.isSetForAllMeals = false}
+                                    control={<Radio color="primary" checked={!this.isSetForAllMeals} />} 
+                                    label={<Box className={`box ${(this.isSetForAllMeals) ? 'off' : 'on'}`}>
+                                                Select And Set Specific Meal
+                                            </Box>} />
                             </RadioGroup>
                         </FormControl>
                     </div>
-                    <div style={{ visibility: (!this.isSetForAllMeals) ? 'visible' : 'hidden', height: (!this.isSetForAllMeals) ? 'auto' : 0 }}>
+                    <div className={`${(!this.isSetForAllMeals) ? 'vsbl' : 'hide'}`}>
                         <MealSelectComp store={this.selectedMealStore} />
                     </div>
                     <div>
@@ -160,7 +168,7 @@ class DinersNutritionComp extends PureComponent {
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterDietTypeName(e) }}
                             value={this.dietTypeName}
                             variant="outlined"
-                            className="txtFldDietName"/>
+                            className="txtFldDietName" />
                         <Fab
                             onClick={() => { this.onAddNewDietType() }}
                             variant='extended'
@@ -168,17 +176,17 @@ class DinersNutritionComp extends PureComponent {
                             className="btnAddDiet">
                             <Icon id="icon">add</Icon>Add
                         </Fab>
-                        <div style={{ marginTop: 30, marginLeft: 20, visibility: (this.isSetForAllMeals || this.selectedMealStore.meal) ? 'visible' : 'hidden' }}>
-                            <div className="ttlDinersForm">
-                                <Typography variant="h5" className='tgTtlDiners'>Total Diners: </Typography>
+                        <div id="dinersForm" className={`${(this.isSetForAllMeals || this.selectedMealStore.meal) ? 'vsbl' : 'hide'}`}>
+                            <div id="ttlDinersForm">
+                                <Typography variant="h5" id='tgTtlDiners'>Total Diners: </Typography>
                                 <TextField label=""
                                     value={this.totalDinersNum}
                                     variant="outlined"
-                                    className="txtFldDiners"/>
+                                    id="txtFldDiners" />
                             </div>
                             {dietTypes}
                             <div>
-                                <ExpansionPanel key={'info'} className="expnPnl">
+                                <ExpansionPanel key={'info'} id="expnPnl">
                                     <ExpansionPanelSummary
                                         expandIcon={<ExpandMoreIcon />}
                                         aria-controls="panel1a-content"
@@ -192,7 +200,7 @@ class DinersNutritionComp extends PureComponent {
                                     <p>★ Meals that hasn't the chenged type won't change at all.</p>
                                     <p>★ If there is only one meal with unique type, it will represent among set all meals option. </p>
                                 </ExpansionPanel>
-                                <br/>
+                                <br />
                             </div>
                         </div>
                     </div>

@@ -75,7 +75,7 @@ class MealComp extends PureComponent<MealCompProps> {
             AppRootModel.mealModel.updateItem(this.meal);
         }
     }
-
+    
     render() {
         return (
             <div>
@@ -105,22 +105,24 @@ class MealComp extends PureComponent<MealCompProps> {
                             value={this.toMomentString(this.serving)}
                             onChange={(e) => this.onUpdateTime(e)}
                             variant="outlined"
-                            style={{ marginLeft: 4, marginRight: 18 }}
+                            style={{ marginLeft: '1.1vw', marginRight: '0.8vw' }}
                             inputProps={{
                                 style: { width: '170px', textAlign: 'center', fontWeight: 'bolder' }
                             }}
                             InputLabelProps={{
                                 style: { fontSize: 18, fontWeight: 'bolder' }
                             }} />
+                        </div>
+                        <div className="mealDataDiv2">
                         <TextField label="Portion per diner"
                             value={`${this.meal.portion} gr'`}
                             variant="filled"
                             className="txtFld noPointer"
                             InputLabelProps={{ "aria-readonly": true }} />
-                        <TextField label="Total food quantity limitation"
+                        <TextField label="Total food quantity limit"
                             value={`${(this.meal.totalDiners * this.meal.portion) / 1000} Kg`}
                             variant="filled"
-                            className="txtFld noPointer w"
+                            className="txtFld noPointer"
                             InputLabelProps={{ "aria-readonly": true }} />
                         <TextField label="Current amount of food"
                             value={`${this.mealQuantity.toFixed(2)} Kg`}
@@ -138,7 +140,7 @@ class MealComp extends PureComponent<MealCompProps> {
                             variant="filled"
                             className="txtFld noPointer"
                             InputLabelProps={{ "aria-readonly": true }} />
-                        <TextField label="Actual meal expenses"
+                        <TextField label="Actual expenses"
                             value={this.mealExpenses}
                             variant="filled"
                             className="txtFld noPointer"
@@ -149,15 +151,15 @@ class MealComp extends PureComponent<MealCompProps> {
                                     backgroundColor: (this.mealExpenses < this.meal.budget) ? '#F0FFFF' : '#FFE4E1'
                                 }
                             }} />
-                    </div>
-                    <div className="mealDataDiv2">
+                        </div>
+                    <div className="mealDataDiv3">
                         <TextField label="Total diners number"
                             value={this.meal.totalDiners}
                             variant="filled"
                             className="txtFld noPointer"
                             InputLabelProps={{ "aria-readonly": true }} />
-                        {this.meal.diners.map(d => 
-                             <TextField label={d.dietType}
+                        {this.meal.diners.map(d =>
+                            <TextField label={d.dietType}
                                 value={d.count}
                                 variant="filled"
                                 className="txtFld noPointer"

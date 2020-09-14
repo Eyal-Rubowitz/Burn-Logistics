@@ -1,38 +1,12 @@
-#dietType {
-    margin-top: 2vh !important; 
-    margin-left: 1vw !important;
 
-    .tgDiet {
-        display: inline-block; 
-        margin-top: 1.2vh !important;
-    }
-
-    .txtFldDietType {
-        display: 'inline-block'; 
-        width: 5.2vw !important; 
-        margin-left: 0.5vw !important; 
-        margin-bottom: 2vh !important;
-    }
-
-    .dltIcon {
-        display: inline-block;
-        font-size: 1.2em;
-    }
-}
 
 .unVisableBox {
     display: none;
 }
 
-.mealSwitchOption {
-    margin-top: 0.28vw !important; 
-    margin-left: 0.6vw !important; 
-    margin-bottom: 2vh !important;
-}
-
 .tgTitle {
         text-align: center;
-        margin-top: 7.2vh !important;
+        margin-top: 4vh !important;
         margin-bottom: 4.2vh !important;
 }
 
@@ -56,25 +30,56 @@
     }
 }
 
-.ttlDinersForm {
-    margin-left: 20px !important; 
+#dinersForm {
+    margin-top: 3vh; 
+    margin-left: 1vw;
+
+    #ttlDinersForm {
+        margin-left: 1vw !important; 
+        margin-top: 7.8vh !important;
+        margin-bottom: 6vh !important;
+        
+        #tgTtlDiners {
+            display: inline-block;
+            margin-right: 1vw;
+            margin-top: 1.2vh;
+        }
+        
+        #txtFldDiners {
+            width: 3vw !important;
+            margin-left: 1vw !important; 
+            pointer-events: none;
+        }
+    }
+
+    #dietType {
+        margin-top: 2vh !important; 
+        margin-left: 1vw !important;
+    
+        .tgDiet {
+            display: inline-block; 
+            margin-top: 1.2vh !important;
+        }
+    
+        .txtFldDietType {
+            display: 'inline-block'; 
+            width: 5.2vw !important; 
+            margin-left: 0.5vw !important; 
+            margin-bottom: 2vh !important;
+        }
+    
+        .dltIcon {
+            display: inline-block;
+            font-size: 1.2em;
+        }
+    }
+    
+    #expnPnl {
+        width: 98% !important;
+        height: auto !important; 
+    }
 }
 
-.tgTtlDiners {
-    display: inline-block;
-    margin-top: 76px !important;
-    margin-bottom: 40px !important;
-}
 
-.txtFldDiners {
-    width: 70px !important;
-    pointer-events: none; 
-    margin-left: 14px !important;
-     margin-top: 70px !important; 
-     margin-bottom: 40px !important;
-}
 
-.expnPnl {
-    width: 98% !important;
-    height: auto !important; 
-}
+
