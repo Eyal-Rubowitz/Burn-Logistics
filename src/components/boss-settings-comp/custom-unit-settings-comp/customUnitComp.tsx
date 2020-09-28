@@ -63,7 +63,7 @@ class CustomUnitComp extends PureComponent {
                 return (
                     <div>
                         <Typography variant="h6" key={cu.unitName} className="btnDltCstmUn">{cu.unitName} - {cu.ratio}{this.baseUnit}</Typography>
-                        <IconButton onClick={() => { (this.foodItem as FoodItem).deleteCustomUnit(cu.unitName) }} color="secondary" size="medium">
+                        <IconButton className="hoverAlertColor" onClick={() => { (this.foodItem as FoodItem).deleteCustomUnit(cu.unitName) }} color="secondary" size="medium">
                             <DeleteForeverIcon className="dltIcon" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                         </IconButton>
                     </div>
@@ -108,7 +108,7 @@ class CustomUnitComp extends PureComponent {
                         onClick={() => { this.onUpdateCustomUnit() }}
                         variant='extended'
                         color='primary'
-                        className="btnUn">
+                        className="btnUn btnShiny">
                         <Icon id="icon">add</Icon>Add Custom Unit
                 </Fab>
                     <ExpansionPanel key={'info'}>

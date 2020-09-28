@@ -4,18 +4,44 @@
 }
 
 .appNavBar {
+    display: inline-block;
     background-color: #3646A3;
     z-index: 1;
-    height: 7.6vh;
+    height: 8vh;
     display: flex;
 
     .appLink {
         position: relative;
-        top: 0.8vh;
+        left: 2vw;
         text-decoration: none;
         color: #91FFFF;
-        margin-left: 0.6vw;
+        margin-left: 0.4vw;
         height: 100%;
+        border: transparent 0.2vw solid;
+    
+        &:hover:not(:focus) {
+            position: relative;
+            transition: background-color 0.8s ease-in;
+            background-color: lighten($color: #3646A3, $amount: 30%);
+            border: transparent 0.2vw solid;
+            border-radius: 0.25vw;
+            height: 7.05vh;
+            top: 0vh;
+            text-shadow: 0.16rem 0.16rem 0.4rem black;
+        }
+
+        &:not(:hover) {
+            position: relative;
+            transition: background-color 0.8s ease-out;
+            border: transparent 0.2vw solid;
+            border-radius: 0.25vw;
+            height: 7.05vh;
+            top: 0vh;
+        }
+
+        &:active {
+            top: 0.4vh;
+        }
 
         .appTg {
             line-height: 6.2vh; 
@@ -92,5 +118,45 @@
     height: 0px !important;
 }
 
+.btnShiny{
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      width: 3vw;
+      height: 100%;
+      opacity: 0.5;
+      filter: blur(1vw);
+      transform: translateX(-8vw)  skewX(-15deg);
+    }
+    &:hover{
+        &:before{
+        transform: translateX(20rem)  skewX(-15deg);  
+        opacity: 0.6;
+        transition: .7s;
+      }
+    }
+  }
 
+  .hoverAlertColor {
+    margin-left: 1% !important;
+  }
 
+  .hoverAlertColor:hover {
+    animation: alrt 4s infinite;
+    border-radius: 50%;
+    
+}
+
+@keyframes alrt {
+    0% {
+          background-color: lighten($color: gray, $amount: 40%);
+    }
+    50% {
+        background-color:lighten($color: red, $amount: 40%);
+    }
+    100% {
+        background-color: lighten($color: gray, $amount: 40%);
+    }
+  }

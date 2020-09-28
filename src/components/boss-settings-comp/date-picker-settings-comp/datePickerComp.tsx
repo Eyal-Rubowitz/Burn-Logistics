@@ -33,7 +33,7 @@ export default class DatePickerComp extends PureComponent {
         return (
             <>
                 <Paper className="paper">
-                    <div className="btnAddDate">
+                    <div className="btnAddDate btnShiny">
                         <IconButton onClick={() => { this.addNewMealDate() }} className="btnIcon" size="medium">
                             <Icon id="icon">add</Icon>Add Date
                         </IconButton>

@@ -7,6 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import './kitchenToolsStyle.scss';
+import { IconButton } from '@material-ui/core';
 
 const KitchenToolTag = observer((props: { kt: KitchenTool, attr: any }) =>
     <span>{(props.kt as any)[props.attr]}</span>
@@ -31,7 +32,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                                                                 viewBox="0 0 20 20" />
                                                             <p className="p">Add Kitchen Item</p>
                                                     </div>),
-                        Delete: forwardRef((props, ref) => <DeleteForeverIcon {...props} ref={ref} color="secondary" />)
+                        Delete: forwardRef((props, ref) => <IconButton size="medium" className="hoverAlertColor" ><DeleteForeverIcon {...props} ref={ref} color="secondary" /></IconButton>)
                     }}
                     columns={[
                         {

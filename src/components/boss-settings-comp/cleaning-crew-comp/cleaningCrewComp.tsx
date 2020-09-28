@@ -68,7 +68,7 @@ class CleaningCrewComp extends PureComponent {
             return (
                 <div>
                     <Typography variant="h6" key={name} className="tgClnName">{name}</Typography>
-                    <IconButton onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
+                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
                         <DeleteForeverIcon className="tgClnName" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
@@ -93,7 +93,7 @@ class CleaningCrewComp extends PureComponent {
                             onClick={() => { this.onAddNewCleaningMember() }}
                             variant='extended'
                             color='primary'
-                            className="addClnMmbr">
+                            className="addClnMmbr btnShiny">
                             <Icon id="icon">add</Icon>Assign to shift
                         </Fab>
                         <Typography variant="h5" id="tgClnTitle">Cleaning Crew</Typography>

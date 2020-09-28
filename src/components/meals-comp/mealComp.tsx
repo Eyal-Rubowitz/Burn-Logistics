@@ -180,7 +180,7 @@ class MealComp extends PureComponent<MealCompProps> {
                         <p>  please enter the whole quantity you want and give a note for spliting the item.</p>
                     </ExpansionPanel>
                     <Box my={2}>
-                        <Fab variant='extended' color='primary' aria-label='add' onClick={() => { this.onAddDish() }}>
+                        <Fab variant='extended' color='primary' className="btnShiny" aria-label='add' onClick={() => { this.onAddDish() }}>
                             <Icon>add</Icon>Add Dish
                         </Fab>
                     </Box>

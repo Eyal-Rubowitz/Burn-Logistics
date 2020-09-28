@@ -35,13 +35,16 @@ class DinersNutritionComp extends PureComponent {
             let meals: Meal[] = AppRootModel.mealModel.items.map(m => m);
             if (this.isSetForAllMeals) {
                 meals.forEach(m => m.diners.forEach(d => this.dinersNumber[d.dietType] = d.count));
-                this.totalDinersNum = (meals[0]) ? meals[0].getTotalMealDiners() : 0;
+                this.totalDinersNum = (meals[0]) ? Object.values(this.dinersNumber).reduce((ttl, n) => ttl + n, 0)
+                : 0;
             }
-            if (this.selectedMealStore.meal) {
-                this.dinersNumber = {};
-                this.selectedMealStore.meal.diners.forEach(d => this.dinersNumber[d.dietType] = d.count);
-                this.totalDinersNum = this.selectedMealStore.meal.getTotalMealDiners();
-                console.log(this.selectedMealStore.meal.budget);
+            else {
+                let dates: Set<string> = new Set(this.meals.map(m => m.date.toLocaleDateString()));
+                this.selectedMealStore.dateList = (dates) ? [...Array.from(dates).map(date => date)] : [];
+                if (this.selectedMealStore.meal) {
+                    this.selectedMealStore.meal.diners.forEach(d => this.dinersNumber[d.dietType] = d.count);
+                    this.totalDinersNum = this.selectedMealStore.meal.getTotalMealDiners();
+                }
             }
             this.refreshData();
         });
@@ -55,10 +58,12 @@ class DinersNutritionComp extends PureComponent {
         if (this.isSetForAllMeals) {
             let meals: Meal[] = AppRootModel.mealModel.items.map(m => m);
             meals.forEach(m => m.diners.forEach(d => this.dinersNumber[d.dietType] = d.count));
-            this.totalDinersNum = (meals[0]) ? meals[0].getTotalMealDiners() : 0;
+            this.totalDinersNum = (meals[0]) ? Object.values(this.dinersNumber).reduce((ttl, n) => ttl + n, 0) : 0;
         }
         if (this.selectedMealStore.meal) {
-            this.dinersNumber = {};
+            Object.keys(this.dinersNumber).forEach((key: string): void => {
+                delete this.dinersNumber[key];
+            });
             this.selectedMealStore.meal.diners.forEach(d => this.dinersNumber[d.dietType] = d.count);
             this.totalDinersNum = this.selectedMealStore.meal.getTotalMealDiners();
         }
@@ -119,10 +124,10 @@ class DinersNutritionComp extends PureComponent {
                     value={this.dinersNumber[dietType]}
                     onChange={(e: React.ChangeEvent<any>) => this.onChangeDinersNumber(e, dietType)}
                     variant="outlined"
-                    className={`txtFldDietType ${((Object.values(this.dinersNumber).length > 1 && this.isSetForAllMeals)
-                        || (Object.values(this.dinersNumber).length > 1 && this.selectedMealStore.meal)) ? 'vsbl' : 'hide'}`}
+                    className={`txtFldDietType`}
                     inputProps={{ type: "number" }} />
                 <IconButton onClick={() => { this.onDeleteDietType(dietType) }}
+                    className="hoverAlertColor"
                     color="secondary"
                     size="medium" >
                     <DeleteForeverIcon className="dltIcon" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
@@ -146,13 +151,13 @@ class DinersNutritionComp extends PureComponent {
                                     onClick={() => this.isSetForAllMeals = true}
                                     control={<Radio color="primary" checked={this.isSetForAllMeals} />}
                                     label={<Box className={`box ${(this.isSetForAllMeals) ? 'on' : 'off'}`} >
-                                                Set All Meals At Once
+                                        Set All Meals At Once
                                             </Box>} />
                                 <FormControlLabel value={false}
                                     onClick={() => this.isSetForAllMeals = false}
-                                    control={<Radio color="primary" checked={!this.isSetForAllMeals} />} 
+                                    control={<Radio color="primary" checked={!this.isSetForAllMeals} />}
                                     label={<Box className={`box ${(this.isSetForAllMeals) ? 'off' : 'on'}`}>
-                                                Select And Set Specific Meal
+                                        Select And Set Specific Meal
                                             </Box>} />
                             </RadioGroup>
                         </FormControl>
@@ -173,7 +178,7 @@ class DinersNutritionComp extends PureComponent {
                             onClick={() => { this.onAddNewDietType() }}
                             variant='extended'
                             color='primary'
-                            className="btnAddDiet">
+                            className="btnAddDiet btnShiny">
                             <Icon id="icon">add</Icon>Add
                         </Fab>
                         <div id="dinersForm" className={`${(this.isSetForAllMeals || this.selectedMealStore.meal) ? 'vsbl' : 'hide'}`}>

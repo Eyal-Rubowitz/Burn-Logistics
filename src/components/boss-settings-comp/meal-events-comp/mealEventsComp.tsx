@@ -59,7 +59,7 @@ class MealEventsComp extends PureComponent {
                 <Fab onClick={this.onAddMealCategory}
                     variant='extended'
                     color='primary'
-                     className="formMealName">
+                     className="formMealName btnShiny">
                     <Icon id="icon">add</Icon>Add Category
                 </Fab>
                 <ExpansionPanel key={'info'}>

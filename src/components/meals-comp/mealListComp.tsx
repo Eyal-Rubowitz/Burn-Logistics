@@ -29,11 +29,15 @@ class MealListComp extends PureComponent {
         let mealsByDates: JSX.Element[] = Array.from(dates).map((date) => {
             let meals: Meal[] = this.mealModel.items.filter(m => m.date.toLocaleDateString() === date);
             return (
-                <Grid item sm={3} xs={12} key={date} >
+                <Grid item sm={3} xs={12} key={date}>
                     <Typography variant="h6" align={'center'}>{meals[0].date.toLocaleDateString()}</Typography>
                     <Divider />
                     {this.sortedMeals(meals).map(m => { return <MealListItemComp meal={m} key={m._id}></MealListItemComp> })}
-                    <Fab variant='extended' color='primary' aria-label='add' onClick={() => { this.onAddMeal(meals[0].date) }}>
+                    <Fab variant='extended' 
+                         className="btnShiny"
+                         color='primary' 
+                         aria-label='add' 
+                         onClick={() => { this.onAddMeal(meals[0].date) }}>
                         <Icon>add</Icon>Add meal
                     </Fab>
                 </Grid>)

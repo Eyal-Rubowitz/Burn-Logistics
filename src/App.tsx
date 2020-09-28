@@ -85,41 +85,42 @@ function App() {
         <Router>
           <AppBar>
             <Toolbar className="appNavBar">
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/meals'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/meals'}>
                 <Typography className="appTg">
                   <img className="imgs" alt="chef plan meal" src={ChefMeal} />  Meals Plan
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/kitchen-tools'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/kitchen-tools'}>
                 <Typography className="appTg" >
                   <img className="imgs L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/schedule'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/schedule'}>
                 <Typography  className="appTg" >
                   <img className="imgs" alt="schedule" src={Calander} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/food-items'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/food-items'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="ingredients basket" src={Ingredients} /> Ingredient Variety
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/inventory'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/inventory'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="inventory box" src={InvBox} /> Ingredient Inventory
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px' }} className="appLink" to={'/buying-list'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/buying-list'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="buing list" src={BuyingList} /> Shopping List
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px'}} className="appLink" to={'/settings'}>
+              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/settings'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="admin settings" src={AdminSettings} />  Admin
               </Typography>
               </NavLink>
+              <div className="anim"></div>
             </Toolbar>
           </AppBar>
           <Container maxWidth={false} id="appContainer">

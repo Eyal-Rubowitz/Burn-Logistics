@@ -75,8 +75,8 @@ class AllergensComp extends PureComponent {
                 return (
                     <div className="deleteDiners">
                         <Typography className="tg" variant="h6" key={diner}>{diner}</Typography>
-                        <IconButton onClick={() => (selectedLrg as Allergans).deleteDinerNameFromList(diner)} color="secondary" size="medium">
-                            <DeleteForeverIcon className="dfi" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                        <IconButton className="hoverAlertColor" onClick={() => (selectedLrg as Allergans).deleteDinerNameFromList(diner)} size="medium">
+                            <DeleteForeverIcon className="dfi" color='secondary'></DeleteForeverIcon>
                         </IconButton>
                     </div>)
             });
@@ -115,7 +115,7 @@ class AllergensComp extends PureComponent {
                         onClick={() => { this.onAddNewAllergy() }}
                         variant='extended'
                         color='primary'
-                        className="addBtn">
+                        className="addBtn btnShiny">
                         <Icon id="icon">add</Icon>Add Intolerance
                 </Fab>
                     <FormControl variant="outlined" className="selectLrgForm">
@@ -136,7 +136,7 @@ class AllergensComp extends PureComponent {
                         onClick={() => { this.onAddNewDiner() }}
                         variant='extended'
                         color='primary'
-                        className={`addBtn ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        className={`addBtn btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
                         <Icon id="icon">add</Icon>Add Diner
                     </Fab>
                     {(lrgDinerList.length > 1) ? lrgDinerList : ""}
@@ -153,7 +153,7 @@ class AllergensComp extends PureComponent {
                         onClick={(e) => { this.onAddFoodItem(e) }}
                         variant='extended'
                         color='primary'
-                        className={`addLrgIng ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        className={`addLrgIng btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
                         <Icon>add</Icon>Add allergan Ingredient
                     </Fab>
                     {(lrgFoodList.length > 1) ? lrgFoodList : ""}

@@ -40,49 +40,51 @@ class BossSettingsComp extends PureComponent {
                 <Router>
                     <AppBar >
                         <Toolbar variant="dense" id="sideToolBar">
-                            <NavLink className="navLink" id="mealType" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/meal-types'}>
+                            <NavLink id="mealType" 
+                                     className="navLink" 
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/meal-types'}>
                                 <img className="img midSize" alt="meal time" src={MealTime} />
                                 <Typography variant="h6" className="tgNav">
                                     Meal Types
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="addDate" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/add-date'}>
+                            <NavLink className="navLink" id="addDate" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/add-date'}>
                                 <img className="img midSize" alt="add date" src={CheckedDate} />
                                 <Typography variant="h6"className="tgNav">
                                     Add Date
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="customUnit" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/custom-unit'}>
+                            <NavLink className="navLink" id="customUnit" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/custom-unit'}>
                                 <img className="img midSize" alt="custom measures" src={Measures} />
                                 <Typography variant="h6" className="tgNav">
                                     Custom Units
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="settings" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/limitations'}>
+                            <NavLink className="navLink" id="settings" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/limitations'}>
                                 <img className="img midSize" alt="budget & diners limitations" src={Limitations} />
                                 <Typography variant="h6" className="tgNav">
                                     Settings
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="allergens" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/allergens'}>
+                            <NavLink className="navLink" id="allergens" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/allergens'}>
                                 <img className="img sSize" alt="allergens" src={Emergency} />
                                 <Typography variant="h6" className="tgNav">
                                     Allergens
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="chefsCrew" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/sous-chefs'}>
+                            <NavLink className="navLink" id="chefsCrew" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/sous-chefs'}>
                                 <img className="img midSize" alt="sous chefs" src={kitchenCrew} />
                                 <Typography variant="h6" className="tgNav">
                                     Chef's Crew
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" id="dinersDiet" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/diners-nutrition'}>
+                            <NavLink className="navLink" id="dinersDiet" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/diners-nutrition'}>
                                 <img className="img midSize" alt="dietary conscience" src={DietaryConcsernce} />
                                 <Typography variant="h6" className="tgNav">
                                     Diners Diet
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink"  id="cleaningCrew" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} exact to={'/settings/cleaning-crew'}>
+                            <NavLink className="navLink"  id="cleaningCrew" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/cleaning-crew'}>
                                 <img className="img lSize" alt="dietary conscience" src={ClieaningCrew} />
                                 <Typography variant="h6" className="tgNav">
                                     Cleaning Crew

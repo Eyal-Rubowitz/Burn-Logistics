@@ -9,22 +9,9 @@ import UnitEnum from "../../enums/unitEnum";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddIcon from "@material-ui/icons/Add";
 import { Autocomplete } from "@material-ui/lab";
-import { TextField } from "@material-ui/core";
+import { TextField, IconButton } from "@material-ui/core";
 import { observable, computed } from "mobx";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './foodItemListStyle.scss';
-
-const theme = createMuiTheme({
-    overrides: {
-        MuiIconButton: {
-            root: {
-                '&:hover': {
-                    backgroundColor: "black"
-                }
-            }
-        }
-    }
-});
 
 const FoodItemTag = observer((props: { fi: FoodItem, attr: any }) =>
     <span>{(props.fi as any)[props.attr]}</span>
@@ -67,12 +54,13 @@ class FoodItemListComp extends PureComponent {
                                     </p>
                                 </div>),
                             Delete: forwardRef((props, ref) =>
-                                <MuiThemeProvider theme={theme}>
+                                <IconButton className="hoverAlertColor">
                                     <DeleteForeverIcon
                                         {...props}
                                         ref={ref}
                                         color="secondary" />
-                                </MuiThemeProvider>)
+                                </IconButton>
+                            )
                         }}
                         columns={[
                             {
@@ -130,7 +118,6 @@ class FoodItemListComp extends PureComponent {
                         editable={{
                             onRowAdd: (newFI: FoodItem): Promise<void> => {
                                 return new Promise((res) => {
-                                    console.log('newFI: ', newFI);
                                     newFI._id = (new ObjectID()).toHexString();
                                     AppRootModel.foodItemModel.createItem(newFI);
                                     res();

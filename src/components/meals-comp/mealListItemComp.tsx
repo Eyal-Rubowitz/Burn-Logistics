@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         hoverColor: {
             "&:hover": {
-              backgroundColor: 'rgba(0,0,0,0.08)'
+            //   backgroundColor: 'rgba(0,0,0,0.08)'
             }
           }
     }),
@@ -75,8 +75,8 @@ const MealListItemComp = observer((props: MealProps) => {
                             </Link>
                         </Grid>
                         <Grid item sm={1}>
-                            <IconButton onClick={onDelete} color="secondary" size="medium" className={classes.hoverColor}>
-                                <DeleteForeverIcon fontSize="large" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                            <IconButton onClick={onDelete} className="hoverAlertColor" size="medium" >
+                                <DeleteForeverIcon fontSize="large" color='secondary'></DeleteForeverIcon>
                             </IconButton>
                         </Grid>
                     </Grid>

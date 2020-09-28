@@ -6,7 +6,7 @@ import ObjectID from 'bson-objectid';
 import { observer } from 'mobx-react';
 import { Autocomplete } from "@material-ui/lab";
 import { FoodItem } from "../../models/foodItemModel";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, IconButton } from "@material-ui/core";
 import { Ingredient } from "../../models/ingredientModel";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddIcon from "@material-ui/icons/Add";
@@ -118,8 +118,6 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                 invD[inv.foodItemId] = inv;
             }
         });
-        let list: InventoryItem[] = Object.keys(invD).map(index => invD[index]);
-        list.forEach(i => console.log('sumedInv: ', i.name, ": ", i.quantity));
     }
 
     mergeUpdate(iiD: InventoryItem, inv: InventoryItem): void {
@@ -168,7 +166,9 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                                                         viewBox="0 0 20 20" />
                                                                     <p className="p">Add Inventory Item</p>
                                                             </div>),
-                            Delete: forwardRef((props, ref) => <DeleteForeverIcon {...props} ref={ref} color="secondary" />)
+                            Delete: forwardRef((props, ref) =>  <IconButton className="hoverAlertColor">
+                                                                    <DeleteForeverIcon {...props} ref={ref} color="secondary"/>
+                                                                </IconButton>)
                         }}
                         columns={[
                             {

@@ -222,7 +222,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     onClick={() => { this.onSetLimitations(m); this.isChoosenMealUpdated = true; }}
                     variant='extended'
                     color='primary'
-                    className="btn">
+                    className="btn btnShiny">
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
                 <ToggleButton value={this.isChoosenMealUpdated} className={`tglBtn ${(this.isChoosenMealUpdated) ? 'vsbl' : 'hide'}`}>
@@ -296,10 +296,12 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                         InputLabelProps={{ "aria-readonly": true }} />
                     {eventList}
                     <Fab
+                        id="btnLmtSetBgtDnrs"
+                        className="btnShiny"
                         onClick={() => { this.onSetLimitations() }}
                         variant='extended'
                         color='primary'
-                        id="btnLmtSetBgtDnrs">
+                        >
                         <Icon id="icon">add</Icon>Set Budget & Diners
                     </Fab>
                 </div> : <div>

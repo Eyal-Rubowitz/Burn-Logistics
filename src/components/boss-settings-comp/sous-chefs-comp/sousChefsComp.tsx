@@ -15,8 +15,9 @@ class SousChefsComp extends PureComponent {
 
     disposeAutorun: IReactionDisposer;
 
-    @observable sousChefName: string = "";
     selectedMealStore = new SelectedMealStore();
+   
+    @observable sousChefName: string = "";
 
     constructor(props: {}) {
         super(props);
@@ -66,7 +67,7 @@ class SousChefsComp extends PureComponent {
             return (
                 <div>
                     <Typography variant="h6" key={name} className="inlinblock">{name}</Typography>
-                    <IconButton onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
+                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
                         <DeleteForeverIcon className="inlinblock" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
@@ -92,7 +93,7 @@ class SousChefsComp extends PureComponent {
                             onClick={() => { this.onAddNewSousChef() }}
                             variant='extended'
                             color='primary'
-                            className="btnAddSous">
+                            className="btnAddSous btnShiny">
                             <Icon id="icon">add</Icon>Assign to shift
                         </Fab>
                         <Typography variant="h5" className="sousTtl">Sous Chef Crew</Typography>
