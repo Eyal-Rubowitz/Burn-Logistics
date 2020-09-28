@@ -55,15 +55,15 @@ class DinersNutritionComp extends PureComponent {
     }
 
     @action refreshData = (): void => {
+        Object.keys(this.dinersNumber).forEach((key: string): void => {
+            delete this.dinersNumber[key];
+        });
         if (this.isSetForAllMeals) {
             let meals: Meal[] = AppRootModel.mealModel.items.map(m => m);
             meals.forEach(m => m.diners.forEach(d => this.dinersNumber[d.dietType] = d.count));
             this.totalDinersNum = (meals[0]) ? Object.values(this.dinersNumber).reduce((ttl, n) => ttl + n, 0) : 0;
         }
         if (this.selectedMealStore.meal) {
-            Object.keys(this.dinersNumber).forEach((key: string): void => {
-                delete this.dinersNumber[key];
-            });
             this.selectedMealStore.meal.diners.forEach(d => this.dinersNumber[d.dietType] = d.count);
             this.totalDinersNum = this.selectedMealStore.meal.getTotalMealDiners();
         }
