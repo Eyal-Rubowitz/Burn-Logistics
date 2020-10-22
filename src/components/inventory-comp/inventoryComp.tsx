@@ -212,8 +212,9 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             pageSize: AppRootModel.inventoryModel.items.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
-                            maxBodyHeight: '550px',
-                            actionsColumnIndex: -1
+                            maxBodyHeight: '80vh',
+                            actionsColumnIndex: -1,
+                            search: false
                         }}
                         editable={{
                             onRowAdd: (newII: InventoryItem): Promise<void> => {

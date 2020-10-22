@@ -1,5 +1,27 @@
+#scheduleTable {
+    margin-top: 1.95vh !important;
+    border: solid 0.1vw black; 
+    text-align: left; 
+    width: auto;
+
+    #tableHead {
+        background-color: #3f51b5; 
+        color: #00FFFF;
+
+        .dishNameInfoTh {
+            display: inline-block;
+            text-align: center;
+            width: 10.5vw !important;
+            max-width: auto;
+        }
+    }
+
+    #tableBody {
+        display: block;
+    }
+}
 #mealScheduleTable {
-    border: solid 1px black; 
+    border: solid 0.1rem black; 
     text-align: left; 
     white-space: nowrap;
 
@@ -23,6 +45,39 @@
             color: lightGreen;
         }
     }
+
+    .tableTr:hover {
+        background-color: lighten($color: gray, $amount: 40%);
+        text-shadow: 0rem 0rem 0.025rem black;   
+
+    }
+     
+    .evn {
+        background-color: #fae4d4;
+    }
+    
+    .odd {
+        background-color: #d9ebfa;
+    }
+
+    .trActive {
+        position: relative;
+        background-color: lighten($color: gray, $amount: 30%);
+        font-size: 0.935rem;
+        font-weight: bolder;
+        
+        &:nth-child(1n) {
+            background-color: lighten($color: lightsalmon, $amount: 10%) !important;
+        }
+        &:nth-child(2n) {
+            background-color: darken($color: lightblue, $amount: 5%) !important;
+        }
+
+        &:hover {
+            background-color: lighten($color: gray, $amount: 30%);
+        }
+    }
+
 }
 
 .name {
@@ -30,23 +85,27 @@
     text-align: center; 
     white-space: nowrap; 
     display: inline-block;
-    width: 6vw;
-    font-size: 1.1em !important;
+    // width: auto;
 }
 
 .sousName {
+    width: auto;
     background-color: lightblue;
+    padding: 0 0.3vw 0 0.3vw;
+    margin-left: 0.15vw;
 }
 
 .cleanName {
+    width: auto;
     background-color: darkGreen; 
     color: lightGreen;
-
+    padding: 0 0.3vw 0 0.3vw;
+    margin-left: 0.15vw;
 }
 
 .tableTr {
     line-height: auto; 
-    border-bottom: 1px solid black; 
+    border-bottom: 0.1rem solid black; 
 }
 
 .servingTd {
@@ -63,49 +122,20 @@
     width: 10.5vw !important;
 
     .dishIng {
-        margin: 0px !important; 
+        margin: 0rem !important; 
         height: 2.5vh !important;
     }
 
     .evnInfo {
-        background-color: #FFFFFF;
+        background-color: white;
     }
 
      .oddInfo {
-        background-color: #dbdbdb;
+        background-color: lighten($color: gray, $amount: 36%);
      } 
 }
 
-.dishNameInfoTh {
-    display: inline-block;
-    text-align: center;
-    width: 10.5vw !important;
-    max-width: auto;
-}
 
-#scheduleTable {
-    margin-top: 1.95vh !important;
-    border: solid 0.1vw black; 
-    text-align: left; 
-    width: auto;
-
-    #tableHead {
-        background-color: #3f51b5; 
-        color: #00FFFF;
-    }
-
-    #tableBody {
-        display: block;
-    }
-}
-
-.evn {
-    background-color: #FFF5EE;
-}
-
-.odd {
-    background-color: #F0F8FF;
-}
 
 .borderDays {
     border-top: solid 0.25vw black;

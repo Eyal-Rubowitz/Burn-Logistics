@@ -1,3 +1,17 @@
+/* apply a natural box layout model to all elements, but allowing components to change 
+this is only for projects that support IE8 and up
+ Firefox <= 28 still needs the -moz- prefix
+ and 4 <= iOS, Android <= 2.3 need the -webkit-
+ */
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
 #appContainer {
     margin-top: 10vh;
     overflow-y: visible;
@@ -7,40 +21,44 @@
     display: inline-block;
     background-color: #3646A3;
     z-index: 1;
-    height: 8vh;
+    height: 9vh;
     display: flex;
 
     .appLink {
-        position: relative;
-        left: 2vw;
+        position: relative !important;
+        padding: 0.1rem;
+        left: 0.2vw;
+        top: 0.25vh !important;
+        
         text-decoration: none;
         color: #91FFFF;
-        margin-left: 0.4vw;
-        height: 100%;
-        border: transparent 0.2vw solid;
+        margin-left: 0.6vw;
+        height: 7.2vh;
+        border: transparent 0.18vw  solid;
+        text-shadow: 0.16rem 0.16rem 0.4rem black;
     
-        &:hover:not(:focus) {
-            position: relative;
-            transition: background-color 0.8s ease-in;
+        &:not(.active)::after {
+            content: '';
+            position: absolute;
+            top: -1vh;
+            left: -0.2vw;
+            width: 103%;
+            height: 130%;
             background-color: lighten($color: #3646A3, $amount: 30%);
-            border: transparent 0.2vw solid;
-            border-radius: 0.25vw;
-            height: 7.05vh;
-            top: 0vh;
-            text-shadow: 0.16rem 0.16rem 0.4rem black;
+            border: transparent 0.18vw solid;
+            border-radius: 0.25vw 0.25vw 0 0;
+            z-index: -1;
+            transform: scaleY(0);
+            transition: transform 300ms ease-in;
+            transform-origin: bottom;
         }
 
-        &:not(:hover) {
-            position: relative;
-            transition: background-color 0.8s ease-out;
-            border: transparent 0.2vw solid;
-            border-radius: 0.25vw;
-            height: 7.05vh;
-            top: 0vh;
-        }
-
-        &:active {
-            top: 0.4vh;
+        &:hover:not(.active)::after {
+            height: 130%;
+            top: -1vh;
+            border: transparent 0.18vw solid;
+            border-radius: 0.25vw 0.25vw 0 0;
+            transform: scaleY(1);
         }
 
         .appTg {
@@ -64,6 +82,7 @@
             }
         }
     }
+    
 }
 
 .paper {

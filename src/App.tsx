@@ -79,43 +79,51 @@ let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
 function App() {
+
+  let isActive: boolean[] = [false, false, false, false, false, false, false ];
+
+  let onActive = (i: number) => {
+    isActive.forEach(a => a = false);
+    isActive[i] = true;
+  }
+
   return (
     <div id="rootDiv">
       <MuiThemeProvider theme={theme}>
         <Router>
           <AppBar>
             <Toolbar className="appNavBar">
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/meals'}>
+              <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
                 <Typography className="appTg">
                   <img className="imgs" alt="chef plan meal" src={ChefMeal} />  Meals Plan
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/kitchen-tools'}>
+              <NavLink className={`appLink ${(isActive[1]) ? 'active' : ''}`} onClick={() => onActive(1)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/kitchen-tools'}>
                 <Typography className="appTg" >
                   <img className="imgs L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/schedule'}>
+              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
                 <Typography  className="appTg" >
                   <img className="imgs" alt="schedule" src={Calander} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/food-items'}>
+              <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="ingredients basket" src={Ingredients} /> Ingredient Variety
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/inventory'}>
+              <NavLink className={`appLink ${(isActive[4]) ? 'active' : ''}`} onClick={() => onActive(4)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/inventory'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="inventory box" src={InvBox} /> Ingredient Inventory
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/buying-list'}>
+              <NavLink className={`appLink ${(isActive[5]) ? 'active' : ''}`} onClick={() => onActive(5)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/buying-list'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="buing list" src={BuyingList} /> Shopping List
               </Typography>
               </NavLink>
-              <NavLink activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', top: '0.4vh', textShadow: 'none'  }} className="appLink" to={'/settings'}>
+              <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="admin settings" src={AdminSettings} />  Admin
               </Typography>

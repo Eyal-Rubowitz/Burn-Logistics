@@ -112,8 +112,9 @@ class FoodItemListComp extends PureComponent {
                             pageSize: AppRootModel.foodItemModel.items.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
-                            maxBodyHeight: '550px',
-                            actionsColumnIndex: -1
+                            maxBodyHeight: '80vh',
+                            actionsColumnIndex: -1,
+                            search: false
                         }}
                         editable={{
                             onRowAdd: (newFI: FoodItem): Promise<void> => {

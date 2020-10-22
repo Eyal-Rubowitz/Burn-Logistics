@@ -1,20 +1,41 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { Meal } from '../../models/mealModel';
 import { observer } from "mobx-react";
 import { AppRootModel } from "../../modelsContext";
 import { Table, Checkbox } from "@material-ui/core";
-import { observable } from "mobx";
+import { observable, IReactionDisposer, autorun  } from "mobx";
 import './scheduleStyle.scss';
 
 @observer
-class ScheduleTableComp extends PureComponent {
+class ScheduleTableComp extends Component {
+
+    disposeAutorun: IReactionDisposer;
 
     @observable mealInfoToShow?: Meal = undefined;
+    @observable activatedTr: Boolean[] = [];
     dividerDate: Date = new Date(1970);
+
+    constructor(props: {}) {
+        super(props)
+        this.disposeAutorun = autorun(() => {
+            this.activatedTr = AppRootModel.mealModel.items.map(m => false);
+        });
+    }
+
+    componentWillUnmount(): void {
+        this.disposeAutorun();
+    }
 
     onShowMealInfo(m: Meal): void {
         this.mealInfoToShow = (this.mealInfoToShow === m) ? undefined : m;
     }
+
+    onActiveTr(i: number): void {
+        const isActivated = (el: Boolean) => el === true;
+        const activeIndex = this.activatedTr.findIndex(isActivated)
+        this.activatedTr = this.activatedTr.map((bool, index) => (i === index && activeIndex !== i) ? true : false);
+    }
+
 
     @observable ScheduleTableFunc = ((mealList: Meal[]): JSX.Element => {
         let scheduleTable: JSX.Element[] = mealList.slice().sort((a, b) => a.date.getTime() - b.date.getTime()).map((m, i) => {
@@ -35,7 +56,12 @@ class ScheduleTableComp extends PureComponent {
 
             return (
                 <tr key={i} 
-                    className={`tableTr ${(i % 2 === 0) ? 'evn' : 'odd'} ${(borderBool) ? 'borderDays' : 'none'}`} >
+                    onClick={() => this.onActiveTr(i)}
+                    className={`tableTr 
+                                ${(i % 2 === 0) ? 'evn' : 'odd'} 
+                                ${(borderBool) ? 'borderDays' : 'none'}
+                                ${(this.activatedTr[i]) ? 'trActive' : ''}`} 
+                                >
                     <td>{m.chef}</td>
                     <td>{m.date.toLocaleDateString()}</td>
                     <td>{m.name}</td>

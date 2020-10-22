@@ -43,7 +43,7 @@ const MealListItemComp = observer((props: MealProps) => {
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
     
     return (
-        <Box my={1} key={props.meal._id}>
+        <Box my={1} key={props.meal._id} className="grow">
             <Card >
                 <CardContent >
                     <FormControl className={classes.formControl}>

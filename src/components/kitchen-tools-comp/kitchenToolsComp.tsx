@@ -32,7 +32,9 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                                                                 viewBox="0 0 20 20" />
                                                             <p className="p">Add Kitchen Item</p>
                                                     </div>),
-                        Delete: forwardRef((props, ref) => <IconButton size="medium" className="hoverAlertColor" ><DeleteForeverIcon {...props} ref={ref} color="secondary" /></IconButton>)
+                        Delete: forwardRef((props, ref) => <IconButton size="medium" className="hoverAlertColor" >
+                                                                <DeleteForeverIcon {...props} ref={ref} color="secondary" />
+                                                           </IconButton>)
                     }}
                     columns={[
                         {
@@ -61,7 +63,8 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                         paging: false,
                         headerStyle: { position: 'sticky', top: 0 },
                         maxBodyHeight: '800px',
-                        actionsColumnIndex: -1
+                        actionsColumnIndex: -1,
+                        search: false
                     }}
                     editable={{
                         onRowAdd: (newKT: KitchenTool): Promise<void> => {
