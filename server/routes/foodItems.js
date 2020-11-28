@@ -36,6 +36,7 @@ router.route("/:id/update").post(
         console.log('req.body:', req.body);
         foodItemModel.findByIdAndUpdate(req.params.id, req.body,(err) => {
             if (err) return res.send(err);
+            // console.log('wss.clients: ',req.app.locals.wss.clients);
             req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: req.body }));
             return res.send('FoodItem Updated!');
         });

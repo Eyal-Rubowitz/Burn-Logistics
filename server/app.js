@@ -121,4 +121,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+let wsMessage = require('./models/wsMessageModel');
+wsMessage.watch().on('change', (data) => {
+  // console.log('wss.clients: ',app.locals.wss.clients);
+  app.locals.wss.broadcast(data.fullDocument.body);
+});
+
+
 module.exports = app;
