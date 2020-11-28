@@ -121,13 +121,13 @@ class ScheduleTableComp extends Component {
         })
 
         return (
-            <Table id="scheduleTable">
-                <thead id="tableHead">
+            <Table id="mealInfoTable">
+                <thead id="infoTableHead">
                     <tr>
                         {mealDishesNameHeaders}
                     </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody id="infoTableBody">
                     {mealDishesIngInfo}
                 </tbody>
             </Table>

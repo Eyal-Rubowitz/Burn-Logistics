@@ -25,14 +25,12 @@ html {
     display: flex;
 
     .appLink {
-        position: relative !important;
-        padding: 0.1rem;
+        position: relative;
         left: 0.2vw;
-        top: 0.25vh !important;
-        
+        top: 0.25vh;
         text-decoration: none;
         color: #91FFFF;
-        margin-left: 0.6vw;
+        margin-left: 0.6vmiv;
         height: 7.2vh;
         border: transparent 0.18vw  solid;
         text-shadow: 0.16rem 0.16rem 0.4rem black;
@@ -62,9 +60,9 @@ html {
         }
 
         .appTg {
-            line-height: 6.2vh; 
+            line-height: 6.2vmin; 
             margin: 0.1vw 0.1vw 0vw 0.1vw;
-            font-size: 1.16vw;
+            font-size: clamp(5px, 1.16vw, 18px);
             font-weight: bold;
 
             .imgs {
