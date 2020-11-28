@@ -216,17 +216,17 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     onChange={(e: React.ChangeEvent<any>) => this.onPortionChange(e, m._id)}
                     value={this.portion[m._id]}
                     variant="outlined"
-                    className="choosenMealForm lrgWidth"
+                    className="choosenMealForm selectedPortionWidth"
                     inputProps={{ type: "number" }} />
                 <Fab
                     onClick={() => { this.onSetLimitations(m); this.isChoosenMealUpdated = true; }}
                     variant='extended'
                     color='primary'
-                    className="btn">
+                    className="btn btnShiny">
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
-                <ToggleButton value={this.isChoosenMealUpdated} className="tglBtn" style={{ visibility: (this.isChoosenMealUpdated) ? 'visible' : 'hidden' }}>
-                    <CheckIcon className="updateDone" />  Updated Done!
+                <ToggleButton value={this.isChoosenMealUpdated} className={`tglBtn ${(this.isChoosenMealUpdated) ? 'vsbl' : 'hide'}`}>
+                    <CheckIcon className="updateDone" />  Updated Done !
                 </ToggleButton>
             </div>);
 
@@ -235,8 +235,18 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                 <Typography variant="h6" className="title">Budget & Diners Limitations</Typography>
                 <FormControl component="fieldset" className="switchForm">
                     <RadioGroup aria-label="gender" name="gender1" value={this.switchCondition}>
-                        <FormControlLabel value={true} onClick={() => this.switchCondition = true} control={<Radio color="primary" checked={this.switchCondition} />} label={<Box fontSize={18} style={{ marginTop: 6, color: (this.switchCondition) ? '#3646a3' : 'black', fontWeight: (this.switchCondition) ? 'bolder' : 'lighter' }}>Set All Meals At Once</Box>} />
-                        <FormControlLabel value={false} onClick={() => this.switchCondition = false} control={<Radio color="primary" checked={!this.switchCondition} />} label={<Box fontSize={18} style={{ marginTop: 6, color: (!this.switchCondition) ? '#3646a3' : 'black', fontWeight: (!this.switchCondition) ? 'bolder' : 'lighter' }}>Select And Set Specific Meal</Box>} />
+                        <FormControlLabel value={true} 
+                                          onClick={() => this.switchCondition = true} 
+                                          control={<Radio color="primary" checked={this.switchCondition} />} 
+                                          label={<Box className={`box ${(this.switchCondition) ? 'on' : 'off'}`}>
+                                                    Set All Meals At Once
+                                                 </Box>} />
+                        <FormControlLabel value={false} 
+                                          onClick={() => this.switchCondition = false} 
+                                          control={<Radio color="primary" checked={!this.switchCondition} />} 
+                                          label={<Box className={`box ${(this.switchCondition) ? 'off' : 'on'}`}>
+                                                    Select And Set Specific Meal
+                                                 </Box>} />
                     </RadioGroup>
                 </FormControl>
                 {(this.switchCondition) ? <div>
@@ -286,14 +296,16 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                         InputLabelProps={{ "aria-readonly": true }} />
                     {eventList}
                     <Fab
+                        id="btnLmtSetBgtDnrs"
+                        className="btnShiny"
                         onClick={() => { this.onSetLimitations() }}
                         variant='extended'
                         color='primary'
-                        className="btnLmtSetBgtDnrs">
+                        >
                         <Icon id="icon">add</Icon>Set Budget & Diners
                     </Fab>
                 </div> : <div>
-                        <div className="mealSelectComp">
+                        <div id="mealSelectComp">
                             <MealSelectComp store={this.selectedMealStore} />
                         </div>
                         {choosenMealEvent}

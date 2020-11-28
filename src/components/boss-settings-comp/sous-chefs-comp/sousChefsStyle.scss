@@ -3,8 +3,8 @@
 }
 
 .tgMealInfo {
-   margin-top: 70px !important;
-   margin-bottom: 40px !important;
+   margin-top: 7.2vh !important;
+   margin-bottom: 4.2vh !important;
    text-decoration: underline;
    text-align: center;
 }
@@ -15,20 +15,20 @@
 }
 
 .btnAddSous {
-    margin-left: 20px !important;
-    height: 56px !important;
+    margin-left: 1vw !important;
+    height: 5.6vh !important;
     width: 180px !important;
-    // display: inline-block;
-    // text-align: center;
+    width: 8.4vw !important;
 
     & #icon {
                 position: relative;
-                top: -2px !important;
+                top: -0.1vh !important;
+                right: 0.1vw !important;
             }
 }
 
 .sousTtl {
     text-decoration: underline; 
     font-weight: bolder; 
-    margin-top: 20px !important;
+    margin-top: 2vh !important;
 }

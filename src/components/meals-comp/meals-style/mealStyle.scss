@@ -1,42 +1,32 @@
 .mealDataDiv1 {
-    margin-top: 12px;
-    
+    margin: 1.25vh 0 1vh 1.1vw !important;
+
     #txtFldPreparing {
-        display: block !important; 
+        display: inline-block !important; 
     }
 
     #txtFldServing {
-        display: block !important; 
-    }
-
-    .noPointer {
-        pointer-events: none;
-    }
-
-    .txtFld {
-        display: inline-block;
-        margin-bottom: 12px !important;
-    }
-    
-    .w {
-        width: 220px;
+        display: inline-block !important; 
     }
 }
+    
+    .mealDataDiv2 {
+  
+        .txtFld {
+            position: relative;
+            display: inline-block;
+            margin: 0.25vh 0 0.25vh 1.25vw !important;
+        }
+}
 
-.mealDataDiv2 {
-    margin-bottom: 12px;
-
-    .noPointer {
-        pointer-events: none;
-    }
+.mealDataDiv3 {
 
     .txtFld {
         display: inline-block;
-        margin-bottom: 12px !important;
-        margin-right: 2px !important;
+        margin: 1.25vh 0 1.25vh 1.2vw !important;
     }
 }
 
 #exPanel {
-    margin-top: 8px;
+    margin-top: 0.8vh;
 }

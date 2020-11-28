@@ -30,61 +30,92 @@ import './bossSettingsStyle.scss';
 @observer
 class BossSettingsComp extends PureComponent {
 
+    isActive: boolean[] = [false, false, false, false, false, false, false, false ];
+
     @computed get foodItems(): FoodItem[] {
         return AppRootModel.foodItemModel.items.map(f => f);
     }
+
+    onActive = (i: number) => {
+        this.isActive.forEach(a => a = false);
+        this.isActive[i] = true;
+      }
 
     render() {
         return (
             <div id='setDiv'>
                 <Router>
                     <AppBar >
-                        <Toolbar variant="dense" id="toolBar">
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }} id="mealType" exact to={'/settings/meal-types'}>
+                        <Toolbar variant="dense" id="sideToolBar">
+                            <NavLink id="mealType" 
+                                      className={`navLink ${(this.isActive[0]) ? 'active' : ''}`} 
+                                      onClick={() => this.onActive(0)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/meal-types'}>
+                                <img className="img midSize" alt="meal time" src={MealTime} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img midSize" alt="meal time" src={MealTime} />
                                     Meal Types
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="addDate" exact to={'/settings/add-date'}>
+                            <NavLink id="addDate"  
+                                     className={`navLink ${(this.isActive[1]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(1)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/add-date'}>
+                                <img className="img midSize" alt="add date" src={CheckedDate} />
                                 <Typography variant="h6"className="tgNav">
-                                    <img className="img midSize" alt="add date" src={CheckedDate} />
                                     Add Date
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="customUnit" exact to={'/settings/custom-unit'}>
+                            <NavLink id="customUnit" 
+                                     className={`navLink ${(this.isActive[2]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(2)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/custom-unit'}>
+                                <img className="img midSize" alt="custom measures" src={Measures} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img midSize" alt="custom measures" src={Measures} />
                                     Custom Units
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="settings" exact to={'/settings/limitations'}>
+                            <NavLink id="settings" 
+                                     className={`navLink ${(this.isActive[3]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(3)}   
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/limitations'}>
+                                <img className="img midSize" alt="budget & diners limitations" src={Limitations} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img midSize" alt="budget & diners limitations" src={Limitations} />
                                     Settings
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="allergens" exact to={'/settings/allergens'}>
+                            <NavLink id="allergens" 
+                                     className={`navLink ${(this.isActive[4]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(4)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/allergens'}>
+                                <img className="img sSize" alt="allergens" src={Emergency} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img sSize" alt="allergens" src={Emergency} />
                                     Allergens
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="chefsCrew" exact to={'/settings/sous-chefs'}>
+                            <NavLink id="chefsCrew" 
+                                     className={`navLink ${(this.isActive[5]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(5)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/sous-chefs'}>
+                                <img className="img midSize" alt="sous chefs" src={kitchenCrew} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img midSize" alt="sous chefs" src={kitchenCrew} />
                                     Chef's Crew
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="dinersDiet" exact to={'/settings/diners-nutrition'}>
+                            <NavLink id="dinersDiet" 
+                                     className={`navLink ${(this.isActive[6]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(6)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/diners-nutrition'}>
+                                <img className="img midSize" alt="dietary conscience" src={DietaryConcsernce} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img midSize" alt="dietary conscience" src={DietaryConcsernce} />
                                     Diners Diet
                                 </Typography>
                             </NavLink>
-                            <NavLink className="navLink" activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%' }}  id="cleaningCrew" exact to={'/settings/cleaning-crew'}>
+                            <NavLink id="cleaningCrew" 
+                                     className={`navLink ${(this.isActive[7]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(7)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/cleaning-crew'}>
+                                <img className="img lSize" alt="dietary conscience" src={ClieaningCrew} />
                                 <Typography variant="h6" className="tgNav">
-                                    <img className="img lSize" alt="dietary conscience" src={ClieaningCrew} />
                                     Cleaning Crew
                                 </Typography>
                             </NavLink>

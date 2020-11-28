@@ -1,30 +1,17 @@
-.paper {
-    position: relative !important; 
-    width: 800px !important; 
-    height: auto !important; 
-    padding: 8px !important; 
-    left: 34% !important;
-    top: 10% !important;
-}
-
 .eventTypography {
-    margin-top: 20px !important; 
-    margin-bottom: 6px !important; 
+    margin-top: 2vh !important; 
+    margin-bottom: 0.6vh !important; 
     text-decoration: underline;
 }
 
 .txtFldBgt {
     display: inline-block !important;
-    width: 30%;
-    margin: 2px !important;
-}
-
-.noPointer {
-    pointer-events: none;
+    width: 11.05vw;
+    margin: 0.1vw !important;
 }
 
 .holdBgtCtrl {
-    margin-left: 6px !important;
+    margin-left: 0.25vw !important;
     
     .tg{
         font-weight: bolder;
@@ -32,83 +19,72 @@
 }
 
 .txtFldPortion {
-    margin: 4px !important;
+    margin: 0.2vw !important;
     display: block !important; 
-    margin-bottom: 8px !important;
+    margin-bottom: 1vh !important;
 }
 
 .choosenMealForm {
     display: inline-block;
-    width: 80px !important;
-    margin: 1px !important;
+    width: 4vw !important;
+    margin: 0.05vw !important;
 }
 
-.lrgWidth {
-    width: 135px !important;
+.selectedPortionWidth {
+    width: 6.25vw !important;
 }
 
 .btn {
-    margin: 2px !important; 
-    margin-left: 8px !important;
+    margin: 0.1vw !important; 
+    margin-left: 0.4vw !important;
 
     #icon {
         position: relative;
-        top: -1px;
+        top: -0.1vh;
     }
 }
 
 .tglBtn {
-    margin-left: 10px !important;
+    margin-left: 0.5vw !important;
     pointer-events: none !important;
     
-    &.updateDone {
+    .updateDone {
         display: inline-block; 
         color: blue !important;
-        margin-right: 8px !important;
+        margin-right: 0.4vw !important;
     }
 }
-
-
 
 .title {
     text-decoration:  underline !important;
 }
 
 .switchForm {
-    margin-top: 6px !important;
-    margin-left: 12px !important; 
-    margin-bottom: 20px !important;
+    margin-top: 0.6vh !important;
+    margin-left: 0.6vw !important; 
+    margin-bottom: 2vh !important;
 }
 
 .txtFld {
     display: inline-block; 
-    margin: 1px !important;
-
+    
     &.col1 {
-        width: 26% !important;
+        margin: 0.05vw !important;
+        width: 11.05vw !important;
     }
 
     &.col2 {
-        width: auto;
-        margin-left: 10px !important;
-        margin-right: 200px !important;
-    }
-
-    .noPointer {
-        pointer-events: none !important;
+        width: 11.05vw;
+        margin-left: 0.5vw !important;
+        margin-right: 10.4vw !important;
     }
 }
 
-.btnLmtSetBgtDnrs {
-    margin: 2px !important; 
+#btnLmtSetBgtDnrs {
+    margin: 0.1vw !important; 
 
     #icon {
         position: relative;
-        top: -1px !important;
+        top: -0.05vw !important;
     }
-}
-
-.mealSelectComp {
-    width: 300px !important;
-    margin-bottom: 8px !important;
 }

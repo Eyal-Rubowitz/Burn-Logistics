@@ -1,0 +1,179 @@
+/* apply a natural box layout model to all elements, but allowing components to change 
+this is only for projects that support IE8 and up
+ Firefox <= 28 still needs the -moz- prefix
+ and 4 <= iOS, Android <= 2.3 need the -webkit-
+ */
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+#appContainer {
+    margin-top: 10vh;
+    overflow-y: visible;
+}
+
+.appNavBar {
+    display: inline-block;
+    background-color: #3646A3;
+    z-index: 1;
+    height: 9vh;
+    display: flex;
+
+    .appLink {
+        position: relative;
+        left: 0.2vw;
+        top: 0.25vh;
+        text-decoration: none;
+        color: #91FFFF;
+        margin-left: 0.6vmiv;
+        height: 7.2vh;
+        border: transparent 0.18vw  solid;
+        text-shadow: 0.16rem 0.16rem 0.4rem black;
+    
+        &:not(.active)::after {
+            content: '';
+            position: absolute;
+            top: -1vh;
+            left: -0.2vw;
+            width: 103%;
+            height: 130%;
+            background-color: lighten($color: #3646A3, $amount: 30%);
+            border: transparent 0.18vw solid;
+            border-radius: 0.25vw 0.25vw 0 0;
+            z-index: -1;
+            transform: scaleY(0);
+            transition: transform 300ms ease-in;
+            transform-origin: bottom;
+        }
+
+        &:hover:not(.active)::after {
+            height: 130%;
+            top: -1vh;
+            border: transparent 0.18vw solid;
+            border-radius: 0.25vw 0.25vw 0 0;
+            transform: scaleY(1);
+        }
+
+        .appTg {
+            line-height: 6.2vmin; 
+            margin: 0.1vw 0.1vw 0vw 0.1vw;
+            font-size: clamp(5px, 1.16vw, 18px);
+            font-weight: bold;
+
+            .imgs {
+                display: 'inline-block'; 
+                vertical-align: middle;
+                width: 3.4vw;
+                max-height: 6.4vh;
+                min-width: 25px;
+                height: auto;
+                margin: 0.1vw 0vw 0vw 0.1vw;
+            }
+
+            .imgs.L {
+                width: 5.5vw;
+            }
+        }
+    }
+    
+}
+
+.paper {
+    position: relative !important; 
+    width: 38vw !important; 
+    padding: 0.4vw !important; 
+    left: 34% !important; 
+    top: 10%;
+
+    .switchForm {
+        margin-top: 0.28vw !important; 
+        margin-left: 0.6vw !important; 
+        margin-bottom: 2vh !important;
+    
+        .box {
+            font-size: 1.5em;
+            margin-top: 6px;
+    
+            &.on {
+                color: #3646a3 !important;
+                font-weight: bolder ;
+            }
+    
+            &.off {
+                color: black;
+                font-weight: lighter;
+            }
+        }
+    }
+}
+
+.title {
+    text-decoration: underline; 
+}
+
+.noPointer {
+    pointer-events: none;
+}
+
+#mealSelectComp {
+    width: 16vw !important;
+    margin-bottom: 1vh !important;
+}
+
+.vsbl {
+    visibility: visible;
+    height: auto;
+}
+
+.hide {
+    visibility: hidden;
+    height: 0px !important;
+}
+
+.btnShiny{
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      width: 3vw;
+      height: 100%;
+      opacity: 0.5;
+      filter: blur(1vw);
+      transform: translateX(-8vw)  skewX(-15deg);
+    }
+    &:hover{
+        &:before{
+        transform: translateX(20rem)  skewX(-15deg);  
+        opacity: 0.6;
+        transition: .7s;
+      }
+    }
+  }
+
+  .hoverAlertColor {
+    margin-left: 1% !important;
+  }
+
+  .hoverAlertColor:hover {
+    animation: alrt 4s infinite;
+    border-radius: 50%;
+    
+}
+
+@keyframes alrt {
+    0% {
+          background-color: lighten($color: gray, $amount: 40%);
+    }
+    50% {
+        background-color:lighten($color: red, $amount: 40%);
+    }
+    100% {
+        background-color: lighten($color: gray, $amount: 40%);
+    }
+  }

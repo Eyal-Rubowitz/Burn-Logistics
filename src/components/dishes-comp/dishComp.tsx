@@ -18,20 +18,9 @@ import ObjectID from 'bson-objectid';
 import AddIcon from "@material-ui/icons/Add";
 import { Allergans } from '../../models/allergensModel';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './dishStyle.scss';
 
-const theme = createMuiTheme({
-    overrides: {
-        MuiIconButton: {
-            colorSecondary: {
-                '&:hover': {
-                    backgroundColor: 'rgba(0,0,0,0.08)'
-                }
-            }
-        }
-    }
-})
+
 
 const IngredientTag = observer((props: { ing: Ingredient, attr: any }) =>
     <span>{(props.ing as any)[props.attr]}</span>
@@ -134,11 +123,9 @@ class DishComp extends PureComponent<DishProps> {
                         <TextField value={this.props.dish.name}
                             name='name'
                             onChange={this.onHandleChefNameChange} />
-                        <MuiThemeProvider theme={theme}>
-                            <IconButton onClick={this.onDelete} color="secondary" size="medium" >
-                                <DeleteForeverIcon fontSize="large"></DeleteForeverIcon>
+                            <IconButton onClick={this.onDelete} color="secondary" size="medium" className="hoverAlertColor" >
+                                <DeleteForeverIcon fontSize="large"/>
                             </IconButton>
-                        </MuiThemeProvider>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div id="ingTable">
@@ -148,8 +135,11 @@ class DishComp extends PureComponent<DishProps> {
                                     Add: forwardRef((props, ref) => <div className="addIngDiv">
                                                                         <AddIcon {...props} ref={ref} className="icon" color="primary" viewBox="0 0 20 20" />
                                                                         <p className="p" >Add Ingredient</p>
-                                                                    </div>)
-                                }}
+                                                                    </div>),
+                                    Delete: forwardRef((props, ref) => <IconButton size="medium" className="hoverAlertColor" >
+                                                                            <DeleteForeverIcon {...props} ref={ref} color="secondary"/>
+                                                                        </IconButton>),
+                                                                    }}
                                 columns={[
                                     {
                                         title: 'Name',
@@ -205,7 +195,7 @@ class DishComp extends PureComponent<DishProps> {
                                                     <div>
                                                         <Router>
                                                             <Fab color="primary" variant="extended" onClick={() => window.location.reload(false)}>
-                                                                <NavLink className="noteNav" to={`/meals/${ing.dishId}/ingredient-note/${ing._id}`}>
+                                                                <NavLink className="noteNav btnShiny" to={`/meals/${ing.dishId}/ingredient-note/${ing._id}`}>
                                                                     Edit Item Note
                                                             </NavLink>
                                                             </Fab>

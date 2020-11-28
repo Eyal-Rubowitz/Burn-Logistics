@@ -67,6 +67,7 @@ class IngredientNoteComp extends PureComponent<IngCompProps> {
                 <Fab id="returnBtn"
                     onClick={ () => { this.history.goBack() } }
                     variant='extended'
+                    className="btnShiny"
                     color='primary' >
                         <Typography variant="h6" >&#x1f844; Back</Typography>
                 </Fab>
@@ -81,6 +82,7 @@ class IngredientNoteComp extends PureComponent<IngCompProps> {
                 <Fab  id="saveBtn"
                     onClick={ () => { this.onSaveText() } }
                     variant='extended'
+                    className="btnShiny"
                     color='primary' >
                         <Typography variant="h6" >Save Text Changes</Typography>
                 </Fab>

@@ -21,7 +21,9 @@ const IngredientTag = observer((props: { ing: Ingredient, attr: any }): JSX.Elem
     <span>{(props.ing as any)[props.attr]}</span>
 );
 
-const categoryOptions = [{ label: 'All Ingredients', value: null }, { label: 'Purchase Done', value: true }, { label: 'Purchase Needed', value: false }];
+const categoryOptions = [{ label: 'All Ingredients', value: null }, 
+                         { label: 'Purchase Done', value: true }, 
+                         { label: 'Purchase Needed', value: false }];
 
 class IngInfo {
     constructor(public delta: number, public fromInventory: number) {
@@ -380,7 +382,8 @@ class BuyingListComp extends PureComponent {
                             pageSize: this.filteredData.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
-                            maxBodyHeight: '500px',
+                            maxBodyHeight: '46vh',
+                            search: false
                         }}
                     />
                     <div id="btnPurchItems">

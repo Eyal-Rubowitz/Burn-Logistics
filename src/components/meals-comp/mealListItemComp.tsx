@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         hoverColor: {
             "&:hover": {
-              backgroundColor: 'rgba(0,0,0,0.08)'
+            //   backgroundColor: 'rgba(0,0,0,0.08)'
             }
           }
     }),
@@ -43,7 +43,7 @@ const MealListItemComp = observer((props: MealProps) => {
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
     
     return (
-        <Box my={1} key={props.meal._id}>
+        <Box my={1} key={props.meal._id} className="grow">
             <Card >
                 <CardContent >
                     <FormControl className={classes.formControl}>
@@ -75,8 +75,8 @@ const MealListItemComp = observer((props: MealProps) => {
                             </Link>
                         </Grid>
                         <Grid item sm={1}>
-                            <IconButton onClick={onDelete} color="secondary" size="medium" className={classes.hoverColor}>
-                                <DeleteForeverIcon fontSize="large" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                            <IconButton onClick={onDelete} className="hoverAlertColor" size="medium" >
+                                <DeleteForeverIcon fontSize="large" color='secondary'></DeleteForeverIcon>
                             </IconButton>
                         </Grid>
                     </Grid>

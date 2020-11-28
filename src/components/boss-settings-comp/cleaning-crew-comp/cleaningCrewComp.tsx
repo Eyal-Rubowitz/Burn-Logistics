@@ -68,7 +68,7 @@ class CleaningCrewComp extends PureComponent {
             return (
                 <div>
                     <Typography variant="h6" key={name} className="tgClnName">{name}</Typography>
-                    <IconButton onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
+                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
                         <DeleteForeverIcon className="tgClnName" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
@@ -83,7 +83,7 @@ class CleaningCrewComp extends PureComponent {
             <Fragment>
                 <Paper className="paper">
                     <MealSelectComp store={this.selectedMealStore} />
-                    <div style={{ visibility: (this.meal !== undefined) ? 'visible' : 'hidden' }}>
+                    <div className={`${(this.meal !== undefined) ? 'vsbl' : 'hide' }`} >
                         <Typography variant="h4" className="cleaningTitle">{this.mealInfo()}</Typography>
                         <TextField label="Enter cleaning member"
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterCleaningMemberName(e) }}
@@ -93,10 +93,10 @@ class CleaningCrewComp extends PureComponent {
                             onClick={() => { this.onAddNewCleaningMember() }}
                             variant='extended'
                             color='primary'
-                            className="addClnMmbr">
+                            className="addClnMmbr btnShiny">
                             <Icon id="icon">add</Icon>Assign to shift
                         </Fab>
-                        <Typography variant="h5" className="tgClnTitle">Cleaning Crew</Typography>
+                        <Typography variant="h5" id="tgClnTitle">Cleaning Crew</Typography>
                         <Typography variant="h6">{this.getKitchenCrew()}</Typography>
                     </div>
                 </Paper>

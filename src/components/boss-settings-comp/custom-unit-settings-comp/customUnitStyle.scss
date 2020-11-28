@@ -1,35 +1,36 @@
 .btnDltCstmUn {
     display: inline-block !important;
-
-    &.dltIcon {
-        display: inline-block !important;
-    }
 }
 
 #cstmUnLs {
-    margin: 20px !important;
+    margin: 1vw !important;
 } 
+
+#slctIngLabel {
+    background-color: white;
+    padding: 0 0.2vw 0 0.2vw;
+        
+    &:active {
+        color: blue
+    }
+}
 
 .formInput {
     width: 100%;
-    margin: 1px !important; 
+    margin: 0.1vw !important; 
 }
 
 .itemData {
     display: inline-block !important;
     width: 27% !important;
-    margin: 4px 0px 4px 0px !important;
-
-    #noPointer {
-        pointer-events: none !important;
-    }
+    margin: 0.4vh 0px 0.4vh 0.05vw !important;
 }
 
 .btnUn {
-    margin: 6px !important;
+    margin: 0.28vw !important;
 
     #icon {
         position: relative;
-        top: -2px !important;
+        top: -0.1vh !important;
     }
 }

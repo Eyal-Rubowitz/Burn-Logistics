@@ -6,7 +6,7 @@ import ObjectID from 'bson-objectid';
 import { observer } from 'mobx-react';
 import { Autocomplete } from "@material-ui/lab";
 import { FoodItem } from "../../models/foodItemModel";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, IconButton } from "@material-ui/core";
 import { Ingredient } from "../../models/ingredientModel";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddIcon from "@material-ui/icons/Add";
@@ -118,8 +118,6 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                 invD[inv.foodItemId] = inv;
             }
         });
-        let list: InventoryItem[] = Object.keys(invD).map(index => invD[index]);
-        list.forEach(i => console.log('sumedInv: ', i.name, ": ", i.quantity));
     }
 
     mergeUpdate(iiD: InventoryItem, inv: InventoryItem): void {
@@ -168,7 +166,9 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                                                         viewBox="0 0 20 20" />
                                                                     <p className="p">Add Inventory Item</p>
                                                             </div>),
-                            Delete: forwardRef((props, ref) => <DeleteForeverIcon {...props} ref={ref} color="secondary" />)
+                            Delete: forwardRef((props, ref) =>  <IconButton className="hoverAlertColor">
+                                                                    <DeleteForeverIcon {...props} ref={ref} color="secondary"/>
+                                                                </IconButton>)
                         }}
                         columns={[
                             {
@@ -199,13 +199,11 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             {
                                 title: 'Expiration Date',
                                 field: 'expirationDate',
-                                render: (ii: InventoryItem) => <div style={{
-                                    color: (this.isExDateAlert(ii.expirationDate, now)) ? 'red' : 'black',
-                                    fontWeight: (this.isExDateAlert(ii.expirationDate, now)) ? 'bolder' : 'normal'
-                                }}>
-                                    <InventoryItemTag ii={ii} attr="toSringDate" />
-                                </div>,
-                                type: "date",
+                                render: (ii: InventoryItem) => 
+                                                <div className={`${(this.isExDateAlert(ii.expirationDate, now)) ? 'ex' : 'ok'}`} >
+                                                    <InventoryItemTag ii={ii} attr="toSringDate" />
+                                                </div>,
+                                type: "date"
                             },
                         ]}
                         data={AppRootModel.inventoryModel.items.map(ii => ii)}
@@ -214,8 +212,9 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             pageSize: AppRootModel.inventoryModel.items.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
-                            maxBodyHeight: '550px',
-                            actionsColumnIndex: -1
+                            maxBodyHeight: '80vh',
+                            actionsColumnIndex: -1,
+                            search: false
                         }}
                         editable={{
                             onRowAdd: (newII: InventoryItem): Promise<void> => {

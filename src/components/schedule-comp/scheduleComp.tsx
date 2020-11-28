@@ -1,20 +1,41 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { Meal } from '../../models/mealModel';
 import { observer } from "mobx-react";
 import { AppRootModel } from "../../modelsContext";
 import { Table, Checkbox } from "@material-ui/core";
-import { observable } from "mobx";
+import { observable, IReactionDisposer, autorun  } from "mobx";
 import './scheduleStyle.scss';
 
 @observer
-class ScheduleTableComp extends PureComponent {
+class ScheduleTableComp extends Component {
+
+    disposeAutorun: IReactionDisposer;
 
     @observable mealInfoToShow?: Meal = undefined;
+    @observable activatedTr: Boolean[] = [];
     dividerDate: Date = new Date(1970);
+
+    constructor(props: {}) {
+        super(props)
+        this.disposeAutorun = autorun(() => {
+            this.activatedTr = AppRootModel.mealModel.items.map(m => false);
+        });
+    }
+
+    componentWillUnmount(): void {
+        this.disposeAutorun();
+    }
 
     onShowMealInfo(m: Meal): void {
         this.mealInfoToShow = (this.mealInfoToShow === m) ? undefined : m;
     }
+
+    onActiveTr(i: number): void {
+        const isActivated = (el: Boolean) => el === true;
+        const activeIndex = this.activatedTr.findIndex(isActivated)
+        this.activatedTr = this.activatedTr.map((bool, index) => (i === index && activeIndex !== i) ? true : false);
+    }
+
 
     @observable ScheduleTableFunc = ((mealList: Meal[]): JSX.Element => {
         let scheduleTable: JSX.Element[] = mealList.slice().sort((a, b) => a.date.getTime() - b.date.getTime()).map((m, i) => {
@@ -23,20 +44,24 @@ class ScheduleTableComp extends PureComponent {
 
             let sousChefNames: JSX.Element[] = m.sousChefList.map(name => {
                 return (
-                    <div key={name} className="sousName">{name}</div>
+                    <div key={name} className="sousName name">{name}</div>
                 )
             })
 
             let cleaningCrewNames: JSX.Element[] = m.cleaningCrewList.map(name => {
                 return (
-                    <div key={name}  className="cleanName">{name}</div>
+                    <div key={name}  className="cleanName name">{name}</div>
                 )
             })
 
             return (
-                <tr key={i} className="tableTr" 
-                            style={{ backgroundColor: (i % 2 === 0) ? "#FFF5EE" : "#F0F8FF", 
-                                     borderTop: (borderBool) ? 'solid 5px black' : 'none' }}>
+                <tr key={i} 
+                    onClick={() => this.onActiveTr(i)}
+                    className={`tableTr 
+                                ${(i % 2 === 0) ? 'evn' : 'odd'} 
+                                ${(borderBool) ? 'borderDays' : 'none'}
+                                ${(this.activatedTr[i]) ? 'trActive' : ''}`} 
+                                >
                     <td>{m.chef}</td>
                     <td>{m.date.toLocaleDateString()}</td>
                     <td>{m.name}</td>
@@ -78,8 +103,7 @@ class ScheduleTableComp extends PureComponent {
         let mealDishesNameHeaders: JSX.Element[] = meal.dishes.map((d, i) => {
             return (
                 <th key={d.name}
-                    className="dishNameInfoTh"
-                    style={{ borderLeft: (i !== 0) ? 'solid 3px black' : 'none' }}>
+                    className={`dishNameInfoTh ${ (i !== 0) ? 'borderInfo' : ''}`}>
                     {d.name}
                 </th>
             )
@@ -88,23 +112,22 @@ class ScheduleTableComp extends PureComponent {
         let mealDishesIngInfo: JSX.Element[] = meal.dishes.map((d, i) => {
             return (
                 <td key={d.name}
-                    className="dishInfo"
-                    style={{ borderLeft: (i !== 0) ? 'solid 3px black' : 'none' }}>
+                    className={`dishInfo ${ (i !== 0) ? 'borderInfo' : ''}`}>
                     {d.ingrediants.map((ing, j) => {
-                        return <ul key={j} className="dishIng" style={{ backgroundColor: (j % 2 === 0) ? '#FFFFFF' : '#dbdbdb' }}>{ing.name}</ul>
+                        return <ul key={j} className={`dishIng ${(j % 2 === 0) ? 'evnInfo' : 'oddInfo'}`}>{ing.name}</ul>
                     })}
                 </td>
             )
         })
 
         return (
-            <Table id="scheduleTable">
-                <thead id="tableHead">
+            <Table id="mealInfoTable">
+                <thead id="infoTableHead">
                     <tr>
                         {mealDishesNameHeaders}
                     </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody id="infoTableBody">
                     {mealDishesIngInfo}
                 </tbody>
             </Table>

@@ -1,21 +1,20 @@
 .cleaningTitle {
-    margin-top: 70px !important;
-    margin-bottom: 40px !important;
+    margin-top: 7vh !important;
+    margin-bottom: 4vh !important;
     text-decoration: underline;
     text-align: center;
-    
 }
 
 .addClnMmbr {
-    margin-left: 20px !important; 
-    height: 56px !important; 
-    width: 180px !important; 
+    margin-left: 1vw !important; 
+    height: 5.6vh !important; 
+    width: 8.4vw !important; 
     display: inline-block !important;
     text-align: center !important;
 
     #icon {
         position: relative;
-        top: 6px !important;
+        top: 0.6vh !important;
     }
 }
 
@@ -23,8 +22,8 @@
     display: inline-block !important;
 }
 
-.tgClnTitle {
+#tgClnTitle {
     text-decoration: underline;
     font-weight: bolder !important;
-    margin-top: 20px !important;
+    margin-top: 2vh !important;
 }

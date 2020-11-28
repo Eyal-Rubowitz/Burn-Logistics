@@ -75,12 +75,12 @@ class AllergensComp extends PureComponent {
                 return (
                     <div className="deleteDiners">
                         <Typography className="tg" variant="h6" key={diner}>{diner}</Typography>
-                        <IconButton onClick={() => (selectedLrg as Allergans).deleteDinerNameFromList(diner)} color="secondary" size="medium">
-                            <DeleteForeverIcon className="dfi" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                        <IconButton className="hoverAlertColor" onClick={() => (selectedLrg as Allergans).deleteDinerNameFromList(diner)} size="medium">
+                            <DeleteForeverIcon className="dfi" color='secondary'></DeleteForeverIcon>
                         </IconButton>
                     </div>)
             });
-            lrgDinerList.unshift(<Typography variant="h6" key={'diner-title'} className="title">Diners with {(selectedLrg as Allergans).name} intolerance:</Typography>)
+            lrgDinerList.unshift(<Typography variant="h6" key={'diner-title'} className="title listTitle">Diners with {(selectedLrg as Allergans).name} intolerance:</Typography>)
             foodItemList = AppRootModel.foodItemModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => <MenuItem key={fi._id} value={fi._id}>{fi.name}</MenuItem>);
             let lrgFoodIdList = (selectedLrg as Allergans).foodItemIdList.map(lrgFood => lrgFood);
             lrgFoodList = AppRootModel.foodItemModel.items.filter(f => lrgFoodIdList.includes(f._id)).map(f => {
@@ -92,7 +92,7 @@ class AllergensComp extends PureComponent {
                         </IconButton>
                     </div>)
             });
-            lrgFoodList.unshift(<Typography variant="h6" key={'food-Item-title'} className="title">Ingredients with intolerance to {(selectedLrg as Allergans).name}:</Typography>)
+            lrgFoodList.unshift(<Typography variant="h6" key={'food-Item-title'} className="title listTitle">Ingredients with intolerance to {(selectedLrg as Allergans).name}:</Typography>)
             isVisable = true;
         }
 
@@ -104,54 +104,60 @@ class AllergensComp extends PureComponent {
                         {this.selectedAllerganId}
                     </Box>
                 </div>
-                <Typography variant="h6" className="title">Allergens</Typography>
-                <TextField label="Enter new intolerance"
-                    onChange={(e) => { this.onEnterNewAllrgy(e) }}
-                    value={this.allerganName}
-                    variant="outlined"
-                    className="txtFld"/>
-                <Fab
-                    onClick={() => { this.onAddNewAllergy() }}
-                    variant='extended'
-                    color='primary'
-                    className="add">
-                    <Icon id="icon">add</Icon>Add Intolerance
+                <div id="mainLrg">
+                    <Typography id="tgLrgTtl" className="title">Allergens</Typography>
+                    <TextField label="Enter new intolerance"
+                        onChange={(e) => { this.onEnterNewAllrgy(e) }}
+                        value={this.allerganName}
+                        variant="outlined"
+                        className="txtFld" />
+                    <Fab
+                        onClick={() => { this.onAddNewAllergy() }}
+                        variant='extended'
+                        color='primary'
+                        className="addBtn btnShiny">
+                        <Icon id="icon">add</Icon>Add Intolerance
                 </Fab>
-                <FormControl variant="outlined" className="selectLrgForm">
-                    <InputLabel>Select intolerance</InputLabel>
-                    <Select name='select-fi-id' value={this.selectedAllerganId} onChange={(e) => this.onSelectAllergan(e)} >
-                        {this.allergansList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(a => <MenuItem key={a._id} value={a._id}>{a.name}</MenuItem>)}
-                    </Select>
-                </FormControl>
-                <TextField label="Enter diner name"
-                    onChange={(e) => { this.onEnterDinerName(e) }}
-                    value={this.newDinerName}
-                    variant="outlined"
-                    className="txtFld"
-                    style={{ visibility: (isVisable) ? 'visible' : 'hidden' }} />
-                <Fab
-                    onClick={() => { this.onAddNewDiner() }}
-                    variant='extended'
-                    color='primary'
-                    className="add"
-                    style={{ visibility: (isVisable) ? 'visible' : 'hidden' }}>
-                    <Icon id="icon">add</Icon>Add Diner
-                </Fab>
-                {(lrgDinerList.length > 1) ? lrgDinerList : ""}
-                <FormControl variant="outlined" className="selectIngForm" style={{ visibility: (isVisable) ? 'visible' : 'hidden' }} >
-                    <InputLabel>Select ingredient</InputLabel>
-                    <Select name='select-fi-id' value={this.selectedFoodItemId} onChange={(e) => this.onSelectAlerganFoodItem(e)} >
-                        {foodItemList}
-                    </Select>
-                </FormControl>
-                <Fab
-                    onClick={(e) => { this.onAddFoodItem(e) }}
-                    variant='extended'
-                    color='primary'
-                    style={{ margin: 6, visibility: (isVisable) ? 'visible' : 'hidden' }}>
-                    <Icon>add</Icon>Add allergan Ingredient
-                </Fab>
-                {(lrgFoodList.length > 1) ? lrgFoodList : ""}
+                    <FormControl variant="outlined" className="selectLrgForm">
+                        <InputLabel id="selectLbl" variant="outlined">Select intolerance</InputLabel>
+                        <Select name='select-fi-id' value={this.selectedAllerganId} onChange={(e) => this.onSelectAllergan(e)} >
+                            {this.allergansList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(a => <MenuItem key={a._id} value={a._id}>{a.name}</MenuItem>)}
+                        </Select>
+                    </FormControl>
+                </div>
+                <div id="dinersInfo">
+                    <TextField
+                        label="Enter diner name"
+                        onChange={(e) => { this.onEnterDinerName(e) }}
+                        value={this.newDinerName}
+                        variant="outlined"
+                        className={`txtFld ${(isVisable) ? 'vsbl' : 'hide'}`} />
+                    <Fab
+                        onClick={() => { this.onAddNewDiner() }}
+                        variant='extended'
+                        color='primary'
+                        className={`addBtn btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        <Icon id="icon">add</Icon>Add Diner
+                    </Fab>
+                    {(lrgDinerList.length > 1) ? lrgDinerList : ""}
+                </div>
+                <div id="lrgnsIngs">
+                    <FormControl variant="outlined" 
+                                 className={`selectIngForm ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        <InputLabel>Select ingredient</InputLabel>
+                        <Select name='select-fi-id' value={this.selectedFoodItemId} onChange={(e) => this.onSelectAlerganFoodItem(e)} >
+                            {foodItemList}
+                        </Select>
+                    </FormControl>
+                    <Fab
+                        onClick={(e) => { this.onAddFoodItem(e) }}
+                        variant='extended'
+                        color='primary'
+                        className={`addLrgIng btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        <Icon>add</Icon>Add allergan Ingredient
+                    </Fab>
+                    {(lrgFoodList.length > 1) ? lrgFoodList : ""}
+                </div>
             </Paper>
         );
     }

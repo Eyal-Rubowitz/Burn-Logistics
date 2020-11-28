@@ -68,7 +68,8 @@ export class Meal extends ClassType {
     }
 
     addDietType(dietName: string): void {
-        this.diners.push(new DinersDiet(0, dietName));
+        let dietToUpdate = this.diners.find(d => d.dietType === dietName);
+        if(dietName !== dietToUpdate?.dietType || dietName !== '') this.diners.push(new DinersDiet(0, dietName));
     }
 
     updateDietTypeDinersNum(dietName: string, diners: number): void {
@@ -87,7 +88,6 @@ export class Meal extends ClassType {
 
     deleteDietType(dietName: string): void {
         this.diners = this.diners.filter( d => d.dietType !== dietName)
-        console.log(dietName, ' has been delete!');
         this.store.updateItem(this);
     }
 }
