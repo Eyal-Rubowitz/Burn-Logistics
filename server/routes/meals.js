@@ -28,7 +28,7 @@ router.route('/').post(async (req, res) => {
 router.route('/:id/delete').post((req, res) => {
   mealModel.findByIdAndRemove(req.params.id, (err) => {
     if (err) return res.send(err);
-    req.app.locals.wss.broadcast(JSON.stringify({ type: 'meal', item: { _id: req.params.id, isItemDeleted: true } }));
+    // req.app.locals.wss.broadcast(JSON.stringify({ type: 'meal', item: { _id: req.params.id, isItemDeleted: true } }));
     const message = new wsMessageModel({ body: JSON.stringify({ ttype: 'meal', item: { _id: req.params.id, isItemDeleted: true } }) });
     message.save();
   });
@@ -42,8 +42,8 @@ router.route('/:id/update').post((req, res) => {
     // req.app.locals.wss.broadcast(JSON.stringify({ type: 'meal', item: req.body }));
     const message = new wsMessageModel({ body: JSON.stringify({ type: 'meal', item: req.body }) });
     message.save();
-    return res.send('Updated !');
   });
+  return res.send('Updated !');
 });
 
 module.exports = router;
