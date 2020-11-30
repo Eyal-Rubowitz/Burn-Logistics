@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 
 let foodItemModel = require('../models/foodItemModel');
+let wsMessageModel = require('../models/wsMessageModel');
 
 router.get('/', (req, res, next) => {
     foodItemModel.find().exec((err, foodItemList) => {
@@ -18,7 +19,9 @@ router.route("/").post(async (req, res) => {
             console.log(err);
             return res.send(err);
         }
-        req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: newFoodItem }));
+        // req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: newFoodItem }));
+        const message = new wsMessageModel({ body: JSON.stringify({ type: 'foodItem', item: newFoodItem }) });
+        message.save();
         res.json(newFoodItem);
     });
 });
@@ -26,18 +29,21 @@ router.route("/").post(async (req, res) => {
 router.post('/:id/delete', (req, res) => {
     foodItemModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) return res.send(err);
-        req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }));
+        // req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }));
+        const message = new wsMessageModel({ body: JSON.stringify({ ttype: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }) });
+        message.save();
     });
     return res.send("Food Item delete!");
 });
 
-router.route("/:id/update").post(
-    (req, res) => {
+router.route("/:id/update").post(async (req, res) => {
         console.log('req.body:', req.body);
-        foodItemModel.findByIdAndUpdate(req.params.id, req.body,(err) => {
+        await foodItemModel.findByIdAndUpdate(req.params.id, req.body,(err) => {
             if (err) return res.send(err);
             // console.log('wss.clients: ',req.app.locals.wss.clients);
-            req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: req.body }));
+            // req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: req.body }));
+            const message = new wsMessageModel({ body: JSON.stringify({ type: 'foodItem', item: req.body }) });
+            message.save();
             return res.send('FoodItem Updated!');
         });
     });

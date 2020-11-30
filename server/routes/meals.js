@@ -25,25 +25,25 @@ router.route('/').post(async (req, res) => {
   });
 });
 
-router.route('/:id/delete').post((req, res) => {
-  mealModel.findByIdAndRemove(req.params.id, (err) => {
+router.route('/:id/delete').post(async (req, res) => {
+  await mealModel.findByIdAndRemove(req.params.id, (err) => {
     if (err) return res.send(err);
     // req.app.locals.wss.broadcast(JSON.stringify({ type: 'meal', item: { _id: req.params.id, isItemDeleted: true } }));
     const message = new wsMessageModel({ body: JSON.stringify({ ttype: 'meal', item: { _id: req.params.id, isItemDeleted: true } }) });
     message.save();
+    return res.send('Meal Deleted!');
   });
-  return res.send('Meal Deleted !');
 });
 
-router.route('/:id/update').post((req, res) => {
-  mealModel.findByIdAndUpdate(req.params.id, req.body, (err) => {
+router.route('/:id/update').post(async (req, res) => {
+  await mealModel.findByIdAndUpdate(req.params.id, req.body, (err) => {
     if (err) return res.send(err);
     // console.log('meal req.app.locals.wss:', req.app.locals.wss);
     // req.app.locals.wss.broadcast(JSON.stringify({ type: 'meal', item: req.body }));
     const message = new wsMessageModel({ body: JSON.stringify({ type: 'meal', item: req.body }) });
     message.save();
+    return res.send('Meal Updated!');
   });
-  return res.send('Updated !');
 });
 
 module.exports = router;
