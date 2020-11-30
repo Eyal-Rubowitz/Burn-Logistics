@@ -34,8 +34,8 @@ router.route("/:id/delete").post(async (req, res) => {
         // req.app.locals.wss.broadcast(JSON.stringify({ type: 'ingredient', item: { _id: req.params.id, isItemDeleted: true } }));
         const message = new wsMessageModel({ body: JSON.stringify({ ttype: 'ingredient', item: { _id: req.params.id, isItemDeleted: true } }) });
         message.save();
-        return res.send("Ingredient Delete!");
     });
+    return res.send("Ingredient Delete!");
 })
 
 router.route("/:id/update").post(async (req, res) => {

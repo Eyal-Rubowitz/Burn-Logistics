@@ -31,8 +31,8 @@ router.route('/:id/delete').post(async (req, res) => {
         // req.app.locals.wss.broadcast(JSON.stringify({ type: 'inventory', item: { _id: req.params.id, isItemDeleted: true } }));
         const message = new wsMessageModel({ body: JSON.stringify({ type: 'inventory', item: { _id: req.params.id, isItemDeleted: true } }) });
         message.save();
-        return res.send('Inventory Item Delete!');
     });
+    return res.send('Inventory Item Delete!');
 });
 
 router.route('/:id/update').post(async (req, res) => {

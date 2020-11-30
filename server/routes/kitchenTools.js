@@ -31,8 +31,8 @@ router.route('/:id/delete').post(async (req, res) => {
         // req.app.locals.wss.broadcast(JSON.stringify({ type: 'kitchenTools', item: { _id: req.params.id, isItemDeleted: true } }));
         const message = new wsMessageModel({ body: JSON.stringify({ type: 'kitchenTools', item: { _id: req.params.id, isItemDeleted: true } }) });
         message.save();
-        return res.send('Kitchen Tool Item Delete!');
     });
+    return res.send('Kitchen Tool Item Delete!');
 });
 
 router.route('/:id/update').post(async (req, res) => {
