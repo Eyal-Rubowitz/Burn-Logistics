@@ -6,6 +6,7 @@ import { Grid, Typography, Divider, Fab, Icon } from '@material-ui/core';
 import { AppRootModel } from '../../modelsContext';
 import ObjectID from 'bson-objectid';
 import { observable } from 'mobx';
+import 'mobx-react-lite/batchingForReactDom'
 
 @observer
 class MealListComp extends PureComponent {

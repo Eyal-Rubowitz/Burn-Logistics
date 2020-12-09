@@ -107,7 +107,7 @@ class AllergensComp extends PureComponent {
                 <div id="mainLrg">
                     <Typography id="tgLrgTtl" className="title">Allergens</Typography>
                     <TextField label="Enter new intolerance"
-                        onChange={(e) => { this.onEnterNewAllrgy(e) }}
+                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterNewAllrgy(e) }}
                         value={this.allerganName}
                         variant="outlined"
                         className="txtFld" />
@@ -128,7 +128,7 @@ class AllergensComp extends PureComponent {
                 <div id="dinersInfo">
                     <TextField
                         label="Enter diner name"
-                        onChange={(e) => { this.onEnterDinerName(e) }}
+                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterDinerName(e) }}
                         value={this.newDinerName}
                         variant="outlined"
                         className={`txtFld ${(isVisable) ? 'vsbl' : 'hide'}`} />

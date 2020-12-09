@@ -91,7 +91,7 @@ class MealComp extends PureComponent<MealCompProps> {
                             id="txtFldPreparing"
                             type="time"
                             value={this.toMomentString(this.preparing)}
-                            onChange={(e) => this.onUpdateTime(e)}
+                            onChange={(e: React.ChangeEvent<any>) => this.onUpdateTime(e)}
                             variant="outlined"
                             inputProps={{
                                 style: { width: '180px', textAlign: 'center', fontWeight: 'bolder' }
@@ -103,7 +103,7 @@ class MealComp extends PureComponent<MealCompProps> {
                             id="txtFldServing"
                             type="time"
                             value={this.toMomentString(this.serving)}
-                            onChange={(e) => this.onUpdateTime(e)}
+                            onChange={(e: React.ChangeEvent<any>) => this.onUpdateTime(e)}
                             variant="outlined"
                             style={{ marginLeft: '1.1vw', marginRight: '0.8vw' }}
                             inputProps={{

@@ -36,13 +36,13 @@ router.route('/:id/delete').post(async (req, res) => {
 });
 
 router.route('/:id/update').post(async (req, res) => {
-        await kitchenToolsModel.findByIdAndUpdate(req.params.id, req.body, (err) => {
-            if (err) return res.send(err);
-            // req.app.locals.wss.broadcast(JSON.stringify({ type: 'kitchenTools', item: req.body }));
-            const message = new wsMessageModel({ body: JSON.stringify({ type: 'kitchenTools', item: req.body }) });
-            message.save();
-            return res.send('Kitchen Tool Item Updated!');
-        });
+    await kitchenToolsModel.findByIdAndUpdate(req.params.id, req.body, (err) => {
+        if (err) return res.send(err);
+        // req.app.locals.wss.broadcast(JSON.stringify({ type: 'kitchenTools', item: req.body }));
+        const message = new wsMessageModel({ body: JSON.stringify({ type: 'kitchenTools', item: req.body }) });
+        message.save();
+        return res.send('Kitchen Tool Item Updated!');
     });
+});
 
 module.exports = router;

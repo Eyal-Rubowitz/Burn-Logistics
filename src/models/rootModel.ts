@@ -17,9 +17,9 @@ export class RootModel {
         this.kitchenToolsModel = new KitchenToolsModel(this);
     }
 
+    ingredientModel: IngredientModel;
     mealModel: MealModel;
     dishModel: DishModel;
-    ingredientModel: IngredientModel;
     foodItemModel: FoodItemModel;
     inventoryModel: InventoryModel;
     allergensModel: AllergansModel;
