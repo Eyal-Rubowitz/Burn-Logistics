@@ -73,7 +73,7 @@ export abstract class ClassType {
     abstract updateFromJson(obj: any): void;
 
     toJSON() {
-        let json = Object.assign({}, this);
+        let json: any = Object.assign({}, this);
         delete json.store;
         return json;
     }
