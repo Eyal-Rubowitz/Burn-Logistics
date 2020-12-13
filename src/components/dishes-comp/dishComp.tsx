@@ -138,7 +138,7 @@ class DishComp extends PureComponent<DishProps> {
                                                                     </div>),
                                     Delete: forwardRef((props, ref) => <IconButton size="medium" className="hoverAlertColor" >
                                                                             <DeleteForeverIcon {...props} ref={ref} color="secondary"/>
-                                                                        </IconButton>),
+                                                                        </IconButton>)
                                                                     }}
                                 columns={[
                                     {

@@ -1,6 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
+/*
+  react-router-dom is made for "Web application" 
+  and react-router-native is made for "react native mobile apps"
+  both uses react-router at core
+*/ 
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router';
 import {
   AppBar, Typography, Container, Toolbar,
   createMuiTheme, responsiveFontSizes, MuiThemeProvider

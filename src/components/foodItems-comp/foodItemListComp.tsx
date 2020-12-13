@@ -59,8 +59,7 @@ class FoodItemListComp extends PureComponent {
                                         {...props}
                                         ref={ref}
                                         color="secondary" />
-                                </IconButton>
-                            )
+                                </IconButton>)
                         }}
                         columns={[
                             {

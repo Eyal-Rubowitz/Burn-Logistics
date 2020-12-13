@@ -159,7 +159,8 @@ class MealComp extends PureComponent<MealCompProps> {
                             className="txtFld noPointer"
                             InputLabelProps={{ "aria-readonly": true }} />
                         {this.meal.diners.map(d =>
-                            <TextField label={d.dietType}
+                            <TextField key={d.dietType}
+                                label={d.dietType}
                                 value={d.count}
                                 variant="filled"
                                 className="txtFld noPointer"

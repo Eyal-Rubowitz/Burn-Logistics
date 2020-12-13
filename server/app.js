@@ -123,7 +123,7 @@ app.use(function(err, req, res, next) {
 
 let wsMessage = require('./models/wsMessageModel');
 wsMessage.watch().on('change', (data) => {
-  // console.log('wss.clients: ',app.locals.wss.clients);
+  console.log('wss.clients: ',app.locals.wss.clients);
   app.locals.wss.broadcast(data.fullDocument.body);
 });
 
