@@ -11,7 +11,7 @@
 // var foodItemsRouter = require('./routes/foodItems');
 // var dishesRouter = require('./routes/dishes');
 // var inventoryRouter = require('./routes/inventory');
-// var allergansRouter = require('./routes/allergans');
+// var allergensRouter = require('./routes/allergens');
 // var kitchenToolsRouter = require('./routes/kitchenTools')
 
 // var app = express();
@@ -32,7 +32,7 @@
 // app.use('/api/foodItems', foodItemsRouter);
 // app.use('/api/dishes', dishesRouter);
 // app.use('/api/inventory', inventoryRouter);
-// app.use('/api/allergans', allergansRouter);
+// app.use('/api/allergens', allergensRouter);
 // app.use('/api/kitchenTools', kitchenToolsRouter);
 
 // const mongoose = require('mongoose');
@@ -74,7 +74,7 @@ var ingredientsRouter = require('./routes/ingredients');
 var foodItemsRouter = require('./routes/foodItems');
 var dishesRouter = require('./routes/dishes');
 var inventoryRouter = require('./routes/inventory');
-var allergansRouter = require('./routes/allergans');
+var allergensRouter = require('./routes/allergens');
 var kitchenToolsRouter = require('./routes/kitchenTools')
 
 var app = express();
@@ -95,7 +95,7 @@ app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/foodItems', foodItemsRouter);
 app.use('/api/dishes', dishesRouter);
 app.use('/api/inventory', inventoryRouter);
-app.use('/api/allergans', allergansRouter);
+app.use('/api/allergens', allergensRouter);
 app.use('/api/kitchenTools', kitchenToolsRouter);
 
 const mongoose = require('mongoose');

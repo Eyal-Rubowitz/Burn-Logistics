@@ -22,8 +22,8 @@ import Measures from '../../assets/measures.png';
 import Emergency from '../../assets/emergency.png';
 import Limitations from '../../assets/Limitations.png';
 import kitchenCrew from '../../assets/kitchenCrew.png';
-import DietaryConcsernce from '../../assets/avoidDiet.png';
-import ClieaningCrew from '../../assets/cleaningCrew.png';
+import DietaryConcerns from '../../assets/avoidDiet.png';
+import CleaningCrew from '../../assets/cleaningCrew.png';
 import CleaningCrewComp from "./cleaning-crew-comp/cleaningCrewComp";
 import './bossSettingsStyle.scss';
 
@@ -105,7 +105,7 @@ class BossSettingsComp extends PureComponent {
                                      className={`navLink ${(this.isActive[6]) ? 'active' : ''}`} 
                                      onClick={() => this.onActive(6)}
                                      activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/diners-nutrition'}>
-                                <img className="img midSize" alt="dietary conscience" src={DietaryConcsernce} />
+                                <img className="img midSize" alt="dietary conscience" src={DietaryConcerns} />
                                 <Typography variant="h6" className="tgNav">
                                     Diners Diet
                                 </Typography>
@@ -114,7 +114,7 @@ class BossSettingsComp extends PureComponent {
                                      className={`navLink ${(this.isActive[7]) ? 'active' : ''}`} 
                                      onClick={() => this.onActive(7)}
                                      activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/cleaning-crew'}>
-                                <img className="img lSize" alt="dietary conscience" src={ClieaningCrew} />
+                                <img className="img lSize" alt="dietary conscience" src={CleaningCrew} />
                                 <Typography variant="h6" className="tgNav">
                                     Cleaning Crew
                                 </Typography>

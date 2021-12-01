@@ -2,8 +2,8 @@ import { observable, computed } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 import UnitEnum from '../enums/unitEnum';
-import { FoodItem } from './foodItemModel';
 import { AppRootModel } from '../modelsContext';
+import { FoodItem } from './foodItemModel';
 import { Dish } from './dishModel';
 import { Meal } from './mealModel';
 
@@ -56,7 +56,7 @@ export class InventoryItem extends ClassType {
     }
 
     checkForHexRegExpObjectID: RegExp = new RegExp("^[0-9a-fA-F]{24}$");
-    @computed get owendItemChefName(): string {
+    @computed get ownedItemChefName(): string {
         if(this.checkForHexRegExpObjectID.test(this.dishIdOwnedItem)) {
             let dish: Dish | undefined = AppRootModel.dishModel.items.find(d => d._id === this.dishIdOwnedItem);
             let meal: Meal | undefined = AppRootModel.mealModel.items.find(m => m._id === ((dish) ? dish.mealId : ''));
@@ -66,7 +66,7 @@ export class InventoryItem extends ClassType {
         }
     }
 
-    @computed get toSringDate(): string {
+    @computed get toStringDate(): string {
         let stringTime: string = (this.expirationDate) ? this.expirationDate.toLocaleDateString() : 'Has no expiration date';
         return stringTime;
     }

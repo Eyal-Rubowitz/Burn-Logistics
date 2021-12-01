@@ -3,7 +3,7 @@ import { DishModel } from "./dishModel";
 import { IngredientModel } from "./ingredientModel";
 import { FoodItemModel } from "./foodItemModel";
 import { InventoryModel } from "./inventoryModel";
-import { AllergansModel } from "./allergensModel";
+import { AllergensModel } from "./allergensModel";
 import { KitchenToolsModel } from './kitchenToolsModel';
 
 export class RootModel {
@@ -13,7 +13,7 @@ export class RootModel {
         this.dishModel = new DishModel(this);
         this.foodItemModel = new FoodItemModel(this);
         this.inventoryModel = new InventoryModel(this);
-        this.allergensModel = new AllergansModel(this);
+        this.allergensModel = new AllergensModel(this);
         this.kitchenToolsModel = new KitchenToolsModel(this);
     }
 
@@ -22,6 +22,6 @@ export class RootModel {
     dishModel: DishModel;
     foodItemModel: FoodItemModel;
     inventoryModel: InventoryModel;
-    allergensModel: AllergansModel;
+    allergensModel: AllergensModel;
     kitchenToolsModel: KitchenToolsModel;
 }

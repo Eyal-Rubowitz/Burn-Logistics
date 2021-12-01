@@ -126,14 +126,14 @@ class FoodItemListComp extends PureComponent {
                             onRowUpdate: (newFI: FoodItem, oldFI?: FoodItem) => {
                                 return new Promise((res, rej) => {
                                     if (oldFI) oldFI.store.updateItem(newFI);
-                                    res();
+                                    res(newFI);
                                 })
                             },
                             onRowDelete: (oldFI: FoodItem) => {
                                 return new Promise((res, rej) => {
                                     oldFI.isItemDeleted = true;
                                     oldFI.store.removeItem(oldFI);
-                                    res();
+                                    res(oldFI);
                                 })
                             }
                         }}

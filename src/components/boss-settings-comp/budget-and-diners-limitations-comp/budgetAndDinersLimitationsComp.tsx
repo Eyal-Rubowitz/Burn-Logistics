@@ -35,7 +35,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
     @observable selectedDate: string = "";
     @observable selectedMeal: string = "";
 
-    @observable isChoosenMealUpdated: boolean = false;
+    @observable isChosenMealUpdated: boolean = false;
 
     constructor(props: {}) {
         super(props)
@@ -129,13 +129,13 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
     onSetLimitations = (meal?: Meal): void => {
         let mealModel = AppRootModel.mealModel;
         if (meal) {
-            meal.diners.push({ "count": this.diners, "dietType": "Omnivor" });
+            meal.diners.push({ "count": this.diners, "dietType": "Omnivore" });
             meal.budget = this.mealBudget[meal._id];
             meal.portion = this.portion[meal._id];
             mealModel.updateItem(meal);
         } else {
             mealModel.items.forEach(m => {
-                m.diners.push({ "count": this.diners, "dietType": "Omnivor" });
+                m.diners.push({ "count": this.diners, "dietType": "Omnivore" });
                 m.budget = this.mealBudget[m.name];
                 m.portion = this.portion[m.name];
                 mealModel.updateItem(m);
@@ -186,21 +186,21 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     <Divider />
                 </div>
         );
-        let choosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedMealStore.selectedDate);
+        let chosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedMealStore.selectedDate);
         let totalEventExpense: number = Array.from(events).reduce((ttl, ev) => ttl + this.mealBudget[ev], 0);
-        let choosenMeal: Meal[] = choosenDateMeals.filter(m => m.name === this.selectedMealStore.selectedMeal);
-        let choosenMealEvent: JSX.Element[] = choosenMeal.map((m, i) =>
+        let chosenMeal: Meal[] = chosenDateMeals.filter(m => m.name === this.selectedMealStore.selectedMeal);
+        let chosenMealEvent: JSX.Element[] = chosenMeal.map((m, i) =>
             <div key={i}>
                 <Typography variant="h6"
                     key={m._id}
-                    className="choosenMealForm">
+                    className="chosenMealForm">
                     {m.name}:
                 </Typography>
                 <TextField label="Budget ₪"
                     value={this.mealBudget[m._id]}
                     onChange={(e: React.ChangeEvent<any>) => this.onBudgetChange(e, m._id)}
                     variant="outlined"
-                    className="choosenMealForm"
+                    className="chosenMealForm"
                     inputProps={{
                         type: "number"
                     }} />
@@ -208,7 +208,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     value={this.diners}
                     onChange={(e: React.ChangeEvent<any>) => this.onEnterDinersNum(e)}
                     variant="outlined"
-                    className="choosenMealForm"
+                    className="chosenMealForm"
                     inputProps={{
                         type: "number"
                     }} />
@@ -216,16 +216,16 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     onChange={(e: React.ChangeEvent<any>) => this.onPortionChange(e, m._id)}
                     value={this.portion[m._id]}
                     variant="outlined"
-                    className="choosenMealForm selectedPortionWidth"
+                    className="chosenMealForm selectedPortionWidth"
                     inputProps={{ type: "number" }} />
                 <Fab
-                    onClick={() => { this.onSetLimitations(m); this.isChoosenMealUpdated = true; }}
+                    onClick={() => { this.onSetLimitations(m); this.isChosenMealUpdated = true; }}
                     variant='extended'
                     color='primary'
                     className="btn btnShiny">
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
-                <ToggleButton value={this.isChoosenMealUpdated} className={`tglBtn ${(this.isChoosenMealUpdated) ? 'vsbl' : 'hide'}`}>
+                <ToggleButton value={this.isChosenMealUpdated} className={`tglBtn ${(this.isChosenMealUpdated) ? 'vsbl' : 'hide'}`}>
                     <CheckIcon className="updateDone" />  Updated Done !
                 </ToggleButton>
             </div>);
@@ -308,7 +308,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                         <div id="mealSelectComp">
                             <MealSelectComp store={this.selectedMealStore} />
                         </div>
-                        {choosenMealEvent}
+                        {chosenMealEvent}
                     </div>}
             </Paper>
         );

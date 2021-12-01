@@ -2,18 +2,18 @@ import { observable } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 
-export class AllergansModel extends DataModel<Allergans> {
+export class AllergensModel extends DataModel<Allergens> {
     constructor(root: RootModel) {
-        super(root, Allergans);
+        super(root, Allergens);
     }
 
     resourcePath(): String {
-        return "allergans";
+        return "allergens";
     }
 }
 
-export class Allergans extends ClassType {
-    constructor(store: AllergansModel, obj: any) {
+export class Allergens extends ClassType {
+    constructor(store: AllergensModel, obj: any) {
         super(store, obj);
         this.updateFromJson(obj);  
     }

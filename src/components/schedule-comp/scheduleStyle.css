@@ -57,7 +57,7 @@
 }
 
 .dishInfo {
-  display: blick;
+  display: block;
   text-align: left;
   vertical-align: text-top;
   min-width: 220px !important;
@@ -73,7 +73,7 @@
   text-align: center;
   min-width: 220px !important;
   max-width: auto;
-  display: blick;
+  display: block;
 }
 
 #scheduleTable {

@@ -113,7 +113,7 @@ class ScheduleTableComp extends Component {
             return (
                 <td key={d.name}
                     className={`dishInfo ${ (i !== 0) ? 'borderInfo' : ''}`}>
-                    {d.ingrediants.map((ing, j) => {
+                    {d.ingredients.map((ing, j) => {
                         return <ul key={j} className={`dishIng ${(j % 2 === 0) ? 'evnInfo' : 'oddInfo'}`}>{ing.name}</ul>
                     })}
                 </td>

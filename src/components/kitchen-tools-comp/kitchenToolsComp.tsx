@@ -76,14 +76,14 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                         onRowUpdate: (newKT: KitchenTool, oldKT?: KitchenTool) => {
                             return new Promise((res, rej) => {
                                 if (oldKT) oldKT.store.updateItem(newKT);
-                                res();
+                                res(newKT);
                             })
                         },
                         onRowDelete: (oldKT: KitchenTool) => {
                             return new Promise((res, rej) => {
                                 oldKT.isItemDeleted = true;
                                 oldKT.store.removeItem(oldKT);
-                                res();
+                                res(oldKT);
                             })
                         }
                     }} />

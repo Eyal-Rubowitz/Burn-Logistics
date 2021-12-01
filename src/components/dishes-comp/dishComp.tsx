@@ -16,7 +16,7 @@ import { Autocomplete } from '@material-ui/lab';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ObjectID from 'bson-objectid';
 import AddIcon from "@material-ui/icons/Add";
-import { Allergans } from '../../models/allergensModel';
+import { Allergens } from '../../models/allergensModel';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import './dishStyle.scss';
 
@@ -72,12 +72,12 @@ class DishComp extends PureComponent<DishProps> {
 
     disposeAutorun: IReactionDisposer;
     @observable dish?: Dish;
-    @observable lrgns: Allergans[] = [];
+    @observable lrgns: Allergens[] = [];
 
     constructor(props: DishProps) {
 
         super(props);
-        // why use derivetion of autorun and not computed?..
+        // why use derivation of autorun and not computed?..
         // autorun, runs the reaction immediately 
         // and also on any change in the observables
         // used inside function !
@@ -130,7 +130,7 @@ class DishComp extends PureComponent<DishProps> {
                     <ExpansionPanelDetails>
                         <div id="ingTable">
                             <MaterialTable
-                                title='Ingrediants'
+                                title='Ingredients'
                                 icons={{
                                     Add: forwardRef((props, ref) => <div className="addIngDiv">
                                                                         <AddIcon {...props} ref={ref} className="icon" color="primary" viewBox="0 0 20 20" />
@@ -194,7 +194,7 @@ class DishComp extends PureComponent<DishProps> {
                                                 (ing) ?
                                                     <div>
                                                         <Router>
-                                                            <Fab color="primary" variant="extended" onClick={() => window.location.reload(false)}>
+                                                            <Fab color="primary" variant="extended" onClick={() => window.location.reload()}>
                                                                 <NavLink className="noteNav btnShiny" to={`/meals/${ing.dishId}/ingredient-note/${ing._id}`}>
                                                                     Edit Item Note
                                                             </NavLink>
@@ -206,7 +206,7 @@ class DishComp extends PureComponent<DishProps> {
                                         editable: 'never'
                                     }
                                 ]}
-                                data={this.props.dish.ingrediants}
+                                data={this.props.dish.ingredients}
                                 options={{
                                     addRowPosition: 'first',
                                     actionsColumnIndex: -1
@@ -214,7 +214,7 @@ class DishComp extends PureComponent<DishProps> {
                                 editable={{
                                     onRowAdd: (newIng: Ingredient): Promise<void> => {
                                         return new Promise((res) => {
-                                            let ingIndex = this.props.dish.ingrediants.findIndex(ing => ing.foodItemId === newIng.foodItemId);
+                                            let ingIndex = this.props.dish.ingredients.findIndex(ing => ing.foodItemId === newIng.foodItemId);
                                             if (this.dish && ingIndex < 0) {
                                                 newIng._id = (new ObjectID()).toHexString();
                                                 newIng.dishId = this.props.dish._id;
@@ -229,14 +229,14 @@ class DishComp extends PureComponent<DishProps> {
                                             if (oldIng) {
                                                 oldIng.store.updateItem(newIng);
                                             }
-                                            res();
+                                            res(newIng);
                                         })
                                     },
                                     onRowDelete: (oldIng: Ingredient) => {
                                         return new Promise((res, rej) => {
                                             oldIng.isItemDeleted = true;
                                             oldIng.store.removeItem(oldIng);
-                                            res();
+                                            res(oldIng);
                                         })
                                     }
                                 }} />

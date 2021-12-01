@@ -23,7 +23,7 @@ class IngredientNoteComp extends PureComponent<IngCompProps> {
 
     constructor(props: IngCompProps) {
         super(props);
-        // why use derivetion of autorun and not computed?..
+        // why use derivation of autorun and not computed?..
         // autorun, runs the reaction immediately 
         // and also on any change 
         // in the observables used inside function !

@@ -24,7 +24,7 @@ class MealComp extends PureComponent<MealCompProps> {
 
     constructor(props: MealCompProps) {
         super(props);
-        // why use derivetion of autorun and not computed?..
+        // why use derivation of autorun and not computed?..
         // autorun - Runs the reaction immediately 
         // and also on any change 
         // in the observables used inside function !
@@ -33,7 +33,7 @@ class MealComp extends PureComponent<MealCompProps> {
             this.meal = AppRootModel.mealModel.items.find((m: Meal) => m._id === mealId);
             let mealIngs: Ingredient[] = [];
             if (this.meal) {
-                mealIngs = Array.prototype.concat.apply([], this.meal.dishes.map(d => d.ingrediants.map(ing => ing)));
+                mealIngs = Array.prototype.concat.apply([], this.meal.dishes.map(d => d.ingredients.map(ing => ing)));
                 this.mealQuantity = mealIngs.reduce((mealCost: number, ing) => { return mealCost + ((ing.getItemBaseUnit === 'Kg') ? ing.convertedQuantity : 0) }, 0);
                 this.mealExpenses = AppRootModel.ingredientModel.items.reduce((mealCost: number, ing) => { return mealCost + ing.cost }, 0);
                 this.preparing = (this.meal as Meal).preparing;
@@ -175,10 +175,10 @@ class MealComp extends PureComponent<MealCompProps> {
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header">
-                            <Typography variant="h6">Importemt info!</Typography>
+                            <Typography variant="h6">Important info!</Typography>
                         </ExpansionPanelSummary>
                         <p>★ Each dish can be added with only one ingredient of a kind, in case of split ingredient in a same dish,</p>
-                        <p>  please enter the whole quantity you want and give a note for spliting the item.</p>
+                        <p>  please enter the whole quantity you want and give a note for splitting the item.</p>
                     </ExpansionPanel>
                     <Box my={2}>
                         <Fab variant='extended' color='primary' className="btnShiny" aria-label='add' onClick={() => { this.onAddDish() }}>

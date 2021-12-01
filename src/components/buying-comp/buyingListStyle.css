@@ -69,23 +69,23 @@
   font-weight: bolder;
 }
 
-#shoppingDiv .unPurched {
+#shoppingDiv .unPurchased {
   height: 5px !important;
 }
 
-#shoppingDiv .purched {
+#shoppingDiv .btnPurchaseItems {
   font-weight: bolder;
 }
 
-#shoppingDiv #btnPurchItems {
+#shoppingDiv #btnPurchaseItems {
   margin-top: 10px !important;
 }
 
-#shoppingDiv #btnPurchItems #btn {
+#shoppingDiv #btnPurchaseItems #btn {
   background-color: #e8f4f8;
 }
 
-#shoppingDiv #btnPurchItems #btn #tg {
+#shoppingDiv #btnPurchaseItems #btn #tg {
   font-weight: bolder;
   word-spacing: 4px;
 }

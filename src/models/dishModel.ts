@@ -29,7 +29,7 @@ export class Dish extends ClassType {
     @observable name: string = '';
     @observable mealId: string = '';
 
-    @computed get ingrediants(): Ingredient[] {
+    @computed get ingredients(): Ingredient[] {
         return this.store.root.ingredientModel.items.filter(i => i.dishId === this._id);
     }
 

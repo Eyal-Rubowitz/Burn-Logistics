@@ -30,7 +30,7 @@ router.post('/:id/delete', (req, res) => {
     foodItemModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) return res.send(err);
         // req.app.locals.wss.broadcast(JSON.stringify({ type: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }));
-        const message = new wsMessageModel({ body: JSON.stringify({ ttype: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }) });
+        const message = new wsMessageModel({ body: JSON.stringify({ type: 'foodItem', item: { _id: req.params.id, isItemDeleted: true } }) });
         message.save();
     });
     return res.send("Food Item delete!");

@@ -19,11 +19,11 @@ import FoodItemListComp from './components/foodItems-comp/foodItemListComp';
 import InventoryListComp from './components/inventory-comp/inventoryComp';
 import BuyingListComp from './components/buying-comp/buyingListComp';
 import BossSettingsComp from './components/boss-settings-comp/bossSettingsComp';
-import IngredientNoteComp from './components/dishes-comp/igredient-note-comp/ingredientNoteComp';
+import IngredientNoteComp from './components/dishes-comp/ingredient-note-comp/ingredientNoteComp';
 import KitchenToolsFunc from './components/kitchen-tools-comp/kitchenToolsComp';
 
 import ChefMeal from './assets/chefMeal.png';
-import Calander from './assets/calendar.png';
+import Calender from './assets/calendar.png';
 import Ingredients from './assets/ingredients.png';
 import InvBox from './assets/invBox.png';
 import BuyingList from './assets/buyingList.png';
@@ -31,7 +31,7 @@ import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
 import './AppStyle/style.scss';
 
-const wsEndpoint = process.env.wsEndpoint || "localhost:3000/ws";
+const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
 
 const ws = new WebSocket(`ws://${wsEndpoint}`);
 ws.addEventListener('message', (msg) => {
@@ -63,8 +63,8 @@ ws.addEventListener('message', (msg) => {
       AppRootModel.inventoryModel.updateItemFromServer(data.item);
       break;
     }
-    case "allergans": {
-      console.log('allergans case');
+    case "allergens": {
+      console.log('allergens case');
       AppRootModel.allergensModel.updateItemFromServer(data.item);
       break;
     }
@@ -110,7 +110,7 @@ function App() {
               </NavLink>
               <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
                 <Typography  className="appTg" >
-                  <img className="imgs" alt="schedule" src={Calander} /> Meal Schedule & Overview
+                  <img className="imgs" alt="schedule" src={Calender} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
               <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
@@ -125,7 +125,7 @@ function App() {
               </NavLink>
               <NavLink className={`appLink ${(isActive[5]) ? 'active' : ''}`} onClick={() => onActive(5)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/buying-list'}>
                 <Typography className="appTg" >
-                  <img className="imgs" alt="buing list" src={BuyingList} /> Shopping List
+                  <img className="imgs" alt="buying list" src={BuyingList} /> Shopping List
               </Typography>
               </NavLink>
               <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>

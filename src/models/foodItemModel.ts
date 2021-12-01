@@ -63,7 +63,7 @@ export class FoodItem extends ClassType {
     @computed get foodUnits(): string[] {
         let units = this.customUnits.map(un => un.unitName);
         if (this.baseUnit === UnitEnum.Kilogram) units.unshift(UnitEnum.Kilogram, UnitEnum.Gram);
-        if (this.baseUnit === UnitEnum.Liter) units.unshift(UnitEnum.Liter, UnitEnum.Mililiter);
+        if (this.baseUnit === UnitEnum.Liter) units.unshift(UnitEnum.Liter, UnitEnum.Milliliter);
         return units;
     }
 }

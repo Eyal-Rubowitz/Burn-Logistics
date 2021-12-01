@@ -2,7 +2,7 @@ enum UnitEnum {
     Kilogram = 'Kg',
     Gram = 'gr',
     Liter = 'L',
-    Mililiter = 'ml'
+    Milliliter = 'ml'
 }
 
 export default UnitEnum;

@@ -79,7 +79,7 @@ class BuyingListComp extends PureComponent {
             return o;
         }, {} as Record<string, number>);
 
-        let ingredients: Ingredient[] = (this.chosenSumedIngs) ?
+        let ingredients: Ingredient[] = (this.chosenSummedIngs) ?
             this.accumulateSameItems : AppRootModel.ingredientModel.items;
 
         return ingredients.reduce((o: IngInfos, item) => {
@@ -109,7 +109,7 @@ class BuyingListComp extends PureComponent {
         return bool;
     }
 
-    acurateNumbre = (itemQuantity: number): number => {
+    accurateNumber = (itemQuantity: number): number => {
         if (isNaN(itemQuantity)) return NaN;
         return (itemQuantity % 1 !== 0) ?
             Math.round(parseFloat((itemQuantity * Math.pow(10, 3)).toFixed(3))) / Math.pow(10, 3)
@@ -119,7 +119,7 @@ class BuyingListComp extends PureComponent {
     @computed get accumulateSameItems(): Ingredient[] {
         let foodIdList: string[] = [];
         let sumIngList: Ingredient[] = [];
-        let sumedItems: Record<string, IngSum> = this.filteredData.reduce((o, ing) => {
+        let summedItems: Record<string, IngSum> = this.filteredData.reduce((o, ing) => {
             if (!this.isObjId(ing.getInvIdByItem) && foodIdList.includes(ing.foodItemId)) {
                 o[ing.foodItemId].quantity += ing.convertedQuantity;
             } else {
@@ -131,7 +131,7 @@ class BuyingListComp extends PureComponent {
             return o;
         }, {} as Record<string, IngSum>);
         foodIdList.forEach(foodId => {
-            sumIngList.push(new Ingredient(AppRootModel.ingredientModel, sumedItems[foodId]));
+            sumIngList.push(new Ingredient(AppRootModel.ingredientModel, summedItems[foodId]));
         })
         return sumIngList;
     }
@@ -142,7 +142,7 @@ class BuyingListComp extends PureComponent {
     @observable chosenChef: string | null = null;
     @observable chosenMeal: string | null = null;
     @observable chosenBuyingStatus: boolean | null = null;
-    @observable chosenSumedIngs: boolean = false;
+    @observable chosenSummedIngs: boolean = false;
 
     // columns visibility
     @observable revealIsBoughtCol: boolean = true;
@@ -158,22 +158,22 @@ class BuyingListComp extends PureComponent {
 
     onSendItemsToInventory = () => {
         let invListToUpdate: InventoryItem[] = [];
-        let sumedInventory: number = 0;
-        let sumedIngFoodItemsIdList: Record<string, string> = {};
+        let summedInventory: number = 0;
+        let summedIngFoodItemsIdList: Record<string, string> = {};
         let exDate: Date = new Date();
-        if (this.chosenSumedIngs) {
-            sumedIngFoodItemsIdList = this.checkedIngs.reduce((o, ing) => {
+        if (this.chosenSummedIngs) {
+            summedIngFoodItemsIdList = this.checkedIngs.reduce((o, ing) => {
                 o[ing.foodItemId] = ing.foodItemId
                 return o
             }, {} as Record<string, string>);
-            this.checkedIngs = AppRootModel.ingredientModel.items.filter(ing => ing.foodItemId === sumedIngFoodItemsIdList[ing.foodItemId] && ing.getInvIdByItem === "");
-            this.filteredInvItems = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === sumedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
-            sumedInventory = this.filteredInvItems.reduce((total: number, inv) => total + inv.convertedQuantity, 0);
+            this.checkedIngs = AppRootModel.ingredientModel.items.filter(ing => ing.foodItemId === summedIngFoodItemsIdList[ing.foodItemId] && ing.getInvIdByItem === "");
+            this.filteredInvItems = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
+            summedInventory = this.filteredInvItems.reduce((total: number, inv) => total + inv.convertedQuantity, 0);
         }
-        invListToUpdate = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === sumedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
+        invListToUpdate = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
         invListToUpdate = invListToUpdate.slice().sort((a, b) => (a.expirationDate === undefined || b.expirationDate === undefined) ? 1 : (a.expirationDate.getTime() - b.expirationDate.getTime()));
         this.checkedIngs.forEach((item) => {
-            let invQuantity: number = (this.chosenSumedIngs) ? sumedInventory : this.foodInfo[item._id].fromInventory
+            let invQuantity: number = (this.chosenSummedIngs) ? summedInventory : this.foodInfo[item._id].fromInventory
             let newInvObj = { foodItemId: item.foodItemId, quantity: item.quantity, unit: item.unit, expirationDate: exDate, note: item.note, dishIdOwnedItem: item.dishId };
             let newInvItem: InventoryItem = new InventoryItem(AppRootModel.inventoryModel, newInvObj);
             if (invQuantity === 0) {
@@ -187,18 +187,18 @@ class BuyingListComp extends PureComponent {
                 });
                 AppRootModel.inventoryModel.createItem(newInvItem);
             } else if (invQuantity > item.convertedQuantity) {
-                let ingQuantityToRductionFromInv = item.convertedQuantity;
+                let ingQuantityToReductionFromInv = item.convertedQuantity;
                 invListToUpdate.forEach(inv => {
-                    if (ingQuantityToRductionFromInv >= inv.convertedQuantity) {
-                        ingQuantityToRductionFromInv -= inv.convertedQuantity;
-                        (this.chosenSumedIngs) ? sumedInventory -= inv.convertedQuantity : this.foodInfo[item._id].fromInventory -= inv.convertedQuantity;
+                    if (ingQuantityToReductionFromInv >= inv.convertedQuantity) {
+                        ingQuantityToReductionFromInv -= inv.convertedQuantity;
+                        (this.chosenSummedIngs) ? summedInventory -= inv.convertedQuantity : this.foodInfo[item._id].fromInventory -= inv.convertedQuantity;
                         invListToUpdate = invListToUpdate.filter(keepInv => keepInv._id !== inv._id);
                         if (typeof inv.expirationDate === 'object' && inv.expirationDate !== exDate) exDate = inv.expirationDate;
                         AppRootModel.inventoryModel.removeItem(inv);
-                    } else if (0 < ingQuantityToRductionFromInv && ingQuantityToRductionFromInv < inv.convertedQuantity) {
-                        inv.quantity -= ingQuantityToRductionFromInv;
-                        (this.chosenSumedIngs) ? sumedInventory -= ingQuantityToRductionFromInv : this.foodInfo[item._id].fromInventory -= inv.convertedQuantity;
-                        ingQuantityToRductionFromInv = 0;
+                    } else if (0 < ingQuantityToReductionFromInv && ingQuantityToReductionFromInv < inv.convertedQuantity) {
+                        inv.quantity -= ingQuantityToReductionFromInv;
+                        (this.chosenSummedIngs) ? summedInventory -= ingQuantityToReductionFromInv : this.foodInfo[item._id].fromInventory -= inv.convertedQuantity;
+                        ingQuantityToReductionFromInv = 0;
                         AppRootModel.inventoryModel.updateItem(inv);
                         if (typeof inv.expirationDate === 'object' && inv.expirationDate !== exDate) exDate = inv.expirationDate;
                     }
@@ -272,7 +272,7 @@ class BuyingListComp extends PureComponent {
                             <FormControlLabel
                                 id="switchCtrl"
                                 control={<Switch color="primary" />}
-                                onChange={(event, value) => this.chosenSumedIngs = value}
+                                onChange={(event, value) => this.chosenSummedIngs = value}
                                 label="Sum same items"
                                 labelPlacement="bottom" />
                         </div>
@@ -331,7 +331,7 @@ class BuyingListComp extends PureComponent {
                                 title: (!this.revealIsBoughtCol) ? '' : 'Is Bought',
                                 render: (ing: Ingredient) => (!this.revealIsBoughtCol) ? null : (!this.isObjId(ing.getInvIdByItem)) ? <Checkbox
                                     onChange={(event, value) => value ? this.checkedIngs.push(ing) : this.checkedIngs = this.checkedIngs.filter(i => i !== ing)}
-                                    color="primary" className="unPurched" /> : <Typography variant='h6' color='primary' className="purched" >Purchase Done</Typography>,
+                                    color="primary" className="unPurchased" /> : <Typography variant='h6' color='primary' className="purchased" >Purchase Done</Typography>,
                                 type: 'boolean' || 'string'
                             },
                             {
@@ -361,7 +361,7 @@ class BuyingListComp extends PureComponent {
                             {
                                 title: (!this.revealFromInventoryCol) ? '' : 'Current Amount In Inventory',
                                 field: 'quantity',
-                                render: (ing: Ingredient) => (!this.revealFromInventoryCol) ? null : this.acurateNumbre((this.foodInfo[ing._id] || {}).fromInventory) + (ing.getItemBaseUnit || " Unit missing"),
+                                render: (ing: Ingredient) => (!this.revealFromInventoryCol) ? null : this.accurateNumber((this.foodInfo[ing._id] || {}).fromInventory) + (ing.getItemBaseUnit || " Unit missing"),
                                 type: "string",
                             },
                             {
@@ -377,7 +377,7 @@ class BuyingListComp extends PureComponent {
                                 type: "string"
                             },
                         ]}
-                        data={this.chosenSumedIngs ? this.accumulateSameItems : this.filteredData}
+                        data={this.chosenSummedIngs ? this.accumulateSameItems : this.filteredData}
                         options={{
                             pageSize: this.filteredData.length,
                             paging: false,
@@ -386,7 +386,7 @@ class BuyingListComp extends PureComponent {
                             search: false
                         }}
                     />
-                    <div id="btnPurchItems">
+                    <div id="btnPurchaseItems">
                         <Button id="btn" variant="outlined" color="primary" onClick={() => { this.onSendItemsToInventory() }}>
                             <Typography variant="h5" id="tg">
                                 send checked items to inventory

@@ -193,7 +193,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             {
                                 title: 'Belongs To',
                                 field: 'dishIdOwnedItem',
-                                render: (ii: InventoryItem) => <InventoryItemTag ii={ii} attr="owendItemChefName" />,
+                                render: (ii: InventoryItem) => <InventoryItemTag ii={ii} attr="ownedItemChefName" />,
                                 editComponent: DishSelection
                             },
                             {
@@ -201,7 +201,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                 field: 'expirationDate',
                                 render: (ii: InventoryItem) => 
                                                 <div className={`${(this.isExDateAlert(ii.expirationDate, now)) ? 'ex' : 'ok'}`} >
-                                                    <InventoryItemTag ii={ii} attr="toSringDate" />
+                                                    <InventoryItemTag ii={ii} attr="toStringDate" />
                                                 </div>,
                                 type: "date"
                             },
@@ -229,15 +229,15 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             onRowUpdate: (newII: InventoryItem, oldII?: InventoryItem) => {
                                 return new Promise((res, rej) => {
                                     if (oldII) oldII.store.updateItem(newII);
-                                    window.location.reload(false);
-                                    res();
+                                    window.location.reload();
+                                    res(newII);
                                 })
                             },
                             onRowDelete: (oldII: InventoryItem) => {
                                 return new Promise((res, rej) => {
                                     oldII.isItemDeleted = true;
                                     oldII.store.removeItem(oldII);
-                                    res();
+                                    res(oldII);
                                 })
                             }
                         }}

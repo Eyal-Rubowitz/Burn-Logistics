@@ -66,9 +66,9 @@ class SousChefsComp extends PureComponent {
         let crew: JSX.Element[] = team.map(name => {
             return (
                 <div>
-                    <Typography variant="h6" key={name} className="inlinblock">{name}</Typography>
+                    <Typography variant="h6" key={name} className="inlineBlock">{name}</Typography>
                     <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
-                        <DeleteForeverIcon className="inlinblock" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                        <DeleteForeverIcon className="inlineBlock" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
             )
