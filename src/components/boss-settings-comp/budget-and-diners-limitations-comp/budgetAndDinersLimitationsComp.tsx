@@ -66,14 +66,15 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
 
     onSwitch = (): void => {
         this.switchCondition = !this.switchCondition;
-        if (!this.switchCondition) this.selectedMealStore.selectedDate = ""; this.selectedMealStore.selectedMeal = ""; this.selectedMealStore.meal = undefined;
+        if (!this.switchCondition) this.selectedMealStore.selectedDate = ""; 
+        this.selectedMealStore.selectedMeal = ""; this.selectedMealStore.meal = undefined;
     }
 
-    onEnterDinersNum = (e: React.ChangeEvent<any>): void => {
+    onEnterDinersNum = (e: React.ChangeEvent<HTMLInputElement>): void => {
         this.diners = Number(e.target.value);
     }
 
-    onEnterTotalBudget = (e: React.ChangeEvent<any>): void => {
+    onEnterTotalBudget = (e: React.ChangeEvent<HTMLInputElement>): void => {
         this.totalBudget = Number(e.target.value);
     }
 
@@ -85,7 +86,9 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         this.selectedMealStore.selectedMeal = select;
     }
 
-    onBudgetChange = (e: React.ChangeEvent<any>, i: string): void => {
+    private onBudgetChange = (e: React.ChangeEvent<HTMLInputElement>, i: string): void => {
+        console.log("i: ", typeof i);
+        console.log("e: ", typeof e);
         let dailyMealsBudget = 0;
         let events = 0;
         if (this.isEvent(i)) {
@@ -103,12 +106,13 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
             let restDailyBudget = dailyMealsBudget - this.mealBudget[i];
             let restEventBudget = restDailyBudget / (events - 1);
             Object.keys(this.mealBudget).forEach((key: string) => {
-                debugger;
+                // debugger;
                 if (this.isEvent(key) && key !== i && this.holdBudget[key] === false) {
                     this.mealBudget[key] = restEventBudget;
                 }
             });
         }
+        console.log('budget change!');
     }
 
     checkForHexRegExpObjectID = new RegExp("^[0-9a-fA-F]{24}$");
@@ -117,7 +121,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         return test;
     }
 
-    onPortionChange = (e: React.ChangeEvent<any>, i: string): void => {
+    onPortionChange = (e: React.ChangeEvent<HTMLInputElement>, i: string): void => {
         // i - can represent meal._id or meal.name
         this.portion[i] = Number(e.target.value);
     }
@@ -150,11 +154,11 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         let dailyBudget: number = Number((this.totalBudget / (mealDateList.length)).toFixed(2));
         let events: Set<string> = new Set(this.meals.map(m => m.name));
         let eventList: JSX.Element[] = Array.from(events).map(
-            (ev, i) =>
+            (ev: string, i: number) =>
                 <div key={i}>
                     <Typography variant="h6" className="eventTypography" >{ev}: </Typography>
                     <TextField label="Meal budget ₪"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onBudgetChange(e, ev) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onBudgetChange(e, ev) }}
                         value={this.mealBudget[ev]}
                         variant="outlined"
                         className="txtFldBgt"
@@ -178,7 +182,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                                 onChange={() => this.onHoldEventBudget(ev)} />
                         } />
                     <TextField label="Diner portion in gr'"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onPortionChange(e, ev) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onPortionChange(e, ev) }}
                         value={this.portion[ev]}
                         variant="outlined"
                         className="txtFldPortion"
@@ -198,7 +202,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                 </Typography>
                 <TextField label="Budget ₪"
                     value={this.mealBudget[m._id]}
-                    onChange={(e: React.ChangeEvent<any>) => this.onBudgetChange(e, m._id)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.onBudgetChange(e, m._id)}
                     variant="outlined"
                     className="chosenMealForm"
                     inputProps={{
@@ -206,14 +210,14 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     }} />
                 <TextField label="Diners"
                     value={this.diners}
-                    onChange={(e: React.ChangeEvent<any>) => this.onEnterDinersNum(e)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.onEnterDinersNum(e)}
                     variant="outlined"
                     className="chosenMealForm"
                     inputProps={{
                         type: "number"
                     }} />
                 <TextField label="Diner portion in gr'"
-                    onChange={(e: React.ChangeEvent<any>) => this.onPortionChange(e, m._id)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.onPortionChange(e, m._id)}
                     value={this.portion[m._id]}
                     variant="outlined"
                     className="chosenMealForm selectedPortionWidth"
@@ -251,13 +255,13 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                 </FormControl>
                 {(this.switchCondition) ? <div>
                     <TextField label="Diners number"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterDinersNum(e) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onEnterDinersNum(e) }}
                         value={this.diners}
                         variant="outlined"
                         className="txtFld col1"
                         inputProps={{ type: "number", min: 0 }} />
                     <TextField label="Total budget &nbsp; ₪"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterTotalBudget(e) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onEnterTotalBudget(e) }}
                         value={this.totalBudget}
                         variant="outlined"
                         className="txtFld col2"
