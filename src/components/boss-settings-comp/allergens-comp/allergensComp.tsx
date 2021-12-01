@@ -8,7 +8,8 @@ import {
     MenuItem, Box, IconButton, Paper
 } from "@material-ui/core";
 import { observable, computed } from "mobx";
-import ObjectID from "bson-objectid"; // allows to create & parse ObjectIDs without a reference to the mongodb or bson modules.
+// allows to create & parse ObjectIDs without a reference to the mongodb or bson modules.
+import ObjectID from "bson-objectid"; 
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import './allergensStyle.scss';
 
@@ -37,13 +38,13 @@ class AllergensComp extends PureComponent {
         this.selectedAllergenId = newId;
     }
 
-    onSelectAllergen = (e: React.ChangeEvent<any>): void => {
-        this.selectedAllergenId = e.target.value;
+    onSelectAllergen = (e: React.ChangeEvent<{value: unknown}>): void => {
+        if(typeof e.target.value === "string") this.selectedAllergenId = e.target.value;
     }
 
-    onEnterDinerName = (e: React.ChangeEvent<any>): void => {
+    onEnterDinerName = (e: React.ChangeEvent<HTMLInputElement>): void => {
         let val = e.target.value;
-        this.newDinerName = isNaN(val.slice(-1)) ? val : val.slice(0, -1);
+        this.newDinerName = isNaN(Number(val.slice(-1))) ? val : val.slice(0, -1);
     }
 
     onAddNewDiner = (): void => {
@@ -52,11 +53,11 @@ class AllergensComp extends PureComponent {
         AppRootModel.allergensModel.updateItem(lrg as Allergens);
     }
 
-    onSelectAllergenFoodItem = (e: React.ChangeEvent<any>): void => {
-        this.selectedFoodItemId = e.target.value;
+    onSelectAllergenFoodItem = (e: React.ChangeEvent<{value: unknown}>): void => {
+        if(typeof e.target.value === "string") this.selectedFoodItemId = e.target.value;
     }
 
-    onAddFoodItem = (e: React.ChangeEvent<any>): void => {
+    onAddFoodItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         let lrg = AppRootModel.allergensModel.items.find(alrg => alrg._id === this.selectedAllergenId);
         (lrg as Allergens).foodItemIdList.push(this.selectedFoodItemId);
         AppRootModel.allergensModel.updateItem(lrg as Allergens);
@@ -67,7 +68,7 @@ class AllergensComp extends PureComponent {
         let lrgDinerList: JSX.Element[] = [];
         let foodItemList: JSX.Element[] = [];
         let lrgFoodList: JSX.Element[] = [];
-        let isVisable = false;
+        let isVisible = false;
 
         if (this.selectedAllergenId) {
             let selectedLrg = AppRootModel.allergensModel.items.find(lrg => lrg._id === this.selectedAllergenId);
@@ -93,7 +94,7 @@ class AllergensComp extends PureComponent {
                     </div>)
             });
             lrgFoodList.unshift(<Typography variant="h6" key={'food-Item-title'} className="title listTitle">Ingredients with intolerance to {(selectedLrg as Allergens).name}:</Typography>)
-            isVisable = true;
+            isVisible = true;
         }
 
         return (
@@ -108,7 +109,7 @@ class AllergensComp extends PureComponent {
                     <Typography id="tgLrgTtl" className="title">Allergens</Typography>
                     <TextField label="Enter new intolerance"
                         type="string"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterNewAllergy(e) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onEnterNewAllergy(e) }}
                         value={this.allergenName}
                         variant="outlined"
                         className="txtFld" />
@@ -121,7 +122,9 @@ class AllergensComp extends PureComponent {
                 </Fab>
                     <FormControl variant="outlined" className="selectLrgForm">
                         <InputLabel id="selectLbl" variant="outlined">Select intolerance</InputLabel>
-                        <Select name='select-fi-id' value={this.selectedAllergenId} onChange={(e) => this.onSelectAllergen(e)} >
+                        <Select name='select-fi-id' 
+                                value={this.selectedAllergenId} 
+                                onChange={(e: React.ChangeEvent<{value: unknown}>) => this.onSelectAllergen(e)} >
                             {this.allergensList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(a => <MenuItem key={a._id} value={a._id}>{a.name}</MenuItem>)}
                         </Select>
                     </FormControl>
@@ -129,24 +132,26 @@ class AllergensComp extends PureComponent {
                 <div id="dinersInfo">
                     <TextField
                         label="Enter diner name"
-                        onChange={(e: React.ChangeEvent<any>) => { this.onEnterDinerName(e) }}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onEnterDinerName(e) }}
                         value={this.newDinerName}
                         variant="outlined"
-                        className={`txtFld ${(isVisable) ? 'vsbl' : 'hide'}`} />
+                        className={`txtFld ${(isVisible) ? 'vsbl' : 'hide'}`} />
                     <Fab
                         onClick={() => { this.onAddNewDiner() }}
                         variant='extended'
                         color='primary'
-                        className={`addBtn btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        className={`addBtn btnShiny ${(isVisible) ? 'vsbl' : 'hide'}`} >
                         <Icon id="icon">add</Icon>Add Diner
                     </Fab>
                     {(lrgDinerList.length > 1) ? lrgDinerList : ""}
                 </div>
                 <div id="lrgnsIngs">
                     <FormControl variant="outlined" 
-                                 className={`selectIngForm ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                                 className={`selectIngForm ${(isVisible) ? 'vsbl' : 'hide'}`} >
                         <InputLabel>Select ingredient</InputLabel>
-                        <Select name='select-fi-id' value={this.selectedFoodItemId} onChange={(e) => this.onSelectAllergenFoodItem(e)} >
+                        <Select name='select-fi-id' 
+                                value={this.selectedFoodItemId} 
+                                onChange={(e) => this.onSelectAllergenFoodItem(e)} >
                             {foodItemList}
                         </Select>
                     </FormControl>
@@ -154,7 +159,7 @@ class AllergensComp extends PureComponent {
                         onClick={(e) => { this.onAddFoodItem(e) }}
                         variant='extended'
                         color='primary'
-                        className={`addLrgIng btnShiny ${(isVisable) ? 'vsbl' : 'hide'}`} >
+                        className={`addLrgIng btnShiny ${(isVisible) ? 'vsbl' : 'hide'}`} >
                         <Icon>add</Icon>Add allergen Ingredient
                     </Fab>
                     {(lrgFoodList.length > 1) ? lrgFoodList : ""}
