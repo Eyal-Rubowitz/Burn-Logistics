@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 /*
   react-router-dom is made for "Web application" 
   and react-router-native is made for "react native mobile apps"
@@ -6,7 +6,7 @@ import React from 'react';
 */ 
 
 // IMPORTANT: when update to v6 useHistory become to useNavigate!
-import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Switch, Route, Redirect } from 'react-router-dom';
 // import { Switch, Route } from 'react-router';
 import {
   AppBar, Typography, Container, Toolbar,
@@ -33,6 +33,7 @@ import InvBox from './assets/invBox.png';
 import BuyingList from './assets/buyingList.png';
 import AdminSettings from './assets/adminSettings.png';
 import KitchenTools from './assets/kitchenTools.png';
+import LogOut from './assets/Logout.png';
 import './AppStyle/style.scss';
 
 const wsEndpoint = process.env.wsEndpoint || "localhost:9000/ws";
@@ -107,13 +108,18 @@ function App() {
   }
 
   let isAuth = window.location.href !== "http://localhost:3000/user-auth";
-
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <div id="rootDiv">
       <MuiThemeProvider theme={theme}>
         <Router>
           <AppBar style={{display: isAuth ? 'block' : 'none'}}>
             <Toolbar className="appNavBar">
+              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
+                <Typography  className="appTg" >
+                  <img className="imgs" alt="schedule" src={Calender} /> Meal Schedule & Overview
+              </Typography>
+              </NavLink>
               <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
                 <Typography className="appTg">
                   <img className="imgs" alt="chef plan meal" src={ChefMeal} />  Meals Plan
@@ -122,11 +128,6 @@ function App() {
               <NavLink className={`appLink ${(isActive[1]) ? 'active' : ''}`} onClick={() => onActive(1)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/kitchen-tools'}>
                 <Typography className="appTg" >
                   <img className="imgs L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
-              </Typography>
-              </NavLink>
-              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
-                <Typography  className="appTg" >
-                  <img className="imgs" alt="schedule" src={Calender} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
               <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
@@ -147,6 +148,11 @@ function App() {
               <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>
                 <Typography className="appTg" >
                   <img className="imgs" alt="admin settings" src={AdminSettings} />  Admin
+              </Typography>
+              </NavLink>
+              <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/user-auth'}>
+                <Typography className="appTg" >
+                  <img className="imgs" alt="admin settings" src={LogOut} />  Admin
               </Typography>
               </NavLink>
               <div className="anim"></div>
@@ -172,6 +178,7 @@ function App() {
               <Route path={'/settings/sous-chefs'} exact component={BossSettingsComp} />
               <Route path={'/settings/diners-nutrition'} exact component={BossSettingsComp} />
               <Route path={'/settings/cleaning-crew'} exact component={BossSettingsComp} />
+              <Redirect from="/" to="user-auth" />
             </Switch>
           </Container>
         </Router>

@@ -20,8 +20,21 @@ export class User extends ClassType {
     }
 
     updateFromJson(obj: any) {
-        this.name = obj.name;
+        this.fullName = obj.name;
+        this.email = obj.email;
+        this.password = obj.password;
+        // this.allergens = obj.allergens;
+        // this.shifts = obj.shifts; //?
+        // this.eatingType = obj.eatingType;
+        // this.spicinessType = obj.spicinessType;
     }
 
-    @observable name: string = '';
+    @observable fullName: string = '';
+    @observable email: string = '';
+    @observable password: string = '';
+    // @observable allergens: string[] = [];
+    // @observable shifts: string[] = [];
+    // @observable eatingType: string = '';
+    // @observable spicinessType: string = '';
+
 }
