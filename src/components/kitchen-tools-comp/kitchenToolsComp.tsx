@@ -41,7 +41,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                             title: 'Item',
                             field: 'kitchenItem',
                             render: (kt) => <KitchenToolTag kt={kt} attr="kitchenItem" />,
-                            type: "string"
+                            type: "string" as any
                         },
                         {
                             title: 'Quantity',
@@ -53,7 +53,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                             title: 'Category',
                             field: 'category',
                             render: (kt) => <KitchenToolTag kt={kt} attr="category" />,
-                            type: "string"                       
+                            type: "string"  as any                      
                         },
                     ]}
                     data={AppRootModel.kitchenToolsModel.items.map(kt => kt)}

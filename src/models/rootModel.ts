@@ -5,6 +5,8 @@ import { FoodItemModel } from "./foodItemModel";
 import { InventoryModel } from "./inventoryModel";
 import { AllergensModel } from "./allergensModel";
 import { KitchenToolsModel } from './kitchenToolsModel';
+import { UserModel } from './userModel';
+
 
 export class RootModel {
     constructor() {
@@ -15,6 +17,7 @@ export class RootModel {
         this.inventoryModel = new InventoryModel(this);
         this.allergensModel = new AllergensModel(this);
         this.kitchenToolsModel = new KitchenToolsModel(this);
+        this.userModel = new UserModel(this);
     }
 
     ingredientModel: IngredientModel;
@@ -24,4 +27,5 @@ export class RootModel {
     inventoryModel: InventoryModel;
     allergensModel: AllergensModel;
     kitchenToolsModel: KitchenToolsModel;
+    userModel: UserModel;
 }

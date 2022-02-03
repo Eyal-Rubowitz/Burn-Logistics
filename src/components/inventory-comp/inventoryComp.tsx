@@ -176,7 +176,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                 field: 'foodItemId',
                                 render: (ii: InventoryItem) => <InventoryItemTag ii={ii} attr="name" />,
                                 editComponent: FoodItemSelection,
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: 'Quantity',

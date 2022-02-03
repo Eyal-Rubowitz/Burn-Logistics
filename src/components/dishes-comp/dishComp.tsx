@@ -146,20 +146,20 @@ class DishComp extends PureComponent<DishProps> {
                                         field: 'foodItemId',
                                         render: (ing: Ingredient) => <IngredientTag ing={ing} attr="name" />,
                                         editComponent: FoodItemSelection,
-                                        type: "string"
+                                        type: "string" as any
                                     },
                                     {
                                         title: 'Quantity',
                                         field: 'quantity',
                                         render: (ing: Ingredient) => <IngredientTag ing={ing} attr="quantity" />,
-                                        type: 'numeric',
+                                        type: 'numeric' as any,
                                     },
                                     {
                                         title: 'Unit',
                                         field: 'unit',
                                         editComponent: UnitSelection,
                                         render: (ing: Ingredient) => <IngredientTag ing={ing} attr="unit" />,
-                                        type: 'string'
+                                        type: 'string' as any
                                     },
                                     {
                                         title: 'Intolerance',

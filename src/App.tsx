@@ -4,6 +4,8 @@ import React from 'react';
   and react-router-native is made for "react native mobile apps"
   both uses react-router at core
 */ 
+
+// IMPORTANT: when update to v6 useHistory become to useNavigate!
 import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
 // import { Switch, Route } from 'react-router';
 import {
@@ -12,7 +14,9 @@ import {
 } from '@material-ui/core';
 
 import { AppRootModel } from './modelsContext';
-import MealComp from './components/meals-comp/mealComp';
+import UserAuthComp from "./components/user-auth-comp/userAuthComp";
+
+import MealComp from "./components/meals-comp/mealComp";
 import MealListComp from './components/meals-comp/mealListComp';
 import ScheduleTableComp from './components/schedule-comp/scheduleComp';
 import FoodItemListComp from './components/foodItems-comp/foodItemListComp';
@@ -38,6 +42,16 @@ ws.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
   switch (data.type) {
+    case "register": {
+      console.log("");
+      // AppRootModel.
+      break;
+    }
+    case "login": {
+      console.log("");
+      // AppRootModel.
+      break;
+    }
     case "meal": {
       console.log('meal case');
       AppRootModel.mealModel.updateItemFromServer(data.item);
@@ -92,11 +106,13 @@ function App() {
     isActive[i] = true;
   }
 
+  let isAuth = window.location.href !== "http://localhost:3000/user-auth";
+
   return (
     <div id="rootDiv">
       <MuiThemeProvider theme={theme}>
         <Router>
-          <AppBar>
+          <AppBar style={{display: isAuth ? 'block' : 'none'}}>
             <Toolbar className="appNavBar">
               <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
                 <Typography className="appTg">
@@ -138,6 +154,7 @@ function App() {
           </AppBar>
           <Container maxWidth={false} id="appContainer">
             <Switch>
+              <Route path={'/user-auth'} exact component={UserAuthComp} />
               <Route path={'/meals'} exact component={MealListComp} />
               <Route path={'/meals/:id'} exact component={MealComp} />
               <Route path={'/meals/:id/ingredient-note/:id'} exact component={IngredientNoteComp} />

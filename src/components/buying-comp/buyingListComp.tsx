@@ -37,9 +37,20 @@ class IngSum {
     constructor(public _id: string, public dishId: string, public foodItemId: string, public quantity: number, public unit?: UnitEnum) { }
 }
 
+type IType =
+    | "string"
+    | "boolean"
+    | "numeric"
+    | "date"
+    | "datetime"
+    | "time"
+    | "currency";
+const tsType: IType = 'boolean' || 'string';
+
 @observer
 class BuyingListComp extends PureComponent {
 
+    
     @computed get foodItems(): FoodItem[] {
         return AppRootModel.foodItemModel.items.map(fi => fi);
     }
@@ -332,49 +343,49 @@ class BuyingListComp extends PureComponent {
                                 render: (ing: Ingredient) => (!this.revealIsBoughtCol) ? null : (!this.isObjId(ing.getInvIdByItem)) ? <Checkbox
                                     onChange={(event, value) => value ? this.checkedIngs.push(ing) : this.checkedIngs = this.checkedIngs.filter(i => i !== ing)}
                                     color="primary" className="unPurchased" /> : <Typography variant='h6' color='primary' className="purchased" >Purchase Done</Typography>,
-                                type: 'boolean' || 'string'
+                                type: 'boolean' || 'string' as any
                             },
                             {
                                 title: 'Ingredient',
                                 field: 'foodItemId',
                                 render: (ing: Ingredient) => <IngredientTag ing={ing} attr="name" />,
-                                type: "string",
+                                type: "string" as any,
                             },
                             {
                                 title: (!this.revealChefCol) ? '' : 'Chef',
                                 field: 'foodItemId',
                                 render: (ing: Ingredient) => (!this.revealChefCol) ? null : <IngredientTag ing={ing} attr="chef" />,
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: (!this.revealAppointedTimeCol) ? '' : 'Appointment Date',
                                 field: 'unit',
                                 render: (ing: Ingredient) => (!this.revealAppointedTimeCol) ? null : ing.appointmentTime,
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: (!this.revealCategoryCol) ? '' : 'Category',
                                 field: 'foodItemId',
                                 render: (ing: Ingredient) => (!this.revealCategoryCol) ? null : <IngredientTag ing={ing} attr="category" />,
-                                type: "string"
+                                type: "string"  as any
                             },
                             {
                                 title: (!this.revealFromInventoryCol) ? '' : 'Current Amount In Inventory',
                                 field: 'quantity',
                                 render: (ing: Ingredient) => (!this.revealFromInventoryCol) ? null : this.accurateNumber((this.foodInfo[ing._id] || {}).fromInventory) + (ing.getItemBaseUnit || " Unit missing"),
-                                type: "string",
+                                type: "string" as any,
                             },
                             {
                                 title: (!this.revealRequireQuantityCol) ? '' : 'For Purchase',
                                 field: 'quantity',
                                 render: (ing: Ingredient) => (!this.revealRequireQuantityCol) ? null : (this.foodInfo[ing._id] || {}).delta + ((ing.unit === 'gr' || ing.unit === 'ml') ? ing.getItemBaseUnit : ing.unit || " Unit missing"),
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: (!this.revealFoobarCol) ? '' : 'Base Weight / Volume',
                                 field: 'quantity',
                                 render: (ing: Ingredient) => (!this.revealFoobarCol) ? null : `${ing.convertedQuantity} ${ing.getItemBaseUnit}`,
-                                type: "string"
+                                type: "string" as any
                             },
                         ]}
                         data={this.chosenSummedIngs ? this.accumulateSameItems : this.filteredData}

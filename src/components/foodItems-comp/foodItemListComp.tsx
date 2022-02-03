@@ -66,7 +66,7 @@ class FoodItemListComp extends PureComponent {
                                 title: 'Name',
                                 field: 'name',
                                 render: (fi: FoodItem) => <FoodItemTag fi={fi} attr="name" />,
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: 'Category',
@@ -90,7 +90,7 @@ class FoodItemListComp extends PureComponent {
                                     }, {}
                                 ),
                                 render: (fi: FoodItem) => <FoodItemTag fi={fi} attr="baseUnit" />,
-                                type: "string"
+                                type: "string" as any
                             },
                             {
                                 title: <Autocomplete

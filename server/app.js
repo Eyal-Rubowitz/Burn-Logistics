@@ -68,6 +68,8 @@ var path = require('path');
 var bodyParser = require("body-parser");
 var logger = require('morgan');
 
+let userRegistrationRouter = require('./routes/usersRegistration');
+let userLogin = require('./routes/usersLogin');
 var indexRouter = require('./routes/index');
 var mealsRouter = require('./routes/meals');
 var ingredientsRouter = require('./routes/ingredients');
@@ -90,6 +92,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api/userRegistration', userRegistrationRouter);
+app.use('/api/userLogin', userLogin);
 app.use('/api/meals', mealsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/foodItems', foodItemsRouter);
@@ -104,6 +108,7 @@ mongoose.connect('mongodb://localhost:27017/burn-logistics', {
   useFindAndModify: false, 
   useUnifiedTopology: true 
 });
+mongoose.set('useCreateIndex', true)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
