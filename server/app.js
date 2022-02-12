@@ -68,8 +68,8 @@ var path = require('path');
 var bodyParser = require("body-parser");
 var logger = require('morgan');
 
-let userRegistrationRouter = require('./routes/usersRegistration');
-let userLogin = require('./routes/usersLogin');
+// let userRouter = require('./routes/usersRegistration');
+// let userLogin = require('./routes/usersLogin');
 var indexRouter = require('./routes/index');
 var mealsRouter = require('./routes/meals');
 var ingredientsRouter = require('./routes/ingredients');
@@ -78,7 +78,7 @@ var dishesRouter = require('./routes/dishes');
 var inventoryRouter = require('./routes/inventory');
 var allergensRouter = require('./routes/allergens');
 var kitchenToolsRouter = require('./routes/kitchenTools')
-
+debugger;
 var app = express();
 
 // view engine setup
@@ -92,8 +92,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/userRegistration', userRegistrationRouter);
-app.use('/api/userLogin', userLogin);
+// app.use('/api/user', userRouter);
+// app.use('/api/userLogin', userLogin);
 app.use('/api/meals', mealsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/foodItems', foodItemsRouter);

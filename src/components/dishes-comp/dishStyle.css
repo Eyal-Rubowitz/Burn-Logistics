@@ -1,5 +1,5 @@
 #unVisLrgDiv {
-  height: 0px !important;
+  display: none;
 }
 
 #ingTable {
@@ -14,26 +14,27 @@
 
 .addIngDiv .icon {
   position: relative;
-  top: 14px !important;
-  font-size: large;
-  margin-right: 4px !important;
+  top: 1.4vh !important;
+  font-size: 0.8em;
+  margin-right: 0.2vw !important;
 }
 
 .addIngDiv .p {
-  font-size: 16px !important;
+  font-size: 0.7em !important;
   color: #3f51b5;
 }
 
 .lrgAlert {
-  width: 250px !important;
-  color: red;
-  font-size: 16px !important;
+  width: 18vw !important;
+  color: red !important;
+  font-size: 1.2em !important;
   font-weight: bold;
 }
 
 .lrgFree {
   color: green;
   font-weight: bold;
+  font-size: 1.2em !important;
 }
 
 .noteNav {

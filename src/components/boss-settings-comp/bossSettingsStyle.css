@@ -1,79 +1,125 @@
-#toolBar {
+#sideToolBar {
+  display: inline-block;
   position: fixed;
   height: 100%;
-  left: 0px !important;
-  top: 60px !important;
-  width: 230px !important;
-  background-color: #3646A3;
+  left: 0vw !important;
+  top: 9vh !important;
+  width: 14.8vw !important;
+  background-color: #313f94;
 }
 
-#toolBar .navLink {
+#sideToolBar .navLink {
+  position: absolute;
+  width: 100%;
   text-decoration: none;
   color: #91FFFF;
-  margin-left: 1%;
-  position: absolute;
+  margin-left: 0.8vw;
   left: 0px !important;
+  z-index: 1;
+  border: transparent 0.2vw solid;
 }
 
-#toolBar .navLink#mealType {
-  top: 10px !important;
+#sideToolBar .navLink:not(.active)::after {
+  content: '';
+  position: absolute;
+  top: -0.6vh;
+  left: -0.6vw;
+  width: 100%;
+  height: 8.8vh;
+  background-color: #96a0dc;
+  border: transparent 0.18vw solid;
+  border-radius: 0.25vw 0vw 0vw 0.25vw;
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 350ms ease-in;
+  transition: -webkit-transform 350ms ease-in;
+  transition: transform 350ms ease-in;
+  transition: transform 350ms ease-in, -webkit-transform 350ms ease-in;
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 
-#toolBar .navLink#addDate {
-  top: 110px !important;
+#sideToolBar .navLink:not(.active):hover::after {
+  top: -0.6vh;
+  height: 8.4vh;
+  border: transparent 0.18vw solid;
+  border-radius: 0.25vw 0 0  0.25vw;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
-#toolBar .navLink#customUnit {
-  top: 210px !important;
+#sideToolBar .navLink:hover:not(:focus):not(.active) {
+  border: transparent 0.2vw solid;
+  border-radius: 0.25vw;
+  text-shadow: 0.16rem 0.16rem 0.4rem black;
 }
 
-#toolBar .navLink#settings {
-  top: 310px !important;
+#sideToolBar .navLink#mealType {
+  top: 4vh !important;
 }
 
-#toolBar .navLink#allergens {
-  top: 410px !important;
+#sideToolBar .navLink#addDate {
+  top: 14vh !important;
 }
 
-#toolBar .navLink#chefsCrew {
-  top: 510px !important;
+#sideToolBar .navLink#customUnit {
+  top: 24vh !important;
 }
 
-#toolBar .navLink#dinersDiet {
-  top: 610px !important;
+#sideToolBar .navLink#settings {
+  top: 34vh !important;
 }
 
-#toolBar .navLink#cleaningCrew {
-  top: 710px !important;
-  left: -12px !important;
+#sideToolBar .navLink#allergens {
+  top: 44vh !important;
 }
 
-#toolBar .navLink .tgNav {
-  line-height: 3.2px !important;
-  margin-left: 5px !important;
+#sideToolBar .navLink#chefsCrew {
+  top: 54vh !important;
 }
 
-#toolBar .navLink .tgNav .img {
+#sideToolBar .navLink#dinersDiet {
+  top: 64vh !important;
+}
+
+#sideToolBar .navLink#cleaningCrew {
+  top: 74vh !important;
+}
+
+#sideToolBar .navLink .img {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
   vertical-align: middle;
 }
 
-#toolBar .navLink .tgNav .sSize {
-  margin-left: 16px !important;
-  width: 60px !important;
-  margin-right: 40px !important;
+#sideToolBar .navLink .sSize {
+  margin-left: 0.5vw !important;
+  width: 3.4vw !important;
+  margin-right: 2.2vw !important;
+  min-height: 2.8vh;
 }
 
-#toolBar .navLink .tgNav .midSize {
-  width: 100px !important;
-  margin-right: 15px !important;
+#sideToolBar .navLink .midSize {
+  width: 5.2vw !important;
+  min-height: 2.8vh;
+  margin-right: 0.78vw !important;
 }
 
-#toolBar .navLink .tgNav .lSize {
-  width: 110px !important;
-  margin-right: 15px !important;
+#sideToolBar .navLink .lSize {
+  width: 5.8vw !important;
+  min-height: 2.8vh;
+  margin-right: 0.5vw !important;
 }
 
-#toolBar .navLink .tgNav #switchContainer {
-  margin-top: 5%;
+#sideToolBar .navLink .tgNav {
+  display: inline-block;
+  margin-left: 0.25vw !important;
+  font-size: 1vw;
+}
+
+#switchContainer {
+  margin-top: 12vh;
 }
 /*# sourceMappingURL=bossSettingsStyle.css.map */

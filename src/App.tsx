@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import {
+  AppBar, Typography, Container, Toolbar,
+  createTheme, responsiveFontSizes, MuiThemeProvider
+} from '@material-ui/core';
+
+import React from 'react';
 /*
   react-router-dom is made for "Web application" 
   and react-router-native is made for "react native mobile apps"
@@ -8,13 +13,9 @@ import React, { useState } from 'react';
 // IMPORTANT: when update to v6 useHistory become to useNavigate!
 import { BrowserRouter as Router, NavLink, Switch, Route, Redirect } from 'react-router-dom';
 // import { Switch, Route } from 'react-router';
-import {
-  AppBar, Typography, Container, Toolbar,
-  createMuiTheme, responsiveFontSizes, MuiThemeProvider
-} from '@material-ui/core';
 
 import { AppRootModel } from './modelsContext';
-import UserAuthComp from "./components/user-auth-comp/userAuthComp";
+// import UserAuthComp from "./components/user-auth-comp/userAuthComp";
 
 import MealComp from "./components/meals-comp/mealComp";
 import MealListComp from './components/meals-comp/mealListComp';
@@ -25,6 +26,7 @@ import BuyingListComp from './components/buying-comp/buyingListComp';
 import BossSettingsComp from './components/boss-settings-comp/bossSettingsComp';
 import IngredientNoteComp from './components/dishes-comp/ingredient-note-comp/ingredientNoteComp';
 import KitchenToolsFunc from './components/kitchen-tools-comp/kitchenToolsComp';
+// import RegisterComp from './components/user-auth-comp/RegisterComp';
 
 import ChefMeal from './assets/chefMeal.png';
 import Calender from './assets/calendar.png';
@@ -43,16 +45,16 @@ ws.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
   switch (data.type) {
-    case "register": {
-      console.log("");
-      // AppRootModel.
-      break;
-    }
-    case "login": {
-      console.log("");
-      // AppRootModel.
-      break;
-    }
+    // case "userAuth": {
+    //   console.log("register case");
+    //   AppRootModel.userModel.updateItemFromServer(data.item);
+    //   break;
+    // }
+    // case "login": {
+    //   console.log("login case");
+    //   AppRootModel.userModel.updateItemFromServer(data.item);
+    //   break;
+    // }
     case "meal": {
       console.log('meal case');
       AppRootModel.mealModel.updateItemFromServer(data.item);
@@ -92,10 +94,10 @@ ws.addEventListener('message', (msg) => {
   }
 });
 
-// createMuiTheme takes an options object as argument 
+// createTheme takes an options object as argument 
 // containing custom colors or typography
 // and return a new theme to the react components. 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 function App() {
@@ -107,13 +109,13 @@ function App() {
     isActive[i] = true;
   }
 
-  let isAuth = window.location.href !== "http://localhost:3000/user-auth";
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  let isAuthUrl: Boolean = window.location.href !== "http://localhost:3000/user-auth";
+  // const [isAuth, setIsAuthenticated] = useState(isAuthUrl);
   return (
     <div id="rootDiv">
       <MuiThemeProvider theme={theme}>
         <Router>
-          <AppBar style={{display: isAuth ? 'block' : 'none'}}>
+          <AppBar style={{display: isAuthUrl ? 'block' : 'none'}}>
             <Toolbar className="appNavBar">
               <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
                 <Typography  className="appTg" >
@@ -152,7 +154,7 @@ function App() {
               </NavLink>
               <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/user-auth'}>
                 <Typography className="appTg" >
-                  <img className="imgs" alt="admin settings" src={LogOut} />  Admin
+                  <img className="imgs" alt="admin settings" src={LogOut} />  Log Out
               </Typography>
               </NavLink>
               <div className="anim"></div>
@@ -160,7 +162,9 @@ function App() {
           </AppBar>
           <Container maxWidth={false} id="appContainer">
             <Switch>
-              <Route path={'/user-auth'} exact component={UserAuthComp} />
+              {/* <Route path={'/user-auth'} exact component={UserAuthComp} /> */}
+            
+              {/* <Route path={'/register'} exact component={RegisterComp} /> */}
               <Route path={'/meals'} exact component={MealListComp} />
               <Route path={'/meals/:id'} exact component={MealComp} />
               <Route path={'/meals/:id/ingredient-note/:id'} exact component={IngredientNoteComp} />
@@ -178,7 +182,7 @@ function App() {
               <Route path={'/settings/sous-chefs'} exact component={BossSettingsComp} />
               <Route path={'/settings/diners-nutrition'} exact component={BossSettingsComp} />
               <Route path={'/settings/cleaning-crew'} exact component={BossSettingsComp} />
-              <Redirect from="/" to="user-auth" />
+              {/* <Redirect from="/" to="register" /> */}
             </Switch>
           </Container>
         </Router>

@@ -31,7 +31,7 @@ const FoodItemSelection = (props: any): JSX.Element => {
         <Autocomplete
             id='di'
             options={AppRootModel.foodItemModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => {
-                return { _id: fi._id, name: fi.name }
+                return { _id: fi._id, name: fi.name } as any
             })}
             getOptionLabel={(option: FoodItem) => option.name}
             value={AppRootModel.foodItemModel.items.find((i) => i._id === props.value)}
@@ -42,7 +42,7 @@ const FoodItemSelection = (props: any): JSX.Element => {
                 </React.Fragment>
             )}
             onChange={(e, value) => {
-                props.onChange(value._id)
+                props.onChange(value?._id)
             }} />
     )
 }

@@ -1,54 +1,61 @@
 #shoppingDiv {
   width: 100%;
-  padding-top: 0px !important;
 }
 
 #shoppingDiv #unVisData {
-  height: 0px !important;
+  display: none;
 }
 
 #shoppingDiv #filtersDiv {
-  border: solid 1px #D3D3D3;
-  border-radius: 5px !important;
-  margin-bottom: 10px !important;
-  height: 135px !important;
+  border: solid 0.1vw #D3D3D3;
+  border-radius: 0.2vw !important;
+  margin-bottom: 1vh !important;
+  height: auto !important;
 }
 
 #shoppingDiv #filtersDiv #filtersTitle {
-  text-decoration: underline;
   position: relative;
-  left: 46px !important;
+  left: 2vw !important;
+  text-decoration: underline;
+  height: 3vh !important;
 }
 
 #shoppingDiv #filtersDiv #combo-box-filters {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 40px !important;
+  position: relative;
+  margin-left: 2vw !important;
+  height: 7vh !important;
 }
 
 #shoppingDiv #filtersDiv #combo-box-filters .w {
-  width: 300px !important;
+  width: 14vw !important;
 }
 
 #shoppingDiv #filtersDiv #combo-box-filters .left {
-  margin-left: 6px !important;
+  margin-left: 0.25vw !important;
 }
 
 #shoppingDiv #filtersDiv #combo-box-filters #switchCtrl {
-  margin-left: 2px !important;
-  width: 200px !important;
+  position: relative;
+  margin-left: 1vw !important;
+  width: 18vw !important;
+  border: solid 0.12vw #D3D3D3;
+  border-radius: 0.2vw !important;
+  height: 6vh !important;
+  top: -0.4vh !important;
 }
 
 #shoppingDiv #colsReveal {
-  border: solid 1px #D3D3D3;
-  border-radius: 5px !important;
-  margin-bottom: 10px !important;
-  height: 110px !important;
+  border: solid 0.1vw #D3D3D3;
+  border-radius: 0.25vw !important;
+  margin-bottom: 1vh !important;
+  height: 11.2vh !important;
 }
 
 #shoppingDiv #colsReveal #colsTitle {
-  margin-left: 50px !important;
+  margin-left: 2vw !important;
   text-decoration: underline;
   height: 0px !important;
 }
@@ -60,33 +67,37 @@
 }
 
 #shoppingDiv #colsReveal .checkBox {
-  margin-left: 50px !important;
+  margin-left: 3.6% !important;
+  position: relative;
+  left: -0.5% !important;
+  font-size: 0.9vw !important;
 }
 
 #shoppingDiv #tableTitle {
-  margin-left: 30px !important;
+  margin-left: 0.5vw !important;
   text-decoration: underline;
   font-weight: bolder;
 }
 
-#shoppingDiv .unPurchased {
-  height: 5px !important;
+#shoppingDiv .unPurched {
+  height: 0.5vh !important;
 }
 
-#shoppingDiv .btnPurchaseItems {
+#shoppingDiv .purched {
   font-weight: bolder;
+  font-size: 1.15vw;
 }
 
-#shoppingDiv #btnPurchaseItems {
-  margin-top: 10px !important;
+#shoppingDiv #btnPurchItems {
+  margin-top: 1.1vh !important;
 }
 
-#shoppingDiv #btnPurchaseItems #btn {
+#shoppingDiv #btnPurchItems #btn {
   background-color: #e8f4f8;
 }
 
-#shoppingDiv #btnPurchaseItems #btn #tg {
+#shoppingDiv #btnPurchItems #btn #tg {
   font-weight: bolder;
-  word-spacing: 4px;
+  word-spacing: 0.2vw;
 }
 /*# sourceMappingURL=buyingListStyle.css.map */

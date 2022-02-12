@@ -13,6 +13,7 @@ export abstract class DataModel<TypeModel extends ClassType> {
         this.modelFactory = grr;
         this.items = [];
         this.getItemsFromServer();
+        this.getUserTokenFromServer();
     }
 
     abstract resourcePath(): String
@@ -23,10 +24,33 @@ export abstract class DataModel<TypeModel extends ClassType> {
 
     getItemsFromServer(): void {
         axios.get(this.resourceUrl).then(itemList => {
+            console.log('line 27 - data model list: ', itemList);
             itemList.data.forEach((item: TypeModel) => {
                 this.updateItemFromServer(item);
             });
         });
+    }
+
+    // getUserFromServer(): void {
+    //     axios.get(this.resourceUrl).then( u => {
+    //         console.log('line 36 - data model list: ', itemList);
+    //         u.data.then((user: TypeModel) => {
+    //             this.updateUserFromServer(user);
+    //         });
+    //     });
+    // }
+
+    getUserTokenFromServer(): void {
+        // token.id
+        axios.get(this.resourceUrl).then(userList => {
+            console.log('dataModel userList: ', userList);
+            // userList.data.findOne((_id: token.id) 
+            // {
+            //     this.updateItemFromServer(user);
+            // }
+            // );
+        }
+        );
     }
 
     createItem(json: TypeModel): void {
@@ -34,6 +58,12 @@ export abstract class DataModel<TypeModel extends ClassType> {
         axios.post(this.resourceUrl, jsonObj);
         this.getItemsFromServer();
     }
+
+    // createUser(json: TypeModel): void {
+    //     let jsonObj = json.toJSON ? json.toJSON() : json;
+    //     axios.post(this.resourceUrl, jsonObj);
+    //     this.getUserFromServer();
+    // }
 
     updateItem(json: TypeModel): void {
         let jsonObj = json.toJSON ? json.toJSON() : json;

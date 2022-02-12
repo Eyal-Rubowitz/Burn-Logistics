@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable } from 'mobx'; //, computed
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 
@@ -14,6 +14,15 @@ export class UserModel extends DataModel<User> {
 }
 
 export class User extends ClassType {
+    
+    @observable fullName: string = '';
+    @observable email: string = '';
+    @observable password: string = '';
+    // @observable allergens: string[] = [];
+    // @observable shifts: string[] = [];
+    // @observable eatingType: string = '';
+    // @observable spicinessType: string = '';
+
     constructor(store: UserModel, obj: any) {
         super(store, obj);
         this.updateFromJson(obj);  
@@ -29,12 +38,8 @@ export class User extends ClassType {
         // this.spicinessType = obj.spicinessType;
     }
 
-    @observable fullName: string = '';
-    @observable email: string = '';
-    @observable password: string = '';
-    // @observable allergens: string[] = [];
-    // @observable shifts: string[] = [];
-    // @observable eatingType: string = '';
-    // @observable spicinessType: string = '';
+    // @computed get userToken(): any {
+    //     this.store.root.userModel.items.filter(u => u.)
+    // }
 
 }

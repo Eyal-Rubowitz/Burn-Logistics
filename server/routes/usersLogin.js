@@ -28,9 +28,9 @@ router.route('/').post( async (req, res) => {
 			'secret123'
 		)
 
-		return res.json({ status: 'ok', user: token })
+		return res.json({ status: 'ok', item: token })
 	} else {
-		return res.json({ status: 'error', user: false })
+		return res.json({ status: 'error', item: false })
 	}
 })
 

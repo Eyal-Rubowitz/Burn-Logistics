@@ -49,8 +49,8 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
     }
 
     render() {
-        let choosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedDate);
-        let dateEventListSet: Set<string> = new Set(choosenDateMeals.map(m => m.name));
+        let chosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedDate);
+        let dateEventListSet: Set<string> = new Set(chosenDateMeals.map(m => m.name));
         let mealList: string[] = Array.from(dateEventListSet);
         return (
             <div>
@@ -59,7 +59,7 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
                     id="combo-box-selected-day"
                     options={Object.values(this.dateList)}
                     className="autoSlctMeal"
-                    onChange={(event, value: string) => { this.onSelectDate(value) }}
+                    onChange={(event, value) => { this.onSelectDate((value) ? value : "") }}
                     renderInput={params => (
                         <TextField {...params} label="Choose Date" variant="outlined" fullWidth />
                     )} />
@@ -68,7 +68,7 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
                     id="combo-box-selected-event"
                     options={Object.values(mealList)}
                     className="autoSlctMeal"
-                    onChange={(event, value: string) => { this.onSelectMeal(value) }}
+                    onChange={(event, value) => { this.onSelectMeal((value) ? value : "") }}
                     clearOnEscape
                     renderInput={params => (
                         <TextField {...params} label="Choose meal" variant="outlined" fullWidth />

@@ -37,15 +37,15 @@ class IngSum {
     constructor(public _id: string, public dishId: string, public foodItemId: string, public quantity: number, public unit?: UnitEnum) { }
 }
 
-type IType =
-    | "string"
-    | "boolean"
-    | "numeric"
-    | "date"
-    | "datetime"
-    | "time"
-    | "currency";
-const tsType: IType = 'boolean' || 'string';
+// type IType =
+//     | "string"
+//     | "boolean"
+//     | "numeric"
+//     | "date"
+//     | "datetime"
+//     | "time"
+//     | "currency";
+// const tsType: IType = 'boolean' || 'string';
 
 @observer
 class BuyingListComp extends PureComponent {

@@ -20,7 +20,7 @@ const FoodItemSelection = (props: any): JSX.Element => {
             id='di'
             clearOnEscape={false}
             options={AppRootModel.foodItemModel.items.map(fi => {
-                return { _id: fi._id, name: fi.name }
+                return { _id: fi._id, name: fi.name } as any
             })}
             getOptionLabel={(option: FoodItem) => option.name}
             value={AppRootModel.foodItemModel.items.find((i) => i._id === props.value)}
@@ -38,15 +38,18 @@ const FoodItemSelection = (props: any): JSX.Element => {
     )
 }
 
+// type IDishObj = { _id: string; name: string; }; 
+
 const DishSelection = (props: any): JSX.Element => {
     let dishes = AppRootModel.dishModel.items.map(d => {
-        return { _id: d._id, name: d.name }
+        return { _id: d._id, name: d.name } 
+        // as IDishObj
     });
     dishes.unshift({ _id: "", name: "Item Is Free" })
     return (
         <Autocomplete
             id='di'
-            options={dishes}
+            options={dishes as any}
             getOptionLabel={(option: Dish) => option.name}
             value={AppRootModel.dishModel.items.find(d => d._id === props.value)}
             renderInput={params => (
@@ -55,7 +58,8 @@ const DishSelection = (props: any): JSX.Element => {
                         fullWidth />
                 </React.Fragment>
             )}
-            onChange={(e, value: { _id: string; name: string; }) => {
+            // onChange={(e, value: { _id: string; name: string; }) => {
+            onChange={(e, value: any) => {
                 if (!value) return;
                 props.onChange(value._id)
             }} />

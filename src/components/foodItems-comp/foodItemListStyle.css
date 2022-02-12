@@ -10,12 +10,12 @@
 
 #foodItemDiv #icon {
   position: relative;
-  top: 12px !important;
-  margin-right: 4px;
+  top: 1.2vh !important;
+  margin-right: 0.2vw;
 }
 
 #foodItemDiv #p {
-  font-size: 18px !important;
+  font-size: 0.75em !important;
   color: #3f51b5;
   font-weight: bold;
 }

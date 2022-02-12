@@ -1,0 +1,205 @@
+/* apply a natural box layout model to all elements, but allowing components to change 
+this is only for projects that support IE8 and up
+ Firefox <= 28 still needs the -moz- prefix
+ and 4 <= iOS, Android <= 2.3 need the -webkit-
+ */
+html {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+#appContainer {
+  margin-top: 10vh;
+  overflow-y: visible;
+}
+
+.appNavBar {
+  display: inline-block;
+  background-color: #3646a3;
+  z-index: 1;
+  height: 9vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.appNavBar .appLink {
+  position: relative;
+  left: 0.2vw;
+  top: 0.25vh;
+  text-decoration: none;
+  color: #91ffff;
+  margin-left: 0.6vw;
+  height: 7.2vh;
+  border: transparent 0.18vw solid;
+  text-shadow: 0.16rem 0.16rem 0.4rem black;
+}
+
+.appNavBar .appLink:not(.active)::after {
+  content: "";
+  position: absolute;
+  top: -0.9vh;
+  left: -0.2vw;
+  width: 102%;
+  height: 130%;
+  background-color: #96a0dc;
+  border: transparent 0.18vw solid;
+  border-radius: 0.25vw 0.25vw 0 0;
+  z-index: -1;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transition: -webkit-transform 300ms ease-in;
+  transition: -webkit-transform 300ms ease-in;
+  transition: transform 300ms ease-in;
+  transition: transform 300ms ease-in, -webkit-transform 300ms ease-in;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+}
+
+.appNavBar .appLink:hover:not(.active)::after {
+  height: 130%;
+  top: -0.9vh;
+  border: transparent 0.18vw solid;
+  border-radius: 0.25vw 0.25vw 0 0;
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+}
+
+.appNavBar .appLink .appTg {
+  line-height: 6.2vmin;
+  margin: 0vh 0.1vw 0vh 0.1vw;
+  font-size: clamp(5px, 1.16vw, 18px);
+  font-weight: bold;
+}
+
+.appNavBar .appLink .appTg .imgs {
+  display: "inline-block";
+  vertical-align: middle;
+  width: 3vw;
+  max-height: 6.4vh;
+  min-width: 25px;
+  height: auto;
+  margin: 0vh 0.1vw 0vh 0.1vw;
+}
+
+.appNavBar .appLink .appTg .imgs.L {
+  width: 5.5vw;
+}
+
+.paper {
+  position: relative !important;
+  width: 38vw !important;
+  padding: 0.4vw !important;
+  left: 34% !important;
+  top: 10%;
+}
+
+.paper .switchForm {
+  margin-top: 0.28vw !important;
+  margin-left: 0.6vw !important;
+  margin-bottom: 2vh !important;
+}
+
+.paper .switchForm .box {
+  font-size: 1.5em;
+  margin-top: 6px;
+}
+
+.paper .switchForm .box.on {
+  color: #3646a3 !important;
+  font-weight: bolder;
+}
+
+.paper .switchForm .box.off {
+  color: black;
+  font-weight: lighter;
+}
+
+.title {
+  text-decoration: underline;
+}
+
+.noPointer {
+  pointer-events: none;
+}
+
+#mealSelectComp {
+  width: 16vw !important;
+  margin-bottom: 1vh !important;
+}
+
+.vsbl {
+  visibility: visible;
+  height: auto;
+}
+
+.hide {
+  visibility: hidden;
+  height: 0px !important;
+}
+
+.btnShiny:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  width: 3vw;
+  height: 100%;
+  opacity: 0.5;
+  -webkit-filter: blur(1vw);
+          filter: blur(1vw);
+  -webkit-transform: translateX(-8vw) skewX(-15deg);
+          transform: translateX(-8vw) skewX(-15deg);
+}
+
+.btnShiny:hover:before {
+  -webkit-transform: translateX(20rem) skewX(-15deg);
+          transform: translateX(20rem) skewX(-15deg);
+  opacity: 0.6;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.hoverAlertColor {
+  margin-left: 1% !important;
+}
+
+.hoverAlertColor:hover {
+  -webkit-animation: alrt 4s infinite;
+          animation: alrt 4s infinite;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes alrt {
+  0% {
+    background-color: #e6e6e6;
+  }
+  50% {
+    background-color: #ffcccc;
+  }
+  100% {
+    background-color: #e6e6e6;
+  }
+}
+
+@keyframes alrt {
+  0% {
+    background-color: #e6e6e6;
+  }
+  50% {
+    background-color: #ffcccc;
+  }
+  100% {
+    background-color: #e6e6e6;
+  }
+}
+/*# sourceMappingURL=style.css.map */

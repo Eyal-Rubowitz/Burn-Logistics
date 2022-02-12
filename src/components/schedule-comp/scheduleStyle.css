@@ -1,5 +1,5 @@
 #mealScheduleTable {
-  border: solid 1px black;
+  border: solid 0.1rem black;
   text-align: left;
   white-space: nowrap;
 }
@@ -12,8 +12,8 @@
 
 #mealScheduleTable #head #headTr {
   white-space: nowrap;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 1.5em !important;
+  line-height: 3.5vh !important;
 }
 
 #mealScheduleTable #head #headTh {
@@ -25,30 +25,90 @@
   color: lightGreen;
 }
 
-.sousName {
-  display: inline-block;
+#mealScheduleTable .tableTr:hover {
+  background-color: #e6e6e6;
+  text-shadow: 0rem 0rem 0.025rem black;
+}
+
+#mealScheduleTable .evn {
+  background-color: #fae4d4;
+}
+
+#mealScheduleTable .odd {
+  background-color: #d9ebfa;
+}
+
+#mealScheduleTable .trActive {
+  position: relative;
+  background-color: #cdcdcd;
+  font-size: 0.935rem;
+  font-weight: bolder;
+}
+
+#mealScheduleTable .trActive:nth-child(1n) {
+  background-color: #ffc4ad !important;
+}
+
+#mealScheduleTable .trActive:nth-child(2n) {
+  background-color: #99cfe0 !important;
+}
+
+#mealScheduleTable .trActive:hover {
+  background-color: #cdcdcd;
+}
+
+#mealInfoTable {
+  margin-top: 1.95vh !important;
+  border: solid 0.1vw black;
+  text-align: left;
+  width: auto;
+}
+
+#mealInfoTable #infoTableHead {
+  background-color: #3f51b5;
+  color: #00FFFF;
+  width: auto;
+}
+
+#mealInfoTable #infoTableHead .dishNameInfoTh {
+  font-size: 1.35em;
+  float: center;
+  text-align: center;
+}
+
+#mealInfoTable #infoTableBody {
+  font-size: 1.1em;
+}
+
+.name {
+  line-height: 270% !important;
+  text-align: center;
   white-space: nowrap;
-  width: 125px;
+  display: inline-block;
+}
+
+.sousName {
+  width: auto;
   background-color: lightblue;
-  height: 40px;
+  padding: 0 0.3vw 0 0.3vw;
+  margin-left: 0.15vw;
 }
 
 .cleanName {
-  line-height: 270%;
-  white-space: nowrap;
-  width: 125px;
-  display: inline-block;
+  width: auto;
   background-color: darkGreen;
   color: lightGreen;
+  padding: 0 0.3vw 0 0.3vw;
+  margin-left: 0.15vw;
 }
 
 .tableTr {
   line-height: auto;
-  border-bottom: 1px solid black;
+  border-bottom: 0.1rem solid black;
 }
 
 .servingTd {
-  text-indent: 40px;
+  text-indent: 2vw !important;
 }
 
 .checkBox {
@@ -57,39 +117,29 @@
 }
 
 .dishInfo {
-  display: block;
   text-align: left;
   vertical-align: text-top;
-  min-width: 220px !important;
-  max-width: auto;
 }
 
 .dishInfo .dishIng {
-  margin: 0px !important;
-  height: 26px !important;
+  margin: 0rem;
+  padding: 0rem 1rem;
+  height: 2.5vh;
 }
 
-.dishInfo .dishNameInfoTh {
-  text-align: center;
-  min-width: 220px !important;
-  max-width: auto;
-  display: block;
+.dishInfo .evnInfo {
+  background-color: white;
 }
 
-#scheduleTable {
-  margin-top: 20px !important;
-  border: solid 1px black;
-  text-align: left;
-  width: auto;
+.dishInfo .oddInfo {
+  background-color: gainsboro;
 }
 
-#scheduleTable #tableHead {
-  display: block;
-  background-color: #3f51b5;
-  color: #00FFFF;
+.borderDays {
+  border-top: solid 0.25vw black;
 }
 
-#scheduleTable #tableBody {
-  display: block;
+.borderInfo {
+  border-left: solid 0.15vw black;
 }
 /*# sourceMappingURL=scheduleStyle.css.map */

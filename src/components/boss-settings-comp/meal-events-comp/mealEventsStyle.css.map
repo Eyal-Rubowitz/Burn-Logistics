@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,MAAM,EAAE,cAAc;CACzB;;AAED,AAAA,aAAa,CAAC;EACV,MAAM,EAAE,iBAAiB;CAO5B;;AARD,AAGI,aAHS,CAGP,KAAK,CAAC;EACJ,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,gBAAgB;EACvB,GAAG,EAAE,iBAAiB;CACzB",
+    "sources": [
+        "mealEventsStyle.scss"
+    ],
+    "names": [],
+    "file": "mealEventsStyle.css"
+}

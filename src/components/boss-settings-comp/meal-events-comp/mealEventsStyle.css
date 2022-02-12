@@ -1,0 +1,14 @@
+.unVisBox {
+  height: 0px !important;
+}
+
+.formMealName {
+  margin: 0.28vw !important;
+}
+
+.formMealName #icon {
+  position: relative;
+  right: 0.1vw !important;
+  top: -0.1vh !important;
+}
+/*# sourceMappingURL=mealEventsStyle.css.map */

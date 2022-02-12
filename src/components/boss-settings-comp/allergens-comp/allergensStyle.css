@@ -1,13 +1,9 @@
-.paper {
-  position: relative !important;
-  width: 800px !important;
-  padding: 8px !important;
-  left: 34% !important;
-  top: 10%;
+#mainLrg {
+  margin: 1vh 0 5vh 0;
 }
 
-.title {
-  text-decoration: underline;
+#dinersInfo {
+  margin: 0 0 5vh 0;
 }
 
 .deleteDiners .tg, .deleteItems .tg {
@@ -19,37 +15,67 @@
 }
 
 .coverdData {
-  height: "0px";
+  height: 0px;
 }
 
 .coverdData #mobx-update-date-call {
   visibility: hidden;
 }
 
-.add {
-  margin: 6px !important;
+.addBtn {
+  margin: 0.32vw !important;
   margin-top: 0px !important;
   display: inline-block !important;
-  height: 56px !important;
+  height: 2.8vw !important;
 }
 
-.add #icon {
+.addBtn #icon {
   position: relative;
-  top: 5px;
+  top: 0.5vh;
 }
 
 .selectLrgForm {
   width: 100%;
   margin: 1px !important;
-  margin-bottom: 16px !important;
+  margin-top: 1% !important;
+  margin-bottom: 1.5vh !important;
+}
+
+.selectLrgForm #selectLbl {
+  background-color: white;
+  padding: 0 0.2vw 0 0.2vw;
+}
+
+.selectLrgForm #selectLbl:active {
+  color: blue;
 }
 
 .selectIngForm {
-  margin: 1px !important;
+  margin: 0.1% !important;
   width: 50%;
 }
 
 .txtFld {
-  margin: 1px !important;
+  margin: 0.1% !important;
+}
+
+#nameTxtFld {
+  position: relative;
+  line-height: 3vh;
+}
+
+#tgLrgTtl {
+  margin-bottom: 1.5vh;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.listTitle {
+  position: relative;
+  margin: 1.5vh 0 0.2vh 0 !important;
+}
+
+.addLrgIng {
+  margin: 0.3vw !important;
 }
 /*# sourceMappingURL=allergensStyle.css.map */

@@ -7,11 +7,11 @@ AppWS.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
   switch (data.type) {
-    case "user": {
-      console.log('user case');
-      AppRootModel.userModel.updateItemFromServer(data.item);
-      break;
-    }
+    // case "userAuth": {
+    //   console.log('userAuth case');
+    //   AppRootModel.userModel.updateItemFromServer(data.user);
+    //   break;
+    // }
     case "meal": {
       console.log('meal case');
       AppRootModel.mealModel.updateItemFromServer(data.item);

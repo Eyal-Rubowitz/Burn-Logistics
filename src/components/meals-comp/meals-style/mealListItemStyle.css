@@ -1,5 +1,17 @@
+.grow {
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+.grow:hover {
+  -webkit-transform: scale(1.025);
+          transform: scale(1.025);
+  -webkit-box-shadow: 0.05rem 0.05rem 1rem 0.05rem #6666ff;
+          box-shadow: 0.05rem 0.05rem 1rem 0.05rem #6666ff;
+}
+
 .grd {
-  margin-left: 20px !important;
+  margin-left: 0.5vw !important;
 }
 
 .grd .link {
