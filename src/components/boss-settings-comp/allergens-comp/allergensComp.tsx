@@ -135,19 +135,19 @@ class AllergensComp extends PureComponent {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.onEnterDinerName(e) }}
                         value={this.newDinerName}
                         variant="outlined"
-                        className={`txtFld ${(isVisible) ? 'vsbl' : 'hide'}`} />
+                        className={`txtFld ${(isVisible) ? 'visible' : 'hide'}`} />
                     <Fab
                         onClick={() => { this.onAddNewDiner() }}
                         variant='extended'
                         color='primary'
-                        className={`addBtn btnShiny ${(isVisible) ? 'vsbl' : 'hide'}`} >
+                        className={`addBtn btnShiny ${(isVisible) ? 'visible' : 'hide'}`} >
                         <Icon id="icon">add</Icon>Add Diner
                     </Fab>
                     {(lrgDinerList.length > 1) ? lrgDinerList : ""}
                 </div>
                 <div id="lrgnsIngs">
                     <FormControl variant="outlined" 
-                                 className={`selectIngForm ${(isVisible) ? 'vsbl' : 'hide'}`} >
+                                 className={`selectIngForm ${(isVisible) ? 'visible' : 'hide'}`} >
                         <InputLabel>Select ingredient</InputLabel>
                         <Select name='select-fi-id' 
                                 value={this.selectedFoodItemId} 
@@ -159,7 +159,7 @@ class AllergensComp extends PureComponent {
                         onClick={(e) => { this.onAddFoodItem(e) }}
                         variant='extended'
                         color='primary'
-                        className={`addLrgIng btnShiny ${(isVisible) ? 'vsbl' : 'hide'}`} >
+                        className={`addLrgIng btnShiny ${(isVisible) ? 'visible' : 'hide'}`} >
                         <Icon>add</Icon>Add allergen Ingredient
                     </Fab>
                     {(lrgFoodList.length > 1) ? lrgFoodList : ""}

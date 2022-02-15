@@ -162,7 +162,7 @@ class DinersNutritionComp extends PureComponent {
                             </RadioGroup>
                         </FormControl>
                     </div>
-                    <div className={`${(!this.isSetForAllMeals) ? 'vsbl' : 'hide'}`}>
+                    <div className={`${(!this.isSetForAllMeals) ? 'visible' : 'hide'}`}>
                         <MealSelectComp store={this.selectedMealStore} />
                     </div>
                     <div>
@@ -181,7 +181,7 @@ class DinersNutritionComp extends PureComponent {
                             className="btnAddDiet btnShiny">
                             <Icon id="icon">add</Icon>Add
                         </Fab>
-                        <div id="dinersForm" className={`${(this.isSetForAllMeals || this.selectedMealStore.meal) ? 'vsbl' : 'hide'}`}>
+                        <div id="dinersForm" className={`${(this.isSetForAllMeals || this.selectedMealStore.meal) ? 'visible' : 'hide'}`}>
                             <div id="ttlDinersForm">
                                 <Typography variant="h5" id='tgTtlDiners'>Total Diners: </Typography>
                                 <TextField label=""

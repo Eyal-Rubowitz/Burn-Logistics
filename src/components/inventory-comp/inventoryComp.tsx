@@ -30,7 +30,7 @@ const FoodItemSelection = (props: any): JSX.Element => {
                         fullWidth />
                 </React.Fragment>
             )}
-            onChange={(e, value) => {
+            onChange={(e, value: any) => {
                 if (!value) return;
                 props.onChange(value._id)
             }}

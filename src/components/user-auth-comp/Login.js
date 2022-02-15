@@ -14,26 +14,26 @@ function Login() {
     password
   })
     // this API passs the body as Json object to the server 
-    const response = await fetch('http://localhost:8080/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: reqBody 
-    });
+    // const response = await fetch('http://localhost:8080/api/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: reqBody 
+    // });
 
-    const jsonData = await response.json();
+    // const jsonData = await response.json();
 
-    if(jsonData.user) {
-      localStorage.setItem('token', jsonData.user);
-      // alert('Login successful!');
-      // navigate('/dashboard', { replace: true });
-      window.location.href = '/dashboard';
-    } else {
-      alert('Please check your username and password!');
-    }
+    // if(jsonData.user) {
+    //   localStorage.setItem('token', jsonData.user);
+    //   // alert('Login successful!');
+    //   // navigate('/dashboard', { replace: true });
+    //   window.location.href = '/dashboard';
+    // } else {
+    //   alert('Please check your username and password!');
+    // }
 
-    console.log(jsonData);
+    // console.log(jsonData);
   }
 
   return (

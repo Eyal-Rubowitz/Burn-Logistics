@@ -82,7 +82,7 @@ class SousChefsComp extends PureComponent {
             <Fragment>
                 <Paper className="paper">
                     <MealSelectComp store={this.selectedMealStore} />
-                    <div className={`${(this.meal !== undefined) ? 'vsbl' : 'hide'}`}>
+                    <div className={`${(this.meal !== undefined) ? 'visible' : 'hide'}`}>
                         <Typography variant="h4" className="tgMealInfo">{this.mealInfo()}</Typography>
                         <TextField label="Enter sous chef"
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterSousChefName(e) }}

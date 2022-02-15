@@ -5,44 +5,42 @@
     "version": "0.2.0",
     "configurations": 
     [
-    //     {
-    //     "type": "pwa-node",
-    //     "request": "launch",
-    //     "name": "Launch Program",
-    //     "skipFiles": [
-    //         "<node_internals>/**"
-    //     ],
-    //     "program": "${workspaceFolder}/dist/index.js",
-    //     "preLaunchTask": "tsc: build - tsconfig.json",
-    //     "outFiles": [
-    //         "${workspaceFolder}/dist/**/*.js}"
-    //     ]
-    // },
-        // {
-        //     "name": "Attach",
-        //     "port": 9229,
-        //     "request": "attach",
-        //     "sourceMaps": true,
-        //     "restart": true,
-        //     "skipFiles": [
-        //         "<node_internals>/**"
-        //     ],
-        //     "type": "pwa-node"
-        // },
-        // {
-        //     "type": "node",
-        //     "request": "launch",
-        //     "name": "Node: Nodemon",
-        //     "runtimeExecutable": "npm",
-        //     "runtimeArgs": ["run dev"],
-        //     "outputCapture": "std",
-        // },
         {
-            "type": "pwa-chrome",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/server/app.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+
+        {
+            "name": "Attach",
+            "port": 9229,
             "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "name": "Attach Chrome against localhost",
+            // "type": "pwa-chrome",
+            "type": "chrome",
+            "request": "attach",
             "url": "http://localhost:3000",
+            // webRoot, must point to the source file of your javascript!
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}//app.js"
         }
     ]
 }

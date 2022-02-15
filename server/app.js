@@ -78,7 +78,6 @@ var dishesRouter = require('./routes/dishes');
 var inventoryRouter = require('./routes/inventory');
 var allergensRouter = require('./routes/allergens');
 var kitchenToolsRouter = require('./routes/kitchenTools')
-debugger;
 var app = express();
 
 // view engine setup

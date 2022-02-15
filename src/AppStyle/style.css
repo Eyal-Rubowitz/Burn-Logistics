@@ -7,14 +7,14 @@ html {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 #appContainer {
@@ -56,13 +56,13 @@ html {
   border-radius: 0.25vw 0.25vw 0 0;
   z-index: -1;
   -webkit-transform: scaleY(0);
-          transform: scaleY(0);
+  transform: scaleY(0);
   -webkit-transition: -webkit-transform 300ms ease-in;
   transition: -webkit-transform 300ms ease-in;
   transition: transform 300ms ease-in;
   transition: transform 300ms ease-in, -webkit-transform 300ms ease-in;
   -webkit-transform-origin: bottom;
-          transform-origin: bottom;
+  transform-origin: bottom;
 }
 
 .appNavBar .appLink:hover:not(.active)::after {
@@ -71,7 +71,7 @@ html {
   border: transparent 0.18vw solid;
   border-radius: 0.25vw 0.25vw 0 0;
   -webkit-transform: scaleY(1);
-          transform: scaleY(1);
+  transform: scaleY(1);
 }
 
 .appNavBar .appLink .appTg {
@@ -81,7 +81,7 @@ html {
   font-weight: bold;
 }
 
-.appNavBar .appLink .appTg .imgs {
+.appNavBar .appLink .appTg .images {
   display: "inline-block";
   vertical-align: middle;
   width: 3vw;
@@ -91,7 +91,7 @@ html {
   margin: 0vh 0.1vw 0vh 0.1vw;
 }
 
-.appNavBar .appLink .appTg .imgs.L {
+.appNavBar .appLink .appTg .images.L {
   width: 5.5vw;
 }
 
@@ -137,7 +137,7 @@ html {
   margin-bottom: 1vh !important;
 }
 
-.vsbl {
+.visible {
   visibility: visible;
   height: auto;
 }
@@ -156,14 +156,14 @@ html {
   height: 100%;
   opacity: 0.5;
   -webkit-filter: blur(1vw);
-          filter: blur(1vw);
+  filter: blur(1vw);
   -webkit-transform: translateX(-8vw) skewX(-15deg);
-          transform: translateX(-8vw) skewX(-15deg);
+  transform: translateX(-8vw) skewX(-15deg);
 }
 
 .btnShiny:hover:before {
   -webkit-transform: translateX(20rem) skewX(-15deg);
-          transform: translateX(20rem) skewX(-15deg);
+  transform: translateX(20rem) skewX(-15deg);
   opacity: 0.6;
   -webkit-transition: 0.7s;
   transition: 0.7s;
@@ -175,7 +175,7 @@ html {
 
 .hoverAlertColor:hover {
   -webkit-animation: alrt 4s infinite;
-          animation: alrt 4s infinite;
+  animation: alrt 4s infinite;
   border-radius: 50%;
 }
 

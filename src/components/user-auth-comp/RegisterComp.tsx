@@ -51,8 +51,8 @@ class RegisterComp extends PureComponent<UserCompProps> {
       // AppRootModel.userModel.createItem(newUser);
     } else {
       let newId: string = (new ObjectID()).toHexString()
-      let newUser = new User(AppRootModel.userModel, { _id: newId, name: this.name, email: this.email, password: this.password });
-        newUser.store.createItem(newUser);
+      // let newUser = new User(AppRootModel.userModel, { _id: newId, name: this.name, email: this.email, password: this.password });
+      //   newUser.store.createItem(newUser);
     }
   }
 

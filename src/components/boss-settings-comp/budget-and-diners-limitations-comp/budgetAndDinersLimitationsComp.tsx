@@ -106,7 +106,6 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
             let restDailyBudget = dailyMealsBudget - this.mealBudget[i];
             let restEventBudget = restDailyBudget / (events - 1);
             Object.keys(this.mealBudget).forEach((key: string) => {
-                // debugger;
                 if (this.isEvent(key) && key !== i && this.holdBudget[key] === false) {
                     this.mealBudget[key] = restEventBudget;
                 }
@@ -229,7 +228,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                     className="btn btnShiny">
                     <Icon id="icon">add</Icon>Set Budget & Diners
                 </Fab>
-                <ToggleButton value={this.isChosenMealUpdated} className={`tglBtn ${(this.isChosenMealUpdated) ? 'vsbl' : 'hide'}`}>
+                <ToggleButton value={this.isChosenMealUpdated} className={`tglBtn ${(this.isChosenMealUpdated) ? 'visible' : 'hide'}`}>
                     <CheckIcon className="updateDone" />  Updated Done !
                 </ToggleButton>
             </div>);
