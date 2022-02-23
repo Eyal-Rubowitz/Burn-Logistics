@@ -20,11 +20,20 @@ html {
 }
 
 .appNavBar {
-  display: inline-block;
+  // display: inline-block;
+  display: flex;
   background-color: #3646a3;
   z-index: 1;
   height: 9vh;
-  display: flex;
+  flex-grow: 1;
+
+  .appLink.logout {
+    margin-left: auto;
+  }
+
+  .appLink.hideNavLink {
+    display: none;
+  }
 
   .appLink {
     position: relative;
@@ -32,7 +41,7 @@ html {
     top: 0.25vh;
     text-decoration: none;
     color: #91ffff;
-    margin-left: 0.6vw;
+    margin-left: 0.2vw;
     height: 7.2vh;
     border: transparent 0.18vw solid;
     text-shadow: 0.16rem 0.16rem 0.4rem black;
@@ -64,7 +73,7 @@ html {
     .appTg {
       line-height: 6.2vmin;
       margin: 0vh 0.1vw 0vh 0.1vw;
-      font-size: clamp(5px, 1.16vw, 18px);
+      font-size: clamp(5px, 1.16vw, auto);
       font-weight: bold;
 
       .images {

@@ -1,17 +1,18 @@
+// React code snippets!!!
+// https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets
+
 import {
   AppBar, Typography, Container, Toolbar,
-  createMuiTheme, responsiveFontSizes, MuiThemeProvider
+  createTheme, responsiveFontSizes, MuiThemeProvider
 } from '@material-ui/core';
 
 import React from 'react';
-/*
-  react-router-dom is made for "Web application" 
-  and react-router-native is made for "react native mobile apps"
-  both uses react-router at core
-*/ 
-
+  
+// react-router-dom is made for "Web application" 
+// and react-router-native is made for "react native mobile apps"
+// both uses react-router at core!
 // IMPORTANT: when update to v6 useHistory become to useNavigate!
-import { BrowserRouter as Router, NavLink, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
 // import { Switch, Route } from 'react-router';
 
 import { AppRootModel } from './modelsContext';
@@ -27,6 +28,7 @@ import BossSettingsComp from './components/boss-settings-comp/bossSettingsComp';
 import IngredientNoteComp from './components/dishes-comp/ingredient-note-comp/ingredientNoteComp';
 import KitchenToolsFunc from './components/kitchen-tools-comp/kitchenToolsComp';
 // import RegisterComp from './components/user-auth-comp/RegisterComp';
+import UserAuthComp from './components/user-auth-comp/userAuthComp';
 
 import ChefMeal from './assets/chefMeal.png';
 import Calender from './assets/calendar.png';
@@ -94,66 +96,67 @@ ws.addEventListener('message', (msg) => {
   }
 });
 
-// createTheme takes an options object as argument 
-// containing custom colors or typography
-// and return a new theme to the react components. 
-let theme = createMuiTheme();
+// createTheme takes an options object as argument containing custom
+// colors or typography and return a new theme to the react components. 
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 function App() {
-
   let isActive: boolean[] = [false, false, false, false, false, false, false ];
 
   let onActive = (i: number) => {
     isActive.forEach(a => a = false);
     isActive[i] = true;
   }
+  
+  const onLogout = () => {
+    window.location.href = "http://localhost:3000/user-auth";
+  }
 
-  // let isAuthUrl: Boolean = window.location.href !== "http://localhost:3000/user-auth";
-  // const [isAuth, setIsAuthenticated] = useState(isAuthUrl);
+  let isAuthPage = (window.location.href === "http://localhost:3000/user-auth");
+  
   return (
     <div id="rootDiv">
       <MuiThemeProvider theme={theme}>
         <Router>
-          {/* <AppBar style={{display: isAuthUrl ? 'block' : 'none'}}> */}
           <AppBar>
             <Toolbar className="appNavBar">
-              <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
+              <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
                 <Typography  className="appTg" >
                   <img className="images" alt="schedule" src={Calender} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(1)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
+              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(1)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
                 <Typography className="appTg">
                   <img className="images" alt="chef plan meal" src={ChefMeal} />  Meals Plan
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/kitchen-tools'}>
+              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/kitchen-tools'}>
                 <Typography className="appTg" >
                   <img className="images L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
+              <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
                 <Typography className="appTg" >
                   <img className="images" alt="ingredients basket" src={Ingredients} /> Ingredient Variety
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[4]) ? 'active' : ''}`} onClick={() => onActive(4)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/inventory'}>
+              <NavLink className={`appLink ${(isActive[4]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(4)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/inventory'}>
                 <Typography className="appTg" >
                   <img className="images" alt="inventory box" src={InvBox} /> Ingredient Inventory
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[5]) ? 'active' : ''}`} onClick={() => onActive(5)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/buying-list'}>
+              <NavLink className={`appLink ${(isActive[5]) ? 'active' : '' } ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(5)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/buying-list'}>
                 <Typography className="appTg" >
                   <img className="images" alt="buying list" src={BuyingList} /> Shopping List
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>
+              <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>
                 <Typography className="appTg" >
                   <img className="images" alt="admin settings" src={AdminSettings} />  Admin
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[7]) ? 'active' : ''}`} onClick={() => onActive(7)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/'}>
+              <NavLink className={`${(isAuthPage) ? 'hideNavLink' :  `logout ${(isActive[7]) ? 'active' : ''}`} appLink`} onClick={() => {onActive(7); onLogout(); }} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/user-auth'}>
                 <Typography className="appTg" >
                   <img className="images" alt="admin settings" src={LogOut} />  Log Out
               </Typography>
@@ -163,9 +166,7 @@ function App() {
           </AppBar>
           <Container maxWidth={false} id="appContainer">
             <Switch>
-              {/* <Route path={'/user-auth'} exact component={UserAuthComp} /> */}
-            
-              {/* <Route path={'/register'} exact component={RegisterComp} /> */}
+              <Route path={'/user-auth'} exact component={UserAuthComp} />
               <Route path={'/meals'} exact component={MealListComp} />
               <Route path={'/meals/:id'} exact component={MealComp} />
               <Route path={'/meals/:id/ingredient-note/:id'} exact component={IngredientNoteComp} />
@@ -183,7 +184,6 @@ function App() {
               <Route path={'/settings/sous-chefs'} exact component={BossSettingsComp} />
               <Route path={'/settings/diners-nutrition'} exact component={BossSettingsComp} />
               <Route path={'/settings/cleaning-crew'} exact component={BossSettingsComp} />
-              {/* <Redirect from="/" to="register" /> */}
             </Switch>
           </Container>
         </Router>

@@ -299,7 +299,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
                         InputLabelProps={{ "aria-readonly": true }} />
                     {eventList}
                     <Fab
-                        id="btnLmtSetBgtDnrs"
+                        id="btnLmtSetBgtDiners"
                         className="btnShiny"
                         onClick={() => { this.onSetLimitations() }}
                         variant='extended'

@@ -6,6 +6,21 @@
     "configurations": 
     [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:3000/user-auth",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "pwa-chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        
+        {
             "name": "Launch Program",
             "program": "${workspaceFolder}/server/app.js",
             "request": "launch",
@@ -14,33 +29,14 @@
             ],
             "type": "pwa-node"
         },
-
-        {
-            "name": "Attach",
-            "port": 9229,
-            "request": "attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node"
-        },
         {
             "name": "Attach Chrome against localhost",
             // "type": "pwa-chrome",
-            "type": "chrome",
+            "type": "pwa-chrome",
             "request": "attach",
-            "url": "http://localhost:3000",
+            "url": "http://localhost:3000/user-auth",
             // webRoot, must point to the source file of your javascript!
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "pwa-node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}//app.js"
+            "webRoot": "${workspaceFolder}/src"
         }
     ]
 }

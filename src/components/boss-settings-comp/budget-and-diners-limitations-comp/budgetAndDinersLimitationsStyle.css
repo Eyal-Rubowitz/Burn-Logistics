@@ -24,7 +24,7 @@
   margin-bottom: 1vh !important;
 }
 
-.choosenMealForm {
+.chosenMealForm {
   display: inline-block;
   width: 4vw !important;
   margin: 0.05vw !important;
@@ -80,11 +80,11 @@
   margin-right: 10.4vw !important;
 }
 
-#btnLmtSetBgtDnrs {
+#btnLmtSetBgtDiners {
   margin: 0.1vw !important;
 }
 
-#btnLmtSetBgtDnrs #icon {
+#btnLmtSetBgtDiners #icon {
   position: relative;
   top: -0.05vw !important;
 }

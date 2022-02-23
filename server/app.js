@@ -70,6 +70,7 @@ var logger = require('morgan');
 
 // let userRouter = require('./routes/usersRegistration');
 // let userLogin = require('./routes/usersLogin');
+let userAuth = require('./routes/userAuth');
 var indexRouter = require('./routes/index');
 var mealsRouter = require('./routes/meals');
 var ingredientsRouter = require('./routes/ingredients');
@@ -93,6 +94,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 // app.use('/api/user', userRouter);
 // app.use('/api/userLogin', userLogin);
+app.use('/api/userAuth', userAuth);
 app.use('/api/meals', mealsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/foodItems', foodItemsRouter);
