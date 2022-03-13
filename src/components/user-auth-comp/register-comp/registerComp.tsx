@@ -2,21 +2,25 @@ import React, {PureComponent} from 'react';
 // import { appRootModel } from '../../../modelsContext';
 import { observable } from 'mobx'
 import { observer } from 'mobx-react';
-// import { User } from '../../../models/userModel';
+import ObjectID from 'bson-objectid';
+import { AppRootModel } from '../../../modelsContext';
+import { User } from '../../../models/userModel';
 // import jwt from 'jsonwebtoken';
 // import objectID from 'bson-object';
 // import { IReactionDisposer, autorun, observable } from 'mobx';
 
-// does "UserCompProps" is needed?...
+/*  Does "UserCompProps" is needed?...
 // type UserCompProps = { match: { params: { id: string }, url: string, path: string } };
-// type IUserProps = { name: string; email: string; password: string; };
+type IUserProps = { name: string; email: string; password: string; };    */
+
 
 @observer
 class RegisterComp extends PureComponent {
     // class RegisterComp extends PureComponent<UserCompProps> {
 
   // @observable user?: User;
-  @observable name: string = "";
+  // @observable camp: string = "";
+  @observable fullName: string = "";
   @observable email : string = "";
   @observable password: string = "";
   
@@ -24,40 +28,52 @@ class RegisterComp extends PureComponent {
   onRegisterUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    const response = await fetch('http://localhost:3000/api/userAuth/register', {
+    const response = await fetch('http://localhost:3000/api/users/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: this.name,
+        // camp: this.camp,
+        name: this.fullName,
         email: this.email,
-        password: this.password
+        password: this.password,
       })
     });
 
     const jsonData = await response.json();
 
     if(jsonData.status === 'ok') {
+      let newId = (new ObjectID()).toHexString()
+      let newUser = new User(AppRootModel.userModel, { _id: newId, fullName: this.fullName, email: this.email, password: this.password });
+      newUser.store.createObject(newUser);
+
       localStorage.clear();
-			alert('YAY Successful Registration!')
-			this.name = "";
+			this.fullName = "";
       this.email = "";
       this.password = "";
-      console.log("json test data when status 'ok' is: ",jsonData.test);
-    }
+      // this.camp = "";
+			alert('YAY Registration Successfully Done!');
+    } else {
+			alert(jsonData.error);
+		}
   }
 
     render() {
-        
-
         return (
         <div style={{border: 'solid blue 0.2em', padding: '2%', borderEndStartRadius: '12px', borderStartStartRadius: '12px', height: '29.8vh' }}>
           <h1>Register</h1>
         	<form onSubmit={(e) => {this.onRegisterUser(e)}}>
-        	  <input 
-        	     value={this.name} 
-        	     onChange={(e) => this.name = e.target.value}
+          {/* <input 
+        	     value={this.camp} 
+        	     onChange={(e) => this.camp = e.target.value}
+							 autoComplete="off"
+        	     type="text" 
+        	     placeholder="Name"/>
+        	  <br/> */}
+            <input 
+        	     value={this.fullName} 
+        	     onChange={(e) => this.fullName = e.target.value}
 							 autoComplete="off"
         	     type="text" 
         	     placeholder="Name"/>
@@ -96,7 +112,7 @@ class RegisterComp extends PureComponent {
     // }
 
   // populateUser = async() => {
-  //   const req = await fetch('http://localhst:3000/api/userAuth', {
+  //   const req = await fetch('http://localhst:3000/api/users', {
   //      method: 'GET',
 	// 		headers: {
 	// 			'x-access-token': localStorage.getItem('token'),
@@ -132,7 +148,7 @@ class RegisterComp extends PureComponent {
   //   // and also on any change 
   //   // in the observables used inside function !
       // this.disposeAutorun = autorun(async () => {
-    //     const req = await fetch('http://localhost:3000/api/userAuth', {
+    //     const req = await fetch('http://localhost:3000/api/users', {
     //   method: 'GET',
     //   headers: {
     //     'x-access-token': localStorage.getItem('token'),

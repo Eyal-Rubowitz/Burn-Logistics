@@ -19,11 +19,11 @@ const FoodItemSelection = (props: any): JSX.Element => {
         <Autocomplete
             id='di'
             clearOnEscape={false}
-            options={AppRootModel.foodItemModel.items.map(fi => {
+            options={AppRootModel.foodItemModel.objectList.map(fi => {
                 return { _id: fi._id, name: fi.name } as any
             })}
             getOptionLabel={(option: FoodItem) => option.name}
-            value={AppRootModel.foodItemModel.items.find((i) => i._id === props.value)}
+            value={AppRootModel.foodItemModel.objectList.find((i) => i._id === props.value)}
             renderInput={params => (
                 <React.Fragment>
                     <TextField {...params}
@@ -41,7 +41,7 @@ const FoodItemSelection = (props: any): JSX.Element => {
 // type IDishObj = { _id: string; name: string; }; 
 
 const DishSelection = (props: any): JSX.Element => {
-    let dishes = AppRootModel.dishModel.items.map(d => {
+    let dishes = AppRootModel.dishModel.objectList.map(d => {
         return { _id: d._id, name: d.name } 
         // as IDishObj
     });
@@ -51,7 +51,7 @@ const DishSelection = (props: any): JSX.Element => {
             id='di'
             options={dishes as any}
             getOptionLabel={(option: Dish) => option.name}
-            value={AppRootModel.dishModel.items.find(d => d._id === props.value)}
+            value={AppRootModel.dishModel.objectList.find(d => d._id === props.value)}
             renderInput={params => (
                 <React.Fragment>
                     <TextField {...params}
@@ -102,7 +102,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
 
     onMergeSameFreeItems = (): void => {
         let invD: InvDictionary = {};
-        AppRootModel.inventoryModel.items.forEach(inv => {
+        AppRootModel.inventoryModel.objectList.forEach(inv => {
             if (invD[inv.foodItemId] !== undefined && this.isFreeItem(invD[inv.foodItemId]) && this.isFreeItem(inv)) {
                 let ii: InventoryItem = invD[inv.foodItemId];
                 if (ii.unit === inv.unit) {
@@ -166,7 +166,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                                                         {...props} 
                                                                         ref={ref} 
                                                                         color="primary" 
-                                                                        fontSize="default" 
+                                                                        fontSize="medium" 
                                                                         viewBox="0 0 20 20" />
                                                                     <p className="p">Add Inventory Item</p>
                                                             </div>),
@@ -210,10 +210,10 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                 type: "date"
                             },
                         ]}
-                        data={AppRootModel.inventoryModel.items.map(ii => ii)}
+                        data={AppRootModel.inventoryModel.objectList.map(ii => ii)}
                         options={{
                             addRowPosition: 'first',
-                            pageSize: AppRootModel.inventoryModel.items.length,
+                            pageSize: AppRootModel.inventoryModel.objectList.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
                             maxBodyHeight: '80vh',
@@ -226,7 +226,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                                     newII._id = (new ObjectID()).toHexString();
                                     newII.expirationDate = new Date();
                                     newII.note = "";
-                                    AppRootModel.inventoryModel.createItem(newII);
+                                    AppRootModel.inventoryModel.createObject(newII);
                                     res();
                                 })
                             },
@@ -239,7 +239,7 @@ class InventoryListComp extends PureComponent<InventoryProps> {
                             },
                             onRowDelete: (oldII: InventoryItem) => {
                                 return new Promise((res, rej) => {
-                                    oldII.isItemDeleted = true;
+                                    oldII.isObjDeleted = true;
                                     oldII.store.removeItem(oldII);
                                     res(oldII);
                                 })

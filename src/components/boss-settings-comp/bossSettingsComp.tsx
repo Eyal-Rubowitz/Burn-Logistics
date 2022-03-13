@@ -33,7 +33,7 @@ class BossSettingsComp extends PureComponent {
     isActive: boolean[] = [false, false, false, false, false, false, false, false ];
 
     @computed get foodItems(): FoodItem[] {
-        return AppRootModel.foodItemModel.items.map(f => f);
+        return AppRootModel.foodItemModel.objectList.map(f => f);
     }
 
     onActive = (i: number) => {

@@ -1,4 +1,4 @@
-.unVisableBox {
+.unVisibleBox {
   display: none;
 }
 
@@ -63,7 +63,7 @@
 }
 
 #dinersForm #dietType .txtFldDietType {
-  display: 'inline-block';
+  display: "inline-block";
   width: 5.2vw !important;
   margin-left: 0.5vw !important;
   margin-bottom: 2vh !important;

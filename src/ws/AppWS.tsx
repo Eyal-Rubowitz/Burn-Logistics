@@ -7,45 +7,45 @@ AppWS.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
   switch (data.type) {
-    // case "userAuth": {
-    //   console.log('userAuth case');
-    //   AppRootModel.userModel.updateItemFromServer(data.user);
-    //   break;
-    // }
+    case "users": {
+      console.log('users case');
+      AppRootModel.userModel.updateObjFromServer(data.obj);
+      break;
+    }
     case "meal": {
       console.log('meal case');
-      AppRootModel.mealModel.updateItemFromServer(data.item);
+      AppRootModel.mealModel.updateObjFromServer(data.obj);
       break;
     }
     case "dish": {
       console.log('dish case');
-      AppRootModel.dishModel.updateItemFromServer(data.item);
+      AppRootModel.dishModel.updateObjFromServer(data.obj);
       break;
     }
     case "ingredient": {
       console.log('ingredient case');
-      AppRootModel.ingredientModel.updateItemFromServer(data.item);
+      AppRootModel.ingredientModel.updateObjFromServer(data.obj);
       break;
     }
     case "foodItem": {
       console.log('foodItem case');
-      AppRootModel.foodItemModel.updateItemFromServer(data.item);
+      AppRootModel.foodItemModel.updateObjFromServer(data.obj);
       break;
     }
     case "inventory": {
       console.log('inventory case');
-      AppRootModel.inventoryModel.updateItemFromServer(data.item);
+      AppRootModel.inventoryModel.updateObjFromServer(data.obj);
       break;
     }
     case "allergens": {
       console.log('allergens case');
-      AppRootModel.allergensModel.updateItemFromServer(data.item);
+      AppRootModel.allergensModel.updateObjFromServer(data.obj);
       break;
     }
     case "kitchenTools": {
       console.log('Kitchen tools case');
-      AppRootModel.kitchenToolsModel.updateItemFromServer(data.item);
-      console.log('ws: ', data.item);
+      AppRootModel.kitchenToolsModel.updateObjFromServer(data.obj);
+      console.log('ws: ', data.obj);
       break;
     }
   }

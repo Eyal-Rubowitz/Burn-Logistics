@@ -15,7 +15,7 @@ export class SelectedEventStore {
   }
 
   @computed get meals(): Meal[] {
-    return AppRootModel.mealModel.items.map(m => m);
+    return AppRootModel.mealModel.objectList.map(m => m);
   }
 
   @action onSelectedDate(newSelectedDate: string) {

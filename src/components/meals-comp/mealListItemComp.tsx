@@ -24,24 +24,25 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-type MealProps = { meal: Meal };
-const MealListItemComp = observer((props: MealProps) => {
+type IMealProps = { meal: Meal };
+const MealListItemComp = observer((props: IMealProps) => {
     const classes = useStyles();
     let onHandleInputChange = (e: React.ChangeEvent<any>) => {
-        let name: string = e.target.name;
+        let elementAttrName: string = e.target.name;
         let value: string = e.target.value;
-        (props.meal as any)[name] = value;
+        (props.meal as any)[elementAttrName] = value;
         props.meal.store.updateItem(props.meal);
     }
 
     let onDelete = (): void => {
-        props.meal.isItemDeleted = true;
+        props.meal.isObjDeleted = true;
         props.meal.store.removeItem(props.meal);
     }
 
-    let mealCategories: Set<string> = new Set(props.meal.store.items.map(m => m.name));
+    let mealCategories: Set<string> = new Set(props.meal.store.objectList.map(m => m.name));
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
-    
+    let members: string[] = props.meal.memberList;
+    // let memberList: JSX.Element[] = Array.from(members).map((mmbr, i) => <MenuItem key={i} value={mmbr}>{mmbr}</MenuItem>)
     return (
         <Box my={1} key={props.meal._id} className="grow">
             <Card >
@@ -53,6 +54,13 @@ const MealListItemComp = observer((props: MealProps) => {
                             value={props.meal.chef}
                             variant="outlined" />
                     </FormControl>
+                    {/* <div>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <Select value={props.meal.chef} name='chef' onChange={onHandleInputChange}>
+                                {memberList}
+                            </Select>
+                        </FormControl>
+                    </div> */}
                     <div>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <Select value={props.meal.name} name='name' onChange={onHandleInputChange}>
@@ -65,7 +73,7 @@ const MealListItemComp = observer((props: MealProps) => {
                     </List>
                 </CardContent>
                 <CardActions>
-                    <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+                    <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start">
                         <Grid item sm={9} className="grd">
                             <Link to={`/meals/${props.meal._id}`}
                                 className="link">

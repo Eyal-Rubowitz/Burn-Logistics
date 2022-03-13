@@ -6,19 +6,21 @@
   margin: 0 0 5vh 0;
 }
 
-.deleteDiners .tg, .deleteItems .tg {
+.deleteDiners .tg,
+.deleteItems .tg {
   display: inline-block;
 }
 
-.deleteDiners .dfi, .deleteItems .dfi {
+.deleteDiners .dfi,
+.deleteItems .dfi {
   display: inline-block;
 }
 
-.coverdData {
+.coveredData {
   height: 0px;
 }
 
-.coverdData #mobx-update-date-call {
+.coveredData #mobx-update-date-call {
   visibility: hidden;
 }
 

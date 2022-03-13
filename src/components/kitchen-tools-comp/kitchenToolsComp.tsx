@@ -28,7 +28,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                                                                 {...props} 
                                                                 ref={ref} 
                                                                 color="primary" 
-                                                                fontSize="default" 
+                                                                fontSize="medium" 
                                                                 viewBox="0 0 20 20" />
                                                             <p className="p">Add Kitchen Item</p>
                                                     </div>),
@@ -56,10 +56,10 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                             type: "string"  as any                      
                         },
                     ]}
-                    data={AppRootModel.kitchenToolsModel.items.map(kt => kt)}
+                    data={AppRootModel.kitchenToolsModel.objectList.map(kt => kt)}
                     options={{
                         addRowPosition: 'first',
-                        pageSize: AppRootModel.kitchenToolsModel.items.length,
+                        pageSize: AppRootModel.kitchenToolsModel.objectList.length,
                         paging: false,
                         headerStyle: { position: 'sticky', top: 0 },
                         maxBodyHeight: '800px',
@@ -69,7 +69,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                     editable={{
                         onRowAdd: (newKT: KitchenTool): Promise<void> => {
                             return new Promise((res) => {
-                                AppRootModel.kitchenToolsModel.createItem(newKT);
+                                AppRootModel.kitchenToolsModel.createObject(newKT);
                                 res();
                             })
                         },
@@ -81,7 +81,7 @@ export default class KitchenToolsComp extends PureComponent<KitchenTool>{
                         },
                         onRowDelete: (oldKT: KitchenTool) => {
                             return new Promise((res, rej) => {
-                                oldKT.isItemDeleted = true;
+                                oldKT.isObjDeleted = true;
                                 oldKT.store.removeItem(oldKT);
                                 res(oldKT);
                             })

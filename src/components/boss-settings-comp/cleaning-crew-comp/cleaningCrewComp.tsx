@@ -33,7 +33,7 @@ class CleaningCrewComp extends PureComponent {
     }
 
     @computed get meals(): Meal[] {
-        return AppRootModel.mealModel.items.map(m => m);
+        return AppRootModel.mealModel.objectList.map(m => m);
     }
 
     @computed get meal(): Meal | undefined {
@@ -69,7 +69,7 @@ class CleaningCrewComp extends PureComponent {
                 <div>
                     <Typography variant="h6" key={name} className="tgClnName">{name}</Typography>
                     <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
-                        <DeleteForeverIcon className="tgClnName" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                        <DeleteForeverIcon className="tgClnName" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
             )

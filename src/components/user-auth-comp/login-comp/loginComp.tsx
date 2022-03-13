@@ -3,8 +3,6 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 // import { IReactionDisposer, autorun, observable } from 'mobx';
 import jwt from 'jsonwebtoken';
-// import { useHistory } from 'react-router';
-import { useHistory } from 'react-router-dom';
 // import { globalAgent } from 'http';
 
 type IUserProps = { name: string; email: string; password: string; };
@@ -27,8 +25,8 @@ class LoginComp extends PureComponent {
         email: this.email,
         password: this.password
      })
-       // this API passes the body as Json object to the server 
-       const response = await fetch('http://localhost:3000/api/userAuth/login', {
+       // this API passes the body as Json format to the server 
+       const response = await fetch('http://localhost:3000/api/users/login', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json',
@@ -41,8 +39,6 @@ class LoginComp extends PureComponent {
        if(jsonData.userToken) {
          localStorage.setItem('token', jsonData.userToken);
          window.location.href = 'http://localhost:3000/schedule';
-        // await pageNavigate.push('http://localhost:3000/schedule');
-
        } else {
          alert('Please check your username and password!');
        }

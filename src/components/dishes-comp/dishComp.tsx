@@ -30,11 +30,11 @@ const FoodItemSelection = (props: any): JSX.Element => {
     return (
         <Autocomplete
             id='di'
-            options={AppRootModel.foodItemModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => {
+            options={AppRootModel.foodItemModel.objectList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => {
                 return { _id: fi._id, name: fi.name } as any
             })}
             getOptionLabel={(option: FoodItem) => option.name}
-            value={AppRootModel.foodItemModel.items.find((i) => i._id === props.value)}
+            value={AppRootModel.foodItemModel.objectList.find((i) => i._id === props.value)}
             renderInput={params => (
                 <React.Fragment>
                     <TextField {...params}
@@ -65,16 +65,16 @@ const UnitSelection = (props: any): JSX.Element => {
     )
 }
 
-type DishProps = { dish: Dish };
+type IDishProps = { dish: Dish };
 
 @observer
-class DishComp extends PureComponent<DishProps> {
+class DishComp extends PureComponent<IDishProps> {
 
     disposeAutorun: IReactionDisposer;
     @observable dish?: Dish;
     @observable lrgns: Allergens[] = [];
 
-    constructor(props: DishProps) {
+    constructor(props: IDishProps) {
 
         super(props);
         // why use derivation of autorun and not computed?..
@@ -82,9 +82,9 @@ class DishComp extends PureComponent<DishProps> {
         // and also on any change in the observables
         // used inside function !
         this.disposeAutorun = autorun(() => {
-            let dishId = this.props.dish._id;
-            this.dish = AppRootModel.dishModel.items.find((d: Dish) => d._id === dishId);
-            this.lrgns = AppRootModel.allergensModel.items.map(lrg => lrg);
+            const dishId = this.props.dish._id;
+            this.dish = AppRootModel.dishModel.objectList.find((d: Dish) => d._id === dishId);
+            this.lrgns = AppRootModel.allergensModel.objectList.map(lrg => lrg);
         });
     }
 
@@ -100,7 +100,7 @@ class DishComp extends PureComponent<DishProps> {
     }
 
     onDelete = (): void => {
-        this.props.dish.isItemDeleted = true;
+        this.props.dish.isObjDeleted = true;
         this.props.dish.store.removeItem(this.props.dish);
     }
 
@@ -219,7 +219,7 @@ class DishComp extends PureComponent<DishProps> {
                                                 newIng._id = (new ObjectID()).toHexString();
                                                 newIng.dishId = this.props.dish._id;
                                                 newIng.note = '';
-                                                this.props.dish.store.root.ingredientModel.createItem(newIng);
+                                                this.props.dish.store.root.ingredientModel.createObject(newIng);
                                             }
                                             res();
                                         })
@@ -234,7 +234,7 @@ class DishComp extends PureComponent<DishProps> {
                                     },
                                     onRowDelete: (oldIng: Ingredient) => {
                                         return new Promise((res, rej) => {
-                                            oldIng.isItemDeleted = true;
+                                            oldIng.isObjDeleted = true;
                                             oldIng.store.removeItem(oldIng);
                                             res(oldIng);
                                         })

@@ -52,7 +52,7 @@ export class FoodItem extends ClassType {
     }
 
     deleteCustomUnit(customUnit: string): void {
-        let foodItemIngList = AppRootModel.ingredientModel.items.filter(ing => ing.foodItemId === this._id)
+        let foodItemIngList = AppRootModel.ingredientModel.objectList.filter(ing => ing.foodItemId === this._id)
         let ingUseCustomUnit = foodItemIngList.find(ing => ing.unit === customUnit);
         if(!ingUseCustomUnit){
             this.customUnits = this.customUnits.filter(cu => cu.unitName !== customUnit);

@@ -61,7 +61,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
     }
 
     @computed get meals(): Meal[] {
-        return AppRootModel.mealModel.items.map(m => m);
+        return AppRootModel.mealModel.objectList.map(m => m);
     }
 
     onSwitch = (): void => {
@@ -137,7 +137,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
             meal.portion = this.portion[meal._id];
             mealModel.updateItem(meal);
         } else {
-            mealModel.items.forEach(m => {
+            mealModel.objectList.forEach(m => {
                 m.diners.push({ "count": this.diners, "dietType": "Omnivore" });
                 m.budget = this.mealBudget[m.name];
                 m.portion = this.portion[m.name];

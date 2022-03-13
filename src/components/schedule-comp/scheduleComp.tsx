@@ -18,7 +18,7 @@ class ScheduleTableComp extends Component {
     constructor(props: {}) {
         super(props)
         this.disposeAutorun = autorun(() => {
-            this.activatedTr = AppRootModel.mealModel.items.map(m => false);
+            this.activatedTr = AppRootModel.mealModel.objectList.map(m => false);
         });
     }
 
@@ -62,7 +62,7 @@ class ScheduleTableComp extends Component {
                                 ${(borderBool) ? 'borderDays' : 'none'}
                                 ${(this.activatedTr[i]) ? 'trActive' : ''}`} 
                                 >
-                    <td>{m.chef}</td>
+                    <td>{m.chefName}</td>
                     <td>{m.date.toLocaleDateString()}</td>
                     <td>{m.name}</td>
                     <td className="servingTd">{m.serving.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
@@ -137,7 +137,7 @@ class ScheduleTableComp extends Component {
     render() {
         return (
             <div>
-                {this.ScheduleTableFunc(AppRootModel.mealModel.items)}
+                {this.ScheduleTableFunc(AppRootModel.mealModel.objectList)}
                 {(this.mealInfoToShow) ? this.MealTableFunc(this.mealInfoToShow) : ''}
             </div>
         )

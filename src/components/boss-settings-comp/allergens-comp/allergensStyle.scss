@@ -1,82 +1,82 @@
 #mainLrg {
-    margin: 1vh 0 5vh 0;
+  margin: 1vh 0 5vh 0;
 }
 
 #dinersInfo {
-    margin: 0 0 5vh 0;
+  margin: 0 0 5vh 0;
 }
 
-.deleteDiners, .deleteItems {
+.deleteDiners,
+.deleteItems {
+  .tg {
+    display: inline-block;
+  }
 
-    .tg {
-        display: inline-block;
-    }
-    
-    .dfi {
-        display: inline-block;
-    }
+  .dfi {
+    display: inline-block;
+  }
 }
 
-.coverdData {
-    height: 0px;
-   
-    #mobx-update-date-call {
-        visibility: hidden;
-    }
+.coveredData {
+  height: 0px;
+
+  #mobx-update-date-call {
+    visibility: hidden;
+  }
 }
 
 .addBtn {
-    margin: 0.32vw !important;
-    margin-top: 0px !important;
-    display: inline-block !important;
-    height: 2.8vw !important;
-    #icon {
-        position: relative;
-        top: 0.5vh;
-    }
+  margin: 0.32vw !important;
+  margin-top: 0px !important;
+  display: inline-block !important;
+  height: 2.8vw !important;
+  #icon {
+    position: relative;
+    top: 0.5vh;
+  }
 }
 
 .selectLrgForm {
-    width: 100%;
-    margin: 1px !important;
-    margin-top: 1% !important;
-    margin-bottom: 1.5vh !important;
+  width: 100%;
+  margin: 1px !important;
+  margin-top: 1% !important;
+  margin-bottom: 1.5vh !important;
 
-    #selectLbl {
-        background-color: white;
-        padding: 0 0.2vw 0 0.2vw;
-        
-        &:active {
-            color: blue
-        }
+  #selectLbl {
+    background-color: white;
+    padding: 0 0.2vw 0 0.2vw;
+
+    &:active {
+      color: blue;
     }
+  }
 }
 
 .selectIngForm {
-    margin: 0.1% !important; 
-    width: 50%; 
+  margin: 0.1% !important;
+  width: 50%;
 }
 
 .txtFld {
-    margin: 0.1% !important;
+  margin: 0.1% !important;
 }
 
 #nameTxtFld {
-    position: relative;
-    line-height: 3vh;
+  position: relative;
+  line-height: 3vh;
 }
 
 #tgLrgTtl {
-    margin-bottom: 1.5vh;
-    font-size: 1.5em;
-    font-weight: bold;
+  margin-bottom: 1.5vh;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .listTitle {
-    position: relative;
-    margin: 1.5vh 0 0.2vh 0 !important;
+  position: relative;
+  margin: 1.5vh 0 0.2vh 0 !important;
 }
 
 .addLrgIng {
-    margin: 0.3vw !important;
+  margin: 0.3vw !important;
 }

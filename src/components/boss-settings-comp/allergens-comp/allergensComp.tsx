@@ -22,7 +22,7 @@ class AllergensComp extends PureComponent {
     @observable selectedFoodItemId: string = "";
 
     @computed get allergensList(): Allergens[] {
-        return AppRootModel.allergensModel.items.map(lrg => lrg);
+        return AppRootModel.allergensModel.objectList.map(lrg => lrg);
     }
 
     onEnterNewAllergy = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -34,7 +34,7 @@ class AllergensComp extends PureComponent {
     onAddNewAllergy = (): void => {
         let newId = (new ObjectID()).toHexString()
         let newLRG = new Allergens(AppRootModel.allergensModel, { _id: newId, name: this.allergenName, foodItemIdList: [], dinersNameList: [] })
-        AppRootModel.allergensModel.createItem(newLRG);
+        AppRootModel.allergensModel.createObject(newLRG);
         this.selectedAllergenId = newId;
     }
 
@@ -48,7 +48,7 @@ class AllergensComp extends PureComponent {
     }
 
     onAddNewDiner = (): void => {
-        let lrg = AppRootModel.allergensModel.items.find(alrg => alrg._id === this.selectedAllergenId);
+        let lrg = AppRootModel.allergensModel.objectList.find(alrg => alrg._id === this.selectedAllergenId);
         (lrg as Allergens).dinersNameList.push(this.newDinerName);
         AppRootModel.allergensModel.updateItem(lrg as Allergens);
     }
@@ -58,7 +58,7 @@ class AllergensComp extends PureComponent {
     }
 
     onAddFoodItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-        let lrg = AppRootModel.allergensModel.items.find(alrg => alrg._id === this.selectedAllergenId);
+        let lrg = AppRootModel.allergensModel.objectList.find(alrg => alrg._id === this.selectedAllergenId);
         (lrg as Allergens).foodItemIdList.push(this.selectedFoodItemId);
         AppRootModel.allergensModel.updateItem(lrg as Allergens);
     }
@@ -71,7 +71,7 @@ class AllergensComp extends PureComponent {
         let isVisible = false;
 
         if (this.selectedAllergenId) {
-            let selectedLrg = AppRootModel.allergensModel.items.find(lrg => lrg._id === this.selectedAllergenId);
+            let selectedLrg = AppRootModel.allergensModel.objectList.find(lrg => lrg._id === this.selectedAllergenId);
             lrgDinerList = (selectedLrg as Allergens).dinersNameList.map(diner => {
                 return (
                     <div className="deleteDiners">
@@ -82,14 +82,14 @@ class AllergensComp extends PureComponent {
                     </div>)
             });
             lrgDinerList.unshift(<Typography variant="h6" key={'diner-title'} className="title listTitle">Diners with {(selectedLrg as Allergens).name} intolerance:</Typography>)
-            foodItemList = AppRootModel.foodItemModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => <MenuItem key={fi._id} value={fi._id}>{fi.name}</MenuItem>);
+            foodItemList = AppRootModel.foodItemModel.objectList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).map(fi => <MenuItem key={fi._id} value={fi._id}>{fi.name}</MenuItem>);
             let lrgFoodIdList = (selectedLrg as Allergens).foodItemIdList.map(lrgFood => lrgFood);
-            lrgFoodList = AppRootModel.foodItemModel.items.filter(f => lrgFoodIdList.includes(f._id)).map(f => {
+            lrgFoodList = AppRootModel.foodItemModel.objectList.filter(f => lrgFoodIdList.includes(f._id)).map(f => {
                 return (
                     <div className="deleteItems">
                         <Typography className="tg" variant="h6" key={f._id}>{f.name}</Typography>
                         <IconButton onClick={() => (selectedLrg as Allergens).deleteFoodItemFromList(f._id)} color="secondary" size="medium">
-                            <DeleteForeverIcon className="dfi" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                            <DeleteForeverIcon className="dfi" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                         </IconButton>
                     </div>)
             });
@@ -99,7 +99,7 @@ class AllergensComp extends PureComponent {
 
         return (
             <Paper className="paper">
-                <div className="coverdData">
+                <div className="coveredData">
                     <Box id="mobx-update-date-call"
                         component="span">
                         {this.selectedAllergenId}

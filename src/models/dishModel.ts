@@ -30,10 +30,10 @@ export class Dish extends ClassType {
     @observable mealId: string = '';
 
     @computed get ingredients(): Ingredient[] {
-        return this.store.root.ingredientModel.items.filter(i => i.dishId === this._id);
+        return this.store.root.ingredientModel.objectList.filter(i => i.dishId === this._id);
     }
 
     @computed get meal(): Meal | undefined {
-        return this.store.root.mealModel.items.find(m => m._id === this.mealId);
+        return this.store.root.mealModel.objectList.find(m => m._id === this.mealId);
     }
 }

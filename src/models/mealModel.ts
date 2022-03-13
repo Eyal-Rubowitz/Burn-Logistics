@@ -2,6 +2,7 @@ import { observable, computed } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 import { Dish } from './dishModel';
+import { User } from './userModel';
 
 export class MealModel extends DataModel<Meal> {
 
@@ -49,13 +50,26 @@ export class Meal extends ClassType {
         this.cleaningCrewList = obj.cleaningCrewList;
     }
 
+    @computed get chefName(): string {
+        // console.log('mealModel chef name: ', this.store.root.userModel.items.find(u => (u._id === this.chefId))?.fullName)
+        return this.chef || "No chef found";
+    } 
+
+    @computed get memberList(): string[] {
+        // const membersNames: string[] =this.store.root.userModel.objectList.map(u => u.fullName);
+        const invList: string[] = this.store.root.inventoryModel.objectList.map((inv) => inv.name);
+        const uList: string[] = this.store.root.userModel.objectList.map((u: User) => u.fullName);
+        return this.store.root.userModel.objectList.map(u => u.fullName || 'undefined name');
+    }
+
     @computed get dishes(): Dish[] {
-        return this.store.root.dishModel.items.filter(d => d.mealId === this._id);
+        return this.store.root.dishModel.objectList.filter(d => d.mealId === this._id);
     }
 
     @computed get totalDiners(): number {
         return this.diners.reduce((ttl, diet) => ttl + diet.count, 0);
     }
+
 
     deleteSousChefFromList(inputName: string): void {
         this.sousChefList = this.sousChefList.filter(name => name !== inputName);

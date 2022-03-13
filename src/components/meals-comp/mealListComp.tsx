@@ -18,7 +18,7 @@ class MealListComp extends PureComponent {
         let newId = (new ObjectID()).toHexString();
         let time = new Date(date.setHours(12, 0));
         let newMeal = new Meal(this.mealModel, { _id: newId, chef: "Chef Name", date: date, name: "Brunch", preparing: time, serving: time });
-        newMeal.store.createItem(newMeal);
+        newMeal.store.createObject(newMeal);
     }
 
     sortedMeals = (mealList: Meal[]): Meal[] => {
@@ -26,9 +26,9 @@ class MealListComp extends PureComponent {
     }
 
     render() {
-        let dates: Set<string> = new Set(this.mealModel.items.slice().sort((a, b) => a.date.getTime() - b.date.getTime()).map(m => m.date.toLocaleDateString()));
+        let dates: Set<string> = new Set(this.mealModel.objectList.slice().sort((a, b) => a.date.getTime() - b.date.getTime()).map(m => m.date.toLocaleDateString()));
         let mealsByDates: JSX.Element[] = Array.from(dates).map((date) => {
-            let meals: Meal[] = this.mealModel.items.filter(m => m.date.toLocaleDateString() === date);
+            let meals: Meal[] = this.mealModel.objectList.filter(m => m.date.toLocaleDateString() === date);
             return (
                 <Grid item sm={3} xs={12} key={date}>
                     <Typography variant="h6" align={'center'}>{meals[0].date.toLocaleDateString()}</Typography>
@@ -45,7 +45,7 @@ class MealListComp extends PureComponent {
         })
         return (
             <div>
-                <Grid spacing={2} container direction="row" justify="flex-start" alignItems="flex-start">
+                <Grid spacing={2} container direction="row" justifyContent="flex-start" alignItems="flex-start">
                     {mealsByDates}
                 </Grid>
             </div>

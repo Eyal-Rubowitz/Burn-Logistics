@@ -3,17 +3,17 @@ import { RootModel } from './rootModel';
 import axios from 'axios';
 
 export abstract class DataModel<TypeModel extends ClassType> {
-    @observable items: Array<TypeModel>;
+    @observable objectList: Array<TypeModel>;
     root: RootModel;
-    modelFactory: { new(a: DataModel<any>, n: TypeModel): TypeModel }
+    modelFactory: { new(dm: DataModel<any>, tm: TypeModel): TypeModel }
     host = process.env.apiHost || 'localhost:3000';
 
-    constructor(root: RootModel, grr: { new(a: DataModel<any>, n: TypeModel): TypeModel }) {
+    constructor(root: RootModel, mf: { new(dm: DataModel<any>, tm: TypeModel): TypeModel }) {
         this.root = root;
-        this.modelFactory = grr;
-        this.items = [];
-        this.getItemsFromServer();
-        this.getUserTokenFromServer();
+        this.modelFactory = mf;
+        this.objectList = [];
+        this.getListFromServer();
+        // this.getUserTokenFromServer();
     }
 
     abstract resourcePath(): String
@@ -22,41 +22,35 @@ export abstract class DataModel<TypeModel extends ClassType> {
         return `http://${this.host}/api/${this.resourcePath()}`
     }
 
-    getItemsFromServer(): void {
-        axios.get(this.resourceUrl).then(itemList => {
-            console.log('line 27 - data model list: ', itemList);
-            itemList.data.forEach((item: TypeModel) => {
-                this.updateItemFromServer(item);
+    // changed getItemsFromServer() to getListFromServer()
+    // and itemList to objList
+    // getItemsFromServer(): void {
+    getListFromServer(): void {
+            axios.get(this.resourceUrl).then(objList => {
+                if(this.resourcePath() === 'users') console.log('line 27 - data model list: ', objList);
+                objList.data.forEach((obj: TypeModel) => {
+                    this.updateObjFromServer(obj);
+                });
             });
-        });
     }
 
-    // getUserFromServer(): void {
-    //     axios.get(this.resourceUrl).then( u => {
-    //         console.log('line 36 - data model list: ', itemList);
-    //         u.data.then((user: TypeModel) => {
-    //             this.updateUserFromServer(user);
-    //         });
-    //     });
+    // getUserTokenFromServer(): void {
+    //     // token.id
+    //     axios.get(this.resourceUrl).then(userList => {
+    //         console.log('dataModel userList: ', userList);
+    //         // userList.data.findOne((_id: token.id) 
+    //         // {
+    //         //     this.updateItemFromServer(user);
+    //         // }
+    //         // );
+    //     }
+    //     );
     // }
 
-    getUserTokenFromServer(): void {
-        // token.id
-        axios.get(this.resourceUrl).then(userList => {
-            console.log('dataModel userList: ', userList);
-            // userList.data.findOne((_id: token.id) 
-            // {
-            //     this.updateItemFromServer(user);
-            // }
-            // );
-        }
-        );
-    }
-
-    createItem(json: TypeModel): void {
-        let jsonObj = json.toJSON ? json.toJSON() : json;
+    createObject(json: TypeModel): void {
+        const jsonObj = json.toJSON ? json.toJSON() : json;
         axios.post(this.resourceUrl, jsonObj);
-        this.getItemsFromServer();
+        this.getListFromServer();
     }
 
     // createUser(json: TypeModel): void {
@@ -66,26 +60,26 @@ export abstract class DataModel<TypeModel extends ClassType> {
     // }
 
     updateItem(json: TypeModel): void {
-        let jsonObj = json.toJSON ? json.toJSON() : json;
+        const jsonObj = json.toJSON ? json.toJSON() : json;
         axios.post(`${this.resourceUrl}/${jsonObj._id}/update`, jsonObj);
     }
 
-    updateItemFromServer(json: TypeModel): void {
-        let item = this.items.find(item => item._id === json._id);
-        let jsonObj = new this.modelFactory(this, json).toJSON();
-        if (!item) {
-            let newItem = new this.modelFactory(this, jsonObj);
-            this.items.push(newItem);
-        } else if (json.isItemDeleted && item) {
-            this.items.splice(this.items.indexOf(item), 1);
+    updateObjFromServer(json: TypeModel): void {
+        const obj = this.objectList.find(obj => obj._id === json._id);
+        const jsonObj = new this.modelFactory(this, json).toJSON();
+        if (!obj) {
+            let newObj = new this.modelFactory(this, jsonObj);
+            this.objectList.push(newObj);
+        } else if (json.isObjDeleted && obj) {
+            this.objectList.splice(this.objectList.indexOf(obj), 1);
         } else {
-            item.updateFromJson(json);
+            obj.updateFromJson(json);
         }
     }
 
     removeItem(item: TypeModel): void {
         axios.post(`${this.resourceUrl}/${item._id}/delete`);
-        this.getItemsFromServer();
+        this.getListFromServer();
     }
 }
 
@@ -93,12 +87,12 @@ export abstract class ClassType {
     constructor(store: DataModel<any>, obj: any) {
         this.store = store;
         this._id = obj._id;
-        if (obj.hasOwnProperty('isDeleted')) this.isItemDeleted = obj.isDeleted;
+        if (obj.hasOwnProperty('isDeleted')) this.isObjDeleted = obj.isDeleted;
     }
 
     store: DataModel<any>;
     @observable _id: string;
-    @observable isItemDeleted: boolean = false;
+    @observable isObjDeleted: boolean = false;
 
     abstract updateFromJson(obj: any): void;
 

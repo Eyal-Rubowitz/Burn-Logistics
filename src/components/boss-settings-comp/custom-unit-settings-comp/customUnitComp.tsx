@@ -22,14 +22,14 @@ class CustomUnitComp extends PureComponent {
     @observable foodItem?: FoodItem;
 
     @computed get foodItems(): FoodItem[] {
-        return AppRootModel.foodItemModel.items.map(f => f);
+        return AppRootModel.foodItemModel.objectList.map(f => f);
     }
 
     checkForHexRegExpObjectID: RegExp = new RegExp("^[0-9a-fA-F]{24}$");
     onSelectFoodItem = (e: React.ChangeEvent<any>): void => {
         if (this.checkForHexRegExpObjectID.test(e.target.value)) {
             this.selectedFoodItemId = e.target.value;
-            this.foodItem = AppRootModel.foodItemModel.items.find(fi => fi._id === this.selectedFoodItemId);
+            this.foodItem = AppRootModel.foodItemModel.objectList.find(fi => fi._id === this.selectedFoodItemId);
             this.baseUnit = (this.foodItem as FoodItem).baseUnit;
         }
     }
@@ -64,7 +64,7 @@ class CustomUnitComp extends PureComponent {
                     <div>
                         <Typography variant="h6" key={cu.unitName} className="btnDltCstmUn">{cu.unitName} - {cu.ratio}{this.baseUnit}</Typography>
                         <IconButton className="hoverAlertColor" onClick={() => { (this.foodItem as FoodItem).deleteCustomUnit(cu.unitName) }} color="secondary" size="medium">
-                            <DeleteForeverIcon className="dltIcon" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                            <DeleteForeverIcon className="dltIcon" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                         </IconButton>
                     </div>
                 )

@@ -41,7 +41,7 @@ export class Ingredient extends ClassType {
     @observable note: string = '';
 
     @computed get foodItem(): FoodItem {
-        return this.store.root.foodItemModel.items.find(fi => fi._id === this.foodItemId) as FoodItem;
+        return this.store.root.foodItemModel.objectList.find(fi => fi._id === this.foodItemId) as FoodItem;
     }
 
     @computed get name(): string {
@@ -55,7 +55,7 @@ export class Ingredient extends ClassType {
     }
 
     @computed get dish(): Dish {
-        return this.store.root.dishModel.items.find(d => d._id === this.dishId) as Dish;
+        return this.store.root.dishModel.objectList.find(d => d._id === this.dishId) as Dish;
     }
 
     @computed get chef(): string {
@@ -78,13 +78,13 @@ export class Ingredient extends ClassType {
     }
 
     @computed get appointmentTime(): string {
-        let meal = (this.dish === undefined) ? undefined : this.store.root.mealModel.items.find(m => m._id === this.dish.mealId) as Meal;
+        let meal = (this.dish === undefined) ? undefined : this.store.root.mealModel.objectList.find(m => m._id === this.dish.mealId) as Meal;
         return (meal === undefined) ? 'Date is missing' : meal.date.toLocaleDateString() + " - " + meal.name;
     }
     
     // is ingredient already includes in inventory...
     @computed get getInvIdByItem(): string {
-        let inv = AppRootModel.inventoryModel.items.find(inv => inv.dishIdOwnedItem === this.dishId && inv.foodItemId === this.foodItemId);
+        let inv = AppRootModel.inventoryModel.objectList.find(inv => inv.dishIdOwnedItem === this.dishId && inv.foodItemId === this.foodItemId);
         return (inv) ? inv._id : "";
     }
 }

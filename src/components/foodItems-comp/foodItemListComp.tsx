@@ -29,7 +29,7 @@ class FoodItemListComp extends PureComponent {
     }
 
     @computed get filteredData(): FoodItem[] {
-        return AppRootModel.foodItemModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).filter(fi => {
+        return AppRootModel.foodItemModel.objectList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).filter(fi => {
             return ((this.filterLitter === 'All') ? true : fi.name[0] === this.filterLitter)
         });
     }
@@ -47,7 +47,7 @@ class FoodItemListComp extends PureComponent {
                                         {...props}
                                         ref={ref}
                                         color="primary"
-                                        fontSize="default"
+                                        fontSize="medium"
                                         viewBox="0 0 20 20" />
                                     <p id="p">
                                         Add Food Item
@@ -108,7 +108,7 @@ class FoodItemListComp extends PureComponent {
                         data={this.filteredData}
                         options={{
                             addRowPosition: 'first',
-                            pageSize: AppRootModel.foodItemModel.items.length,
+                            pageSize: AppRootModel.foodItemModel.objectList.length,
                             paging: false,
                             headerStyle: { position: 'sticky', top: 0 },
                             maxBodyHeight: '80vh',
@@ -119,7 +119,7 @@ class FoodItemListComp extends PureComponent {
                             onRowAdd: (newFI: FoodItem): Promise<void> => {
                                 return new Promise((res) => {
                                     newFI._id = (new ObjectID()).toHexString();
-                                    AppRootModel.foodItemModel.createItem(newFI);
+                                    AppRootModel.foodItemModel.createObject(newFI);
                                     res();
                                 })
                             },
@@ -131,7 +131,7 @@ class FoodItemListComp extends PureComponent {
                             },
                             onRowDelete: (oldFI: FoodItem) => {
                                 return new Promise((res, rej) => {
-                                    oldFI.isItemDeleted = true;
+                                    oldFI.isObjDeleted = true;
                                     oldFI.store.removeItem(oldFI);
                                     res(oldFI);
                                 })

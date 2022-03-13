@@ -8,10 +8,10 @@ import { AppRootModel } from '../../../modelsContext';
 import SelectedMealStore from '../../../stores/SelectedMealStore';
 import './mealSelectStyle.scss';
 
-type MealSelectCompProps = { store: SelectedMealStore };
+type IMealSelectCompProps = { store: SelectedMealStore };
 
 @observer
-class MealSelectComp extends PureComponent<MealSelectCompProps> {
+class MealSelectComp extends PureComponent<IMealSelectCompProps> {
 
     disposeAutorun: IReactionDisposer;
 
@@ -20,7 +20,7 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
     @observable meal?: Meal = undefined;
     @observable dateList: string[] = [];
 
-    constructor(props: MealSelectCompProps) {
+    constructor(props: IMealSelectCompProps) {
         super(props);
         this.disposeAutorun = autorun(() => {
             this.dateList = this.props.store.dateList;
@@ -32,7 +32,7 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
     }
 
     @computed get meals(): Meal[] {
-        let ml = AppRootModel.mealModel.items.map(m => m);
+        let ml = AppRootModel.mealModel.objectList.map(m => m);
         return ml;
     }
 
@@ -45,7 +45,7 @@ class MealSelectComp extends PureComponent<MealSelectCompProps> {
     @action onSelectMeal(ev: string): void {
         this.selectedMeal = (ev) ? ev : "";
         this.props.store.selectedMeal = this.selectedMeal;
-        this.props.store.meal = AppRootModel.mealModel.items.find(m => m.date.toLocaleDateString() === this.selectedDate && m.name === this.selectedMeal);
+        this.props.store.meal = AppRootModel.mealModel.objectList.find(m => m.date.toLocaleDateString() === this.selectedDate && m.name === this.selectedMeal);
     }
 
     render() {

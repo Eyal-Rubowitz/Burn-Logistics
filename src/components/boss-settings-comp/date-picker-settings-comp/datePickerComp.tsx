@@ -21,12 +21,12 @@ export default class DatePickerComp extends PureComponent {
     addNewMealDate = (): void => {
         let newId = (new ObjectID()).toHexString()
         let newMeal = new Meal(AppRootModel.mealModel, { _id: newId, chef: "Chef Name", date: this.selectedDay, name: "Brunch" });
-        newMeal.store.createItem(newMeal);
+        newMeal.store.createObject(newMeal);
     }
 
     render() {
         let currentDate: string = this.selectedDay.toLocaleDateString();
-        let mealItems: Meal[] = AppRootModel.mealModel.items;
+        let mealItems: Meal[] = AppRootModel.mealModel.objectList;
         let dates: Set<string> = new Set(mealItems.slice().sort((a, b) => a.date.getDate() - b.date.getDate()).map(m => { return m.date.toLocaleDateString('en-EN', { weekday: 'long' }) + " - " + m.date.toLocaleDateString() }));
         let mealDateList: JSX.Element[] = Array.from(dates).map(date => <Typography variant="h6" key={date}>{date}</Typography>);
 

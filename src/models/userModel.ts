@@ -1,4 +1,4 @@
-import { observable } from 'mobx'; //, computed
+import { observable } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 
@@ -9,7 +9,7 @@ export class UserModel extends DataModel<User> {
     }
 
     resourcePath(): String {
-        return "userAuth";
+        return "users";
     }
 }
 
@@ -18,6 +18,8 @@ export class User extends ClassType {
     @observable fullName: string = '';
     @observable email: string = '';
     @observable password: string = '';
+    // @observable campName: string = '';
+    // @observable authorizationType: string || enum = '';
     // @observable allergens: string[] = [];
     // @observable shifts: string[] = [];
     // @observable eatingType: string = '';
@@ -25,10 +27,10 @@ export class User extends ClassType {
 
     constructor(store: UserModel, obj: any) {
         super(store, obj);
-        this.updateFromJson(obj);  
+        this.updateFromJson(obj); 
     }
 
-    updateFromJson(obj: any) {
+    updateFromJson(obj: any): void {
         this.fullName = obj.name;
         this.email = obj.email;
         this.password = obj.password;

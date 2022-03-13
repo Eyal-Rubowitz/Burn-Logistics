@@ -1,19 +1,16 @@
-// React code snippets!!!
-// https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets
-
 import {
   AppBar, Typography, Container, Toolbar,
   createTheme, responsiveFontSizes, MuiThemeProvider
 } from '@material-ui/core';
 
 import React from 'react';
+// import React, { useEffect } from 'react';
   
-// react-router-dom is made for "Web application" 
-// and react-router-native is made for "react native mobile apps"
-// both uses react-router at core!
-// IMPORTANT: when update to v6 useHistory become to useNavigate!
+// react-router-dom is made for "Web application", and react-router-native 
+// is made for "react native mobile apps" both uses react-router at core!
 import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
-// import { Switch, Route } from 'react-router';
+
+// import jwt from 'jsonwebtoken';
 
 import { AppRootModel } from './modelsContext';
 // import UserAuthComp from "./components/user-auth-comp/userAuthComp";
@@ -47,11 +44,11 @@ ws.addEventListener('message', (msg) => {
   let data = JSON.parse(msg.data);
   console.log('ws data: ', data);
   switch (data.type) {
-    // case "userAuth": {
-    //   console.log("register case");
-    //   AppRootModel.userModel.updateItemFromServer(data.item);
-    //   break;
-    // }
+    case "users": {
+      console.log("register case");
+      AppRootModel.userModel.updateObjFromServer(data.obj);
+      break;
+    }
     // case "login": {
     //   console.log("login case");
     //   AppRootModel.userModel.updateItemFromServer(data.item);
@@ -59,37 +56,37 @@ ws.addEventListener('message', (msg) => {
     // }
     case "meal": {
       console.log('meal case');
-      AppRootModel.mealModel.updateItemFromServer(data.item);
+      AppRootModel.mealModel.updateObjFromServer(data.item);
       break;
     }
     case "dish": {
       console.log('dish case');
-      AppRootModel.dishModel.updateItemFromServer(data.item);
+      AppRootModel.dishModel.updateObjFromServer(data.item);
       break;
     }
     case "ingredient": {
       console.log('ingredient case');
-      AppRootModel.ingredientModel.updateItemFromServer(data.item);
+      AppRootModel.ingredientModel.updateObjFromServer(data.item);
       break;
     }
     case "foodItem": {
       console.log('foodItem case');
-      AppRootModel.foodItemModel.updateItemFromServer(data.item);
+      AppRootModel.foodItemModel.updateObjFromServer(data.item);
       break;
     }
     case "inventory": {
       console.log('inventory case');
-      AppRootModel.inventoryModel.updateItemFromServer(data.item);
+      AppRootModel.inventoryModel.updateObjFromServer(data.item);
       break;
     }
     case "allergens": {
       console.log('allergens case');
-      AppRootModel.allergensModel.updateItemFromServer(data.item);
+      AppRootModel.allergensModel.updateObjFromServer(data.item);
       break;
     }
     case "kitchenTools": {
       console.log('Kitchen tools case');
-      AppRootModel.kitchenToolsModel.updateItemFromServer(data.item);
+      AppRootModel.kitchenToolsModel.updateObjFromServer(data.item);
       console.log('ws: ', data.item);
       break;
     }
@@ -102,61 +99,92 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 function App() {
-  let isActive: boolean[] = [false, false, false, false, false, false, false ];
+  const isActive: boolean[] = [false, false, false, false, false, false, false, false ];
 
-  let onActive = (i: number) => {
+  const onActive = (i: number) => {
     isActive.forEach(a => a = false);
     isActive[i] = true;
   }
   
-  const onLogout = () => {
-    window.location.href = "http://localhost:3000/user-auth";
-  }
+  const onLogout = () => { window.location.href = "http://localhost:3000/user-auth"; }
 
   let isAuthPage = (window.location.href === "http://localhost:3000/user-auth");
+  let presentLink = (isAuthPage) ? 'appLink hideNavLink' : 'appLink';
+  let presentLogoutLink = (isAuthPage) ? 'appLink hideNavLink' : 'appLink logout';
+
+  // const populateUser = async () => {
+  //   // const token = (typeof localStorage.getItem('token') === "string") ? localStorage.getItem('token') : "";
+  //   const request = await fetch('http://localhost:3000/api/users', {
+  //     method: 'POST',
+  //     headers: {
+  //       // 'Content-Type': 'application/json',
+	// 			'x-access-token': localStorage.getItem('token') || "",
+  //     },
+  //   })
+
+  //     const data = request.json();
+  //     // console.log(data);
+  //   }
   
+
+  // useEffect launch the function in condition that the component is mount! 
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if(token) {
+  //     const user = jwt.decode(token)
+  //     if(!user) {
+  //       localStorage.removeItem('token');
+  //       window.location.href = "http://localhost:3000/user-auth";
+  //     } else {
+  //       populateUser()
+  //     }
+  //   }
+  // },[])
+
+  let StyleActiveOn = { backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  };
+
   return (
-    <div id="rootDiv">
+    <div id="rootDiv" ref={React.createRef()}>
       <MuiThemeProvider theme={theme}>
         <Router>
           <AppBar>
             <Toolbar className="appNavBar">
-              <NavLink className={`appLink ${(isActive[0]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(0)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/schedule'}>
+              <NavLink className={`${presentLink} ${(isActive[0]) ? 'active' : ''}`} onClick={() => onActive(0)} activeStyle={StyleActiveOn} to={'/schedule'}>
                 <Typography  className="appTg" >
                   <img className="images" alt="schedule" src={Calender} /> Meal Schedule & Overview
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(1)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/meals'}>
+              <NavLink className={`${presentLink} ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(1)} activeStyle={StyleActiveOn} to={'/meals'}>
                 <Typography className="appTg">
                   <img className="images" alt="chef plan meal" src={ChefMeal} />  Meals Plan
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[2]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(2)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/kitchen-tools'}>
+              <NavLink className={`${presentLink} ${(isActive[2]) ? 'active' : ''}`} onClick={() => onActive(2)} activeStyle={StyleActiveOn} to={'/kitchen-tools'}>
                 <Typography className="appTg" >
                   <img className="images L" alt="kitchen tools" src={KitchenTools} />  Kitchen Tools
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[3]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(3)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/food-items'}>
+              <NavLink className={`${presentLink} ${(isActive[3]) ? 'active' : ''}`} onClick={() => onActive(3)} activeStyle={StyleActiveOn} to={'/food-items'}>
                 <Typography className="appTg" >
                   <img className="images" alt="ingredients basket" src={Ingredients} /> Ingredient Variety
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[4]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(4)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/inventory'}>
+              <NavLink className={`${presentLink} ${(isActive[4]) ? 'active' : ''}`} onClick={() => onActive(4)} activeStyle={StyleActiveOn} to={'/inventory'}>
                 <Typography className="appTg" >
                   <img className="images" alt="inventory box" src={InvBox} /> Ingredient Inventory
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[5]) ? 'active' : '' } ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(5)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/buying-list'}>
+              <NavLink className={`${presentLink} ${(isActive[5]) ? 'active' : '' }`} onClick={() => onActive(5)} activeStyle={StyleActiveOn} to={'/buying-list'}>
                 <Typography className="appTg" >
                   <img className="images" alt="buying list" src={BuyingList} /> Shopping List
               </Typography>
               </NavLink>
-              <NavLink className={`appLink ${(isActive[6]) ? 'active' : ''} ${(isAuthPage) ? 'hideNavLink' : ''}`} onClick={() => onActive(6)} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/settings'}>
+              <NavLink className={`${presentLink} ${(isActive[6]) ? 'active' : ''}`} onClick={() => onActive(6)} activeStyle={StyleActiveOn} to={'/settings'}>
                 <Typography className="appTg" >
                   <img className="images" alt="admin settings" src={AdminSettings} />  Admin
               </Typography>
               </NavLink>
-              <NavLink className={`${(isAuthPage) ? 'hideNavLink' :  `logout ${(isActive[7]) ? 'active' : ''}`} appLink`} onClick={() => {onActive(7); onLogout(); }} activeStyle={{ backgroundColor: 'white', color: '#3646A3', border: 'white 5px solid', borderRadius: '0.25vw', height: '100%', marginTop: '1vh', textShadow: 'none'  }} to={'/user-auth'}>
+              <NavLink className={`${presentLogoutLink} ${(isActive[7]) ? 'active' : ''} `} onClick={() => {onActive(7); onLogout(); }} activeStyle={StyleActiveOn} to={'/user-auth'}>
                 <Typography className="appTg" >
                   <img className="images" alt="admin settings" src={LogOut} />  Log Out
               </Typography>

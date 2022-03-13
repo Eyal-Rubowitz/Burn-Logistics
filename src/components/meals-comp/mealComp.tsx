@@ -11,33 +11,34 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Ingredient } from '../../models/ingredientModel';
 import './meals-style/mealStyle.scss';
 
-type MealCompProps = { match: { params: { id: string }, url: string, path: string } };
+type IMealProps = { match: { params: { id: string }, url: string, path: string } };
 
 @observer
-class MealComp extends PureComponent<MealCompProps> {
+class MealComp extends PureComponent<IMealProps> {
     disposeAutorun: IReactionDisposer;
     @observable meal?: Meal;
     @observable mealQuantity: Number = 0;
     @observable mealExpenses: Number = 0;
-    @observable preparing: Date = new Date();
-    @observable serving: Date = new Date();
+    @observable preparationTime: Date = new Date();
+    @observable servingTime
+    : Date = new Date();
 
-    constructor(props: MealCompProps) {
+    constructor(props: IMealProps) {
         super(props);
         // why use derivation of autorun and not computed?..
         // autorun - Runs the reaction immediately 
         // and also on any change 
         // in the observables used inside function !
         this.disposeAutorun = autorun(() => {
-            let mealId: string = this.props.match.params.id;
-            this.meal = AppRootModel.mealModel.items.find((m: Meal) => m._id === mealId);
+            const mealId: string = this.props.match.params.id;
+            this.meal = AppRootModel.mealModel.objectList.find((m: Meal) => m._id === mealId);
             let mealIngs: Ingredient[] = [];
             if (this.meal) {
                 mealIngs = Array.prototype.concat.apply([], this.meal.dishes.map(d => d.ingredients.map(ing => ing)));
                 this.mealQuantity = mealIngs.reduce((mealCost: number, ing) => { return mealCost + ((ing.getItemBaseUnit === 'Kg') ? ing.convertedQuantity : 0) }, 0);
-                this.mealExpenses = AppRootModel.ingredientModel.items.reduce((mealCost: number, ing) => { return mealCost + ing.cost }, 0);
-                this.preparing = (this.meal as Meal).preparing;
-                this.serving = (this.meal as Meal).serving;
+                this.mealExpenses = AppRootModel.ingredientModel.objectList.reduce((mealCost: number, ing) => { return mealCost + ing.cost }, 0);
+                this.preparationTime = (this.meal as Meal).preparing;
+                this.servingTime = (this.meal as Meal).serving;
             }
         });
     }
@@ -58,7 +59,7 @@ class MealComp extends PureComponent<MealCompProps> {
         if (this.meal) {
             let newId: string = (new ObjectID()).toHexString()
             let newDish: Dish = new Dish(AppRootModel.dishModel, { _id: newId, name: 'New Dish', mealId: this.meal._id });
-            AppRootModel.dishModel.createItem(newDish);
+            AppRootModel.dishModel.createObject(newDish);
         }
     }
 
@@ -70,8 +71,8 @@ class MealComp extends PureComponent<MealCompProps> {
         hour = Number(inputTime.slice(0, 2));
         min = Number(inputTime.slice(-2));
         if (this.meal) {
-            (focusId === 'preparing') ? this.preparing = new Date(this.meal.preparing.setHours((hour), min)) : this.serving = new Date(this.meal.serving.setHours((hour), min));
-            (focusId === 'preparing') ? this.meal.preparing = this.preparing : this.meal.serving = this.serving;
+            (focusId === 'preparing') ? this.preparationTime = new Date(this.meal.preparing.setHours((hour), min)) : this.servingTime = new Date(this.meal.serving.setHours((hour), min));
+            (focusId === 'preparing') ? this.meal.preparing = this.preparationTime : this.meal.serving = this.servingTime;
             AppRootModel.mealModel.updateItem(this.meal);
         }
     }
@@ -90,7 +91,7 @@ class MealComp extends PureComponent<MealCompProps> {
                         <TextField label="👨‍🍳Preparations start at"
                             id="txtFldPreparing"
                             type="time"
-                            value={this.toMomentString(this.preparing)}
+                            value={this.toMomentString(this.preparationTime)}
                             onChange={(e: React.ChangeEvent<any>) => this.onUpdateTime(e)}
                             variant="outlined"
                             inputProps={{
@@ -102,7 +103,7 @@ class MealComp extends PureComponent<MealCompProps> {
                         <TextField label="😋Dining serving time"
                             id="txtFldServing"
                             type="time"
-                            value={this.toMomentString(this.serving)}
+                            value={this.toMomentString(this.servingTime)}
                             onChange={(e: React.ChangeEvent<any>) => this.onUpdateTime(e)}
                             variant="outlined"
                             style={{ marginLeft: '1.1vw', marginRight: '0.8vw' }}

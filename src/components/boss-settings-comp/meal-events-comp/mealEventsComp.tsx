@@ -30,12 +30,12 @@ class MealEventsComp extends PureComponent {
         if (this.tempMealEventText === '') return;
         let newId: string = (new ObjectID()).toHexString();
         let newMeal: Meal = new Meal(AppRootModel.mealModel, { _id: newId, chef: "Chef Name", date: this.getSelectedDate, name: this.tempMealEventText });
-        AppRootModel.mealModel.createItem(newMeal);
+        AppRootModel.mealModel.createObject(newMeal);
         this.tempMealEventText = '';
     }
 
     render() {
-        let mealItems: Meal[] = AppRootModel.mealModel.items;
+        let mealItems: Meal[] = AppRootModel.mealModel.objectList;
         let mealCategories: Set<string> = new Set(mealItems.map(m => m.name));
         let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map(cat => <Typography variant="h6" key={cat}>{cat}</Typography>);
         return (

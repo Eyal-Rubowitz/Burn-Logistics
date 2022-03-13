@@ -32,7 +32,7 @@ class DinersNutritionComp extends PureComponent {
     constructor(props: {}) {
         super(props)
         this.disposeAutorun = autorun(() => {
-            let meals: Meal[] = AppRootModel.mealModel.items.map(m => m);
+            let meals: Meal[] = AppRootModel.mealModel.objectList.map(m => m);
             if (this.isSetForAllMeals) {
                 meals.forEach(m => m.diners.forEach(d => this.dinersNumber[d.dietType] = d.count));
                 this.totalDinersNum = (meals[0]) ? Object.values(this.dinersNumber).reduce((ttl, n) => ttl + n, 0)
@@ -59,7 +59,7 @@ class DinersNutritionComp extends PureComponent {
             delete this.dinersNumber[key];
         });
         if (this.isSetForAllMeals) {
-            let meals: Meal[] = AppRootModel.mealModel.items.map(m => m);
+            let meals: Meal[] = AppRootModel.mealModel.objectList.map(m => m);
             meals.forEach(m => m.diners.forEach(d => this.dinersNumber[d.dietType] = d.count));
             this.totalDinersNum = (meals[0]) ? Object.values(this.dinersNumber).reduce((ttl, n) => ttl + n, 0) : 0;
         }
@@ -70,7 +70,7 @@ class DinersNutritionComp extends PureComponent {
     }
 
     @computed get meals(): Meal[] {
-        return AppRootModel.mealModel.items.map(m => m);
+        return AppRootModel.mealModel.objectList.map(m => m);
     }
 
     @computed get meal(): Meal | undefined {
@@ -92,20 +92,20 @@ class DinersNutritionComp extends PureComponent {
         if (this.selectedMealStore.meal) {
             this.selectedMealStore.meal.updateDietTypeDinersNum(dietIndex, this.dinersNumber[dietIndex]);
         }
-        if (this.isSetForAllMeals) AppRootModel.mealModel.items.forEach(m => m.updateDietTypeDinersNum(dietIndex, this.dinersNumber[dietIndex]))
+        if (this.isSetForAllMeals) AppRootModel.mealModel.objectList.forEach(m => m.updateDietTypeDinersNum(dietIndex, this.dinersNumber[dietIndex]))
         this.refreshData();
     }
 
     @action onAddNewDietType(): void {
         if (this.selectedMealStore.meal) this.selectedMealStore.meal.addDietType(this.dietTypeName);
-        if (this.isSetForAllMeals) AppRootModel.mealModel.items.forEach(m => m.addDietType(this.dietTypeName));
+        if (this.isSetForAllMeals) AppRootModel.mealModel.objectList.forEach(m => m.addDietType(this.dietTypeName));
         this.refreshData();
         this.dietTypeName = "";
     }
 
     @action onDeleteDietType(dietName: string): void {
         if (this.selectedMealStore.meal) this.selectedMealStore.meal.deleteDietType(dietName);
-        if (this.isSetForAllMeals) AppRootModel.mealModel.items.forEach(m => m.deleteDietType(dietName));
+        if (this.isSetForAllMeals) AppRootModel.mealModel.objectList.forEach(m => m.deleteDietType(dietName));
         this.refreshData();
     }
 
@@ -130,13 +130,13 @@ class DinersNutritionComp extends PureComponent {
                     className="hoverAlertColor"
                     color="secondary"
                     size="medium" >
-                    <DeleteForeverIcon className="dltIcon" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                    <DeleteForeverIcon className="dltIcon" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                 </IconButton>
             </div>);
 
         return (
             <Fragment>
-                <div className="unVisableBox">
+                <div className="unVisibleBox">
                     <Box id="mobx-update-date-call"
                         visibility="hidden"
                         component="span">
@@ -167,7 +167,7 @@ class DinersNutritionComp extends PureComponent {
                     </div>
                     <div>
                         <Typography variant="h4" className="tgTitle title">
-                            {(this.isSetForAllMeals) ? "Update All Exsits Meals" : this.mealInfo()}
+                            {(this.isSetForAllMeals) ? "Update All Exists Meals" : this.mealInfo()}
                         </Typography>
                         <TextField label="Enter new diet type"
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterDietTypeName(e) }}
@@ -200,9 +200,9 @@ class DinersNutritionComp extends PureComponent {
                                     </ExpansionPanelSummary>
                                     <p>★ Enter a new diet type, will add each meal the diet category with its diners number.</p>
                                     <p>★ Delete diet type, will remove from each meal that has the category with its diners number.</p>
-                                    <p>★ If a new meal is added after setting all meals, it sould be set manually select first the specific meal.</p>
+                                    <p>★ If a new meal is added after setting all meals, it souled be set manually select first the specific meal.</p>
                                     <p>★ Set select all meals, sets a diners number change for all meals that already containing the type.</p>
-                                    <p>★ Meals that hasn't the chenged type won't change at all.</p>
+                                    <p>★ Meals that hasn't the changed type won't change at all.</p>
                                     <p>★ If there is only one meal with unique type, it will represent among set all meals option. </p>
                                 </ExpansionPanel>
                                 <br />

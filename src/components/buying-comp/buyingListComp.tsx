@@ -52,15 +52,15 @@ class BuyingListComp extends PureComponent {
 
     
     @computed get foodItems(): FoodItem[] {
-        return AppRootModel.foodItemModel.items.map(fi => fi);
+        return AppRootModel.foodItemModel.objectList.map(fi => fi);
     }
 
     @computed get chefList(): string[] {
-        return AppRootModel.mealModel.items.map(m => m.chef);
+        return AppRootModel.mealModel.objectList.map(m => m.chef);
     }
 
     @computed get filteredData(): Ingredient[] {
-        return AppRootModel.ingredientModel.items.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).filter(ing => {
+        return AppRootModel.ingredientModel.objectList.slice().sort((a, b) => (a.name > b.name) ? 1 : -1).filter(ing => {
             return (this.chosenCategory === null || ing.category === this.chosenCategory)
                 && (this.chosenFoodItem === null || ing.foodItemId === this.chosenFoodItem)
                 && (this.chosenChef === null || ing.chef === this.chosenChef)
@@ -75,7 +75,7 @@ class BuyingListComp extends PureComponent {
 
     @computed get foodInfo(): IngInfos {
 
-        let freeInventoryAmount: Record<string, number> = AppRootModel.inventoryModel.items.reduce((o, item) => {
+        let freeInventoryAmount: Record<string, number> = AppRootModel.inventoryModel.objectList.reduce((o, item) => {
             if (this.isObjId(item.dishIdOwnedItem)) {
                 o[item._id] = this.valuateQuantity(item);
             } else {
@@ -91,7 +91,7 @@ class BuyingListComp extends PureComponent {
         }, {} as Record<string, number>);
 
         let ingredients: Ingredient[] = (this.chosenSummedIngs) ?
-            this.accumulateSameItems : AppRootModel.ingredientModel.items;
+            this.accumulateSameItems : AppRootModel.ingredientModel.objectList;
 
         return ingredients.reduce((o: IngInfos, item) => {
             return this.setIngInfo(o, item, freeInventoryAmount);
@@ -177,18 +177,18 @@ class BuyingListComp extends PureComponent {
                 o[ing.foodItemId] = ing.foodItemId
                 return o
             }, {} as Record<string, string>);
-            this.checkedIngs = AppRootModel.ingredientModel.items.filter(ing => ing.foodItemId === summedIngFoodItemsIdList[ing.foodItemId] && ing.getInvIdByItem === "");
-            this.filteredInvItems = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
+            this.checkedIngs = AppRootModel.ingredientModel.objectList.filter(ing => ing.foodItemId === summedIngFoodItemsIdList[ing.foodItemId] && ing.getInvIdByItem === "");
+            this.filteredInvItems = AppRootModel.inventoryModel.objectList.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
             summedInventory = this.filteredInvItems.reduce((total: number, inv) => total + inv.convertedQuantity, 0);
         }
-        invListToUpdate = AppRootModel.inventoryModel.items.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
+        invListToUpdate = AppRootModel.inventoryModel.objectList.filter(inv => inv.foodItemId === summedIngFoodItemsIdList[inv.foodItemId] && inv.dishIdOwnedItem === "");
         invListToUpdate = invListToUpdate.slice().sort((a, b) => (a.expirationDate === undefined || b.expirationDate === undefined) ? 1 : (a.expirationDate.getTime() - b.expirationDate.getTime()));
         this.checkedIngs.forEach((item) => {
             let invQuantity: number = (this.chosenSummedIngs) ? summedInventory : this.foodInfo[item._id].fromInventory
             let newInvObj = { foodItemId: item.foodItemId, quantity: item.quantity, unit: item.unit, expirationDate: exDate, note: item.note, dishIdOwnedItem: item.dishId };
             let newInvItem: InventoryItem = new InventoryItem(AppRootModel.inventoryModel, newInvObj);
             if (invQuantity === 0) {
-                AppRootModel.inventoryModel.createItem(newInvItem);
+                AppRootModel.inventoryModel.createObject(newInvItem);
             } else if (invQuantity <= item.convertedQuantity) {
                 invListToUpdate.forEach(inv => {
                     invListToUpdate = invListToUpdate.filter(keepInv => keepInv._id !== inv._id);
@@ -196,7 +196,7 @@ class BuyingListComp extends PureComponent {
                     AppRootModel.inventoryModel.removeItem(inv);
                     invQuantity -= inv.convertedQuantity;
                 });
-                AppRootModel.inventoryModel.createItem(newInvItem);
+                AppRootModel.inventoryModel.createObject(newInvItem);
             } else if (invQuantity > item.convertedQuantity) {
                 let ingQuantityToReductionFromInv = item.convertedQuantity;
                 invListToUpdate.forEach(inv => {
@@ -214,7 +214,7 @@ class BuyingListComp extends PureComponent {
                         if (typeof inv.expirationDate === 'object' && inv.expirationDate !== exDate) exDate = inv.expirationDate;
                     }
                 });
-                AppRootModel.inventoryModel.createItem(newInvItem);
+                AppRootModel.inventoryModel.createObject(newInvItem);
             }
         });
         this.checkedIngs = [];
@@ -264,7 +264,7 @@ class BuyingListComp extends PureComponent {
                                 )} />
                             <Autocomplete
                                 id="combo-box-meal"
-                                options={AppRootModel.mealModel.items.slice().sort((a, b) => a.date.getTime() - b.date.getTime())}
+                                options={AppRootModel.mealModel.objectList.slice().sort((a, b) => a.date.getTime() - b.date.getTime())}
                                 getOptionLabel={option => `${option.date.toLocaleDateString()} - ${option.name}`}
                                 onChange={(event, value) => this.chosenMeal = value && value._id}
                                 className="w left"

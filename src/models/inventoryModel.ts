@@ -41,7 +41,7 @@ export class InventoryItem extends ClassType {
     @observable dishIdOwnedItem: string = ''; 
 
     @computed get foodItem(): FoodItem {
-        return AppRootModel.foodItemModel.items.find(fi => fi._id === this.foodItemId) as FoodItem;
+        return AppRootModel.foodItemModel.objectList.find(fi => fi._id === this.foodItemId) as FoodItem;
     }
 
     @computed get name(): string {
@@ -58,8 +58,8 @@ export class InventoryItem extends ClassType {
     checkForHexRegExpObjectID: RegExp = new RegExp("^[0-9a-fA-F]{24}$");
     @computed get ownedItemChefName(): string {
         if(this.checkForHexRegExpObjectID.test(this.dishIdOwnedItem)) {
-            let dish: Dish | undefined = AppRootModel.dishModel.items.find(d => d._id === this.dishIdOwnedItem);
-            let meal: Meal | undefined = AppRootModel.mealModel.items.find(m => m._id === ((dish) ? dish.mealId : ''));
+            let dish: Dish | undefined = AppRootModel.dishModel.objectList.find(d => d._id === this.dishIdOwnedItem);
+            let meal: Meal | undefined = AppRootModel.mealModel.objectList.find(m => m._id === ((dish) ? dish.mealId : ''));
             return (meal !== undefined) ? meal.chef : 'Item Is Free';
         } else {
             return 'Item Is Free';

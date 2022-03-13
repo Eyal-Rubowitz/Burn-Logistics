@@ -7,13 +7,11 @@ let userModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-router.route('/').get(async (req, res, next) => {
-    console.log('calling for getting user from server!');
-	await userModel.findOne({ email: req.body.email}).exec((err, user) => {
-        if (err) console.log(err);
-        console.log('user on server is: ', user);
-		res.json(user);
-    });
+router.get('/', (req, res, next) => {
+	userModel.find().exec((err, userList) => {
+		if (err) console.log(err);
+		res.json(userList);
+	  });
 });
 
 router.route('/register').post( async (req, res) => {
@@ -49,11 +47,17 @@ router.route('/login').post( async (req, res) => {
 	}
 })
 
+/* An issue for decision!!!
+Do I want to use this logics? cuz it calls the DB every request
+will it be clever to hold object or token like singleton on the server side? 
+for instance, if it the user just rout and it requires permission...
+*/
+
 // router.route('/quote').get( async (req, res) => {
 // 	const token = req.headers['x-access-token']
 
 // 	try {
-// 		const decoded = jwt.verify(token, 'secret123')
+		// const decoded = jwt.verify(token, 'secret123')
 // 		const email = decoded.email
 // 		const user = await userModel.findOne({ email: email })
 

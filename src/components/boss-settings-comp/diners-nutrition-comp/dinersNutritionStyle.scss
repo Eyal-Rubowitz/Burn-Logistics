@@ -1,86 +1,80 @@
-
-
-.unVisableBox {
-    display: none;
+.unVisibleBox {
+  display: none;
 }
 
 .tgTitle {
-        text-align: center;
-        margin-top: 4vh !important;
-        margin-bottom: 4.2vh !important;
+  text-align: center;
+  margin-top: 4vh !important;
+  margin-bottom: 4.2vh !important;
 }
 
 .txtFldDietName {
-    margin-left: 1vw !important; 
-    width: 35%;
-    text-align: center;
-    z-index: 2;
+  margin-left: 1vw !important;
+  width: 35%;
+  text-align: center;
+  z-index: 2;
 }
 
 .btnAddDiet {
-    display: inline-block;
-    text-align: center;
-    margin-left: 1vw !important; 
-    height: 5.6vh !important;
-    width: 4.2vw !important;
+  display: inline-block;
+  text-align: center;
+  margin-left: 1vw !important;
+  height: 5.6vh !important;
+  width: 4.2vw !important;
 
-    & #icon {
-        position: relative;
-        margin-right: 0.1vw !important;
-        top: -0.1vh !important;
-    }
+  & #icon {
+    position: relative;
+    margin-right: 0.1vw !important;
+    top: -0.1vh !important;
+  }
 }
 
 #dinersForm {
-    margin-top: 3vh; 
-    margin-left: 1vw;
+  margin-top: 3vh;
+  margin-left: 1vw;
 
-    #ttlDinersForm {
-        margin-left: 1vw !important; 
-        margin-top: 7.8vh !important;
-        margin-bottom: 6vh !important;
-        
-        #tgTtlDiners {
-            display: inline-block;
-            margin-right: 1vw;
-            margin-top: 1.2vh;
-        }
-        
-        #txtFldDiners {
-            width: 3vw !important;
-            margin-left: 1vw !important; 
-            pointer-events: none;
-        }
+  #ttlDinersForm {
+    margin-left: 1vw !important;
+    margin-top: 7.8vh !important;
+    margin-bottom: 6vh !important;
+
+    #tgTtlDiners {
+      display: inline-block;
+      margin-right: 1vw;
+      margin-top: 1.2vh;
     }
 
-    #dietType {
-        margin-top: 2vh !important; 
-        margin-left: 1vw !important;
-    
-        .tgDiet {
-            display: inline-block; 
-            margin-top: 1.2vh !important;
-        }
-    
-        .txtFldDietType {
-            display: 'inline-block'; 
-            width: 5.2vw !important; 
-            margin-left: 0.5vw !important; 
-            margin-bottom: 2vh !important;
-        }
-    
-        .dltIcon {
-            display: inline-block;
-            font-size: 1.2em;
-        }
+    #txtFldDiners {
+      width: 3vw !important;
+      margin-left: 1vw !important;
+      pointer-events: none;
     }
-    
-    #expnPnl {
-        width: 98% !important;
-        height: auto !important; 
+  }
+
+  #dietType {
+    margin-top: 2vh !important;
+    margin-left: 1vw !important;
+
+    .tgDiet {
+      display: inline-block;
+      margin-top: 1.2vh !important;
     }
+
+    .txtFldDietType {
+      display: "inline-block";
+      width: 5.2vw !important;
+      margin-left: 0.5vw !important;
+      margin-bottom: 2vh !important;
+    }
+
+    .dltIcon {
+      display: inline-block;
+      font-size: 1.2em;
+    }
+  }
+
+  #expnPnl {
+    width: 98% !important;
+    height: auto !important;
+  }
 }
-
-
-
-

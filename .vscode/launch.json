@@ -37,6 +37,6 @@
             "url": "http://localhost:3000/user-auth",
             // webRoot, must point to the source file of your javascript!
             "webRoot": "${workspaceFolder}/src"
-        }
+        },
     ]
 }

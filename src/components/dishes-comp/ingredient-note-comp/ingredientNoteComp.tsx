@@ -29,9 +29,9 @@ class IngredientNoteComp extends PureComponent<IngCompProps> {
         // in the observables used inside function !
         this.disposeAutorun = autorun(() => {
             let ingId = this.props.match.params.id;
-            this.ingredient = AppRootModel.ingredientModel.items.find((ingr: Ingredient) => ingr._id === ingId);
-            this.dish = AppRootModel.dishModel.items.find(d => d._id === (this.ingredient as Ingredient).dishId)
-            this.meal = AppRootModel.mealModel.items.find(m => m._id === (this.dish as Dish).mealId); 
+            this.ingredient = AppRootModel.ingredientModel.objectList.find((ingr: Ingredient) => ingr._id === ingId);
+            this.dish = AppRootModel.dishModel.objectList.find(d => d._id === (this.ingredient as Ingredient).dishId)
+            this.meal = AppRootModel.mealModel.objectList.find(m => m._id === (this.dish as Dish).mealId); 
             this.noteText = (this.ingredient as Ingredient).note;
         });
     }

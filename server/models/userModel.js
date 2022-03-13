@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 
-// unique - a property for creates an individual index
 const User = new mongoose.Schema({
     name: { type: String, required: true },
-    // unique creates a spatial index in mongoDB for prevent duplicates
+    // unique - is a boolean property that allow to create an individual index  
+    // in mongoDB which prevents the documents from duplicates in the collection!
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    quote: { type: String }
 }
+
+    // authorizationType: string || enum = '';
+    // allergens: string[] = [];
+    // eatingType: string = '';
+    // spicinessType: string = '';
+
 // ,{
 //     // This collection name, creates a mongoDB collection
 //     //  with that name in the data base!

@@ -32,7 +32,7 @@ class SousChefsComp extends PureComponent {
     }
 
     @computed get meals(): Meal[] {
-        return AppRootModel.mealModel.items.map(m => m);
+        return AppRootModel.mealModel.objectList.map(m => m);
     }
 
     @computed get meal() : Meal | undefined {
@@ -41,7 +41,7 @@ class SousChefsComp extends PureComponent {
 
     mealInfo(): string {
         let info = "";
-        if (this.meal) info = `${this.meal.chef} - ${this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.meal.date.toLocaleDateString()}`;
+        if (this.meal) info = `${this.meal.chefName} - ${this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.meal.date.toLocaleDateString()}`;
         return info;
     }
 
@@ -68,7 +68,7 @@ class SousChefsComp extends PureComponent {
                 <div>
                     <Typography variant="h6" key={name} className="inlineBlock">{name}</Typography>
                     <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
-                        <DeleteForeverIcon className="inlineBlock" fontSize="default" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                        <DeleteForeverIcon className="inlineBlock" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
             )
