@@ -9,6 +9,7 @@ import { Card, CardContent, Typography,
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import './meals-style/mealListItemStyle.scss';
+// import { AppRootModel } from '../../modelsContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,7 +42,12 @@ const MealListItemComp = observer((props: IMealProps) => {
 
     let mealCategories: Set<string> = new Set(props.meal.store.objectList.map(m => m.name));
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
-    let members: string[] = props.meal.memberList;
+    let memberList: string[] = props.meal.memberList;
+    // let dList: string[] = props.meal.disList;
+    // console.log('dishList: ', dList);
+    console.log('memberList: ', memberList)
+    // let members: string[] = AppRootModel.userModel.objectList.map(u => u.fullName);
+    // let members: string[] = props.meal.memberList;
     // let memberList: JSX.Element[] = Array.from(members).map((mmbr, i) => <MenuItem key={i} value={mmbr}>{mmbr}</MenuItem>)
     return (
         <Box my={1} key={props.meal._id} className="grow">

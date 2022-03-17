@@ -27,7 +27,7 @@ export abstract class DataModel<TypeModel extends ClassType> {
     // getItemsFromServer(): void {
     getListFromServer(): void {
             axios.get(this.resourceUrl).then(objList => {
-                if(this.resourcePath() === 'users') console.log('line 27 - data model list: ', objList);
+                if(this.resourcePath() === 'users') console.log('line 27 - data model list: ', objList.data);
                 objList.data.forEach((obj: TypeModel) => {
                     this.updateObjFromServer(obj);
                 });

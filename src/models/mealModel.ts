@@ -2,7 +2,8 @@ import { observable, computed } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 import { Dish } from './dishModel';
-import { User } from './userModel';
+// import { User } from './userModel';
+// import { AppRootModel } from '../modelsContext';
 
 export class MealModel extends DataModel<Meal> {
 
@@ -22,6 +23,7 @@ export class DinersDiet {
 export class Meal extends ClassType {
 
     @observable chef: string = '';
+    @observable chefId: string = '';
     @observable date: Date = new Date();
     @observable name: string = '';
     @observable diners: DinersDiet[] = [];
@@ -39,6 +41,7 @@ export class Meal extends ClassType {
 
     updateFromJson(obj: any): void {
         this.chef = obj.chef;
+        this.chefId = obj.chefId;
         this.date = (typeof obj.date === 'string') ? new Date(obj.date) : obj.date;
         this.name = obj.name;
         this.diners = obj.diners || [];
@@ -57,9 +60,15 @@ export class Meal extends ClassType {
 
     @computed get memberList(): string[] {
         // const membersNames: string[] =this.store.root.userModel.objectList.map(u => u.fullName);
-        const invList: string[] = this.store.root.inventoryModel.objectList.map((inv) => inv.name);
-        const uList: string[] = this.store.root.userModel.objectList.map((u: User) => u.fullName);
+        // const invList: string[] = this.store.root.inventoryModel.objectList.map((inv) => inv.name);
+        // const uList: string[] = this.store.root.userModel.objectList.map((u: User) => u.fullName);
+        // let a = AppRootModel.userModel.objectList.map(u => u.fullName);
+
         return this.store.root.userModel.objectList.map(u => u.fullName || 'undefined name');
+    }
+
+    @computed get disList(): string[] {
+        return this.store.root.dishModel.objectList.map(d => d.name);
     }
 
     @computed get dishes(): Dish[] {

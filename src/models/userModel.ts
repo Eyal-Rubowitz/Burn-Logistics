@@ -1,6 +1,8 @@
 import { observable } from 'mobx';
+// import { computed, observable } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
+// import { AppRootModel } from '../modelsContext';
 
 export class UserModel extends DataModel<User> {
 
@@ -31,7 +33,7 @@ export class User extends ClassType {
     }
 
     updateFromJson(obj: any): void {
-        this.fullName = obj.name;
+        this.fullName = obj.fullName;
         this.email = obj.email;
         this.password = obj.password;
         // this.allergens = obj.allergens;
@@ -39,6 +41,10 @@ export class User extends ClassType {
         // this.eatingType = obj.eatingType;
         // this.spicinessType = obj.spicinessType;
     }
+
+    // @computed get userNameList(): string[] {
+    //     return AppRootModel.userModel.objectList.map(u => u.fullName);
+    // }
 
     // @computed get userToken(): any {
     //     this.store.root.userModel.items.filter(u => u.)

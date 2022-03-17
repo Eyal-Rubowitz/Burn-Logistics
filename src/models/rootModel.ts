@@ -1,3 +1,4 @@
+import { UserModel } from './userModel';
 import { MealModel } from "./mealModel";
 import { DishModel } from "./dishModel";
 import { IngredientModel } from "./ingredientModel";
@@ -5,11 +6,11 @@ import { FoodItemModel } from "./foodItemModel";
 import { InventoryModel } from "./inventoryModel";
 import { AllergensModel } from "./allergensModel";
 import { KitchenToolsModel } from './kitchenToolsModel';
-import { UserModel } from './userModel';
 
 
 export class RootModel {
     constructor() {
+        this.userModel = new UserModel(this);
         this.ingredientModel = new IngredientModel(this);
         this.mealModel = new MealModel(this);
         this.dishModel = new DishModel(this);
@@ -17,9 +18,9 @@ export class RootModel {
         this.inventoryModel = new InventoryModel(this);
         this.allergensModel = new AllergensModel(this);
         this.kitchenToolsModel = new KitchenToolsModel(this);
-        this.userModel = new UserModel(this);
     }
 
+    userModel: UserModel;
     ingredientModel: IngredientModel;
     mealModel: MealModel;
     dishModel: DishModel;
@@ -27,5 +28,4 @@ export class RootModel {
     inventoryModel: InventoryModel;
     allergensModel: AllergensModel;
     kitchenToolsModel: KitchenToolsModel;
-    userModel: UserModel;
 }

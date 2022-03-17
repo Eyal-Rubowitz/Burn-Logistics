@@ -19,7 +19,7 @@ router.route('/register').post( async (req, res) => {
     try {
 		const newPassword = await bcrypt.hash(req.body.password, 10)
 		await userModel.create({
-			name: req.body.name,
+			fullName: req.body.fullName,
 			email: req.body.email,
 			password: newPassword,
 		})
@@ -40,7 +40,7 @@ router.route('/login').post( async (req, res) => {
 	)
 
 	if (isPasswordValid) {
-		const token = jwt.sign({ name: user.name, email: user.email }, 'secret123');
+		const token = jwt.sign({ fullName: user.fullName, email: user.email }, 'secret123');
 		return res.json({ status: 'ok', userToken: token });
 	} else {
 		return res.json({ status: 'error', user: false });
