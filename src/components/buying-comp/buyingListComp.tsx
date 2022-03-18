@@ -265,7 +265,7 @@ class BuyingListComp extends PureComponent {
                             <Autocomplete
                                 id="combo-box-meal"
                                 options={AppRootModel.mealModel.objectList.slice().sort((a, b) => a.date.getTime() - b.date.getTime())}
-                                getOptionLabel={option => `${option.date.toLocaleDateString()} - ${option.name}`}
+                                getOptionLabel={option => `${option.date.toLocaleDateString()} - ${option.declaredType}`}
                                 onChange={(event, value) => this.chosenMeal = value && value._id}
                                 className="w left"
                                 renderInput={params => (

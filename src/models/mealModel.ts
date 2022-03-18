@@ -25,7 +25,7 @@ export class Meal extends ClassType {
     @observable chef: string = '';
     @observable chefId: string = '';
     @observable date: Date = new Date();
-    @observable name: string = '';
+    @observable declaredType: string = '';
     @observable diners: DinersDiet[] = [];
     @observable budget: number = 0;
     @observable portion: number = 0;
@@ -43,7 +43,7 @@ export class Meal extends ClassType {
         this.chef = obj.chef;
         this.chefId = obj.chefId;
         this.date = (typeof obj.date === 'string') ? new Date(obj.date) : obj.date;
-        this.name = obj.name;
+        this.declaredType = obj.mealType;
         this.diners = obj.diners || [];
         this.budget = Number(obj.budget);
         this.portion = Number(obj.portion);
@@ -58,13 +58,8 @@ export class Meal extends ClassType {
         return this.chef || "No chef found";
     } 
 
-    @computed get memberList(): string[] {
-        // const membersNames: string[] =this.store.root.userModel.objectList.map(u => u.fullName);
-        // const invList: string[] = this.store.root.inventoryModel.objectList.map((inv) => inv.name);
-        // const uList: string[] = this.store.root.userModel.objectList.map((u: User) => u.fullName);
-        // let a = AppRootModel.userModel.objectList.map(u => u.fullName);
-
-        return this.store.root.userModel.objectList.map(u => u.fullName || 'undefined name');
+    @computed get memberListData(): [string, string][] {
+        return this.store.root.userModel.objectList.map(u => [u._id, u.fullName]);
     }
 
     @computed get disList(): string[] {

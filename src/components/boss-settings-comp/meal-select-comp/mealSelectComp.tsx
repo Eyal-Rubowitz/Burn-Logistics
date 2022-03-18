@@ -45,12 +45,12 @@ class MealSelectComp extends PureComponent<IMealSelectCompProps> {
     @action onSelectMeal(ev: string): void {
         this.selectedMeal = (ev) ? ev : "";
         this.props.store.selectedMeal = this.selectedMeal;
-        this.props.store.meal = AppRootModel.mealModel.objectList.find(m => m.date.toLocaleDateString() === this.selectedDate && m.name === this.selectedMeal);
+        this.props.store.meal = AppRootModel.mealModel.objectList.find(m => m.date.toLocaleDateString() === this.selectedDate && m.declaredType === this.selectedMeal);
     }
 
     render() {
         let chosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedDate);
-        let dateEventListSet: Set<string> = new Set(chosenDateMeals.map(m => m.name));
+        let dateEventListSet: Set<string> = new Set(chosenDateMeals.map(m => m.declaredType));
         let mealList: string[] = Array.from(dateEventListSet);
         return (
             <div>

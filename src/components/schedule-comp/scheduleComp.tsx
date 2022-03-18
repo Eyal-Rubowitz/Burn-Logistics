@@ -64,7 +64,7 @@ class ScheduleTableComp extends Component {
                                 >
                     <td>{m.chefName}</td>
                     <td>{m.date.toLocaleDateString()}</td>
-                    <td>{m.name}</td>
+                    <td>{m.declaredType} </td>
                     <td className="servingTd">{m.serving.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
                     <td>
                         <Checkbox

@@ -36,7 +36,7 @@ class MealEventsComp extends PureComponent {
 
     render() {
         let mealItems: Meal[] = AppRootModel.mealModel.objectList;
-        let mealCategories: Set<string> = new Set(mealItems.map(m => m.name));
+        let mealCategories: Set<string> = new Set(mealItems.map(m => m.declaredType));
         let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map(cat => <Typography variant="h6" key={cat}>{cat}</Typography>);
         return (
             <div>

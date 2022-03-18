@@ -85,7 +85,7 @@ class MealComp extends PureComponent<IMealProps> {
                         {this.meal.chef}
                     </Typography>
                     <Typography variant='h6' align={'center'}>
-                        {this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} {this.meal.name} - {this.meal.date.toLocaleDateString()}
+                        {this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} {this.meal.declaredType} - {this.meal.date.toLocaleDateString()}
                     </Typography>
                     <div className="mealDataDiv1">
                         <TextField label="👨‍🍳Preparations start at"

@@ -79,7 +79,7 @@ export class Ingredient extends ClassType {
 
     @computed get appointmentTime(): string {
         let meal = (this.dish === undefined) ? undefined : this.store.root.mealModel.objectList.find(m => m._id === this.dish.mealId) as Meal;
-        return (meal === undefined) ? 'Date is missing' : meal.date.toLocaleDateString() + " - " + meal.name;
+        return (meal === undefined) ? 'Date is missing' : meal.date.toLocaleDateString() + " - " + meal.declaredType
     }
     
     // is ingredient already includes in inventory...
