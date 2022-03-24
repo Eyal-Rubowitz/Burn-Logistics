@@ -56,7 +56,7 @@ class BuyingListComp extends PureComponent {
     }
 
     @computed get chefList(): string[] {
-        return AppRootModel.mealModel.objectList.map(m => m.chef);
+        return AppRootModel.mealModel.objectList.map(m => m.chefName);
     }
 
     @computed get filteredData(): Ingredient[] {
@@ -265,7 +265,7 @@ class BuyingListComp extends PureComponent {
                             <Autocomplete
                                 id="combo-box-meal"
                                 options={AppRootModel.mealModel.objectList.slice().sort((a, b) => a.date.getTime() - b.date.getTime())}
-                                getOptionLabel={option => `${option.date.toLocaleDateString()} - ${option.declaredType}`}
+                                getOptionLabel={option => `${option.date.toLocaleDateString()} - ${option.categoryType}`}
                                 onChange={(event, value) => this.chosenMeal = value && value._id}
                                 className="w left"
                                 renderInput={params => (

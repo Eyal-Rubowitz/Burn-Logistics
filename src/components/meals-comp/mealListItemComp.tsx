@@ -9,7 +9,6 @@ import { Card, CardContent, Typography,
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import './meals-style/mealListItemStyle.scss';
-import { AppRootModel } from '../../modelsContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -40,16 +39,12 @@ const MealListItemComp = observer((props: IMealProps) => {
         props.meal.store.removeItem(props.meal);
     }
 
-    let mealCategories: Set<string> = new Set(props.meal.store.objectList.map(m => m.name));
+    let mealCategories: Set<string> = new Set(props.meal.store.objectList.map(m => m.categoryType));
+    console.log('props.meal.store: ', props.meal.store)
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
-    // let memberList: [string, string][] = props.meal.memberList;
-    // let dList: string[] = props.meal.disList;
-    // console.log('dishList: ', dList);
-    // console.log('memberList: ', memberList)
-    let members: string[] = AppRootModel.userModel.objectList.map(u => u.fullName);
-    console.log('members: ', members)
-    // let members: string[] = props.meal.memberListData;
-    // let memberList: JSX.Element[] = Array.from(members).map((mmbr, i) => <MenuItem key={i} value={mmbr}>{mmbr}</MenuItem>)
+    // let chefsSet: Set<string> = new Set(props.meal.store.objectList.map(m => m.categoryType));
+    let members: Record<string, string> = props.meal.memberListData;
+    // let memberList: JSX.Element[] = Array.from(members).map((mmbr, id) => <MenuItem key={id} value={id}>{mmbr}</MenuItem>)
     return (
         <Box my={1} key={props.meal._id} className="grow">
             <Card >
@@ -58,19 +53,20 @@ const MealListItemComp = observer((props: IMealProps) => {
                         <TextField label='👨‍🍳'
                             name='chef'
                             onChange={onHandleInputChange}
-                            value={props.meal.chef}
+                            value={members[props.meal.chefId]}
                             variant="outlined" />
                     </FormControl>
                     {/* <div>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select value={props.meal.chef} name='chef' onChange={onHandleInputChange}>
+                            <Select value={props.meal.chef} name='chefId' onChange={onHandleInputChange}>
                                 {memberList}
                             </Select>
                         </FormControl>
                     </div> */}
+
                     <div>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select value={props.meal.declaredType} name='name' onChange={onHandleInputChange}>
+                            <Select value={props.meal.categoryType} name='name' onChange={onHandleInputChange}>
                                 {mealCategoryList}
                             </Select>
                         </FormControl>

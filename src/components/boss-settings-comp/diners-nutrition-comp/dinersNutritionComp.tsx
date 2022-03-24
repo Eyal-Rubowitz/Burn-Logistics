@@ -79,7 +79,7 @@ class DinersNutritionComp extends PureComponent {
 
     mealInfo(): string {
         let info = "";
-        if (this.selectedMealStore.meal) info = `${this.selectedMealStore.meal.chef} - ${this.selectedMealStore.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.selectedMealStore.meal.date.toLocaleDateString()}`;
+        if (this.selectedMealStore.meal) info = `${this.selectedMealStore.meal.chefName} - ${this.selectedMealStore.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.selectedMealStore.meal.date.toLocaleDateString()}`;
         return info;
     }
 

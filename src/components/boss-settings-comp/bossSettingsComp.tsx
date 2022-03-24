@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
 
 import { AppRootModel } from "../../modelsContext";
 import { FoodItem } from "../../models/foodItemModel";

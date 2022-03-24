@@ -48,10 +48,10 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
             this.diners = (mealList.length > 0) ? mealList[0].totalDiners : 0;
             mealList.forEach((m) => {
                 this.mealBudget[m._id] = m.budget;
-                this.mealBudget[m.declaredType] = m.budget;
+                this.mealBudget[m.categoryType] = m.budget;
                 this.portion[m._id] = m.portion;
-                this.portion[m.declaredType] = m.portion;
-                this.holdBudget[m.declaredType] = false;
+                this.portion[m.categoryType] = m.portion;
+                this.holdBudget[m.categoryType] = false;
             });
         });
     }
@@ -139,8 +139,8 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         } else {
             mealModel.objectList.forEach(m => {
                 m.diners.push({ "count": this.diners, "dietType": "Omnivore" });
-                m.budget = this.mealBudget[m.declaredType];
-                m.portion = this.portion[m.declaredType];
+                m.budget = this.mealBudget[m.categoryType];
+                m.portion = this.portion[m.categoryType];
                 mealModel.updateItem(m);
             });
         }
@@ -151,7 +151,7 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         let mealDateList: string[] = (dates) ? Array.from(dates).map(date => date) : [];
         mealDateList.slice().sort((a, b) => (a > b) ? 1 : -1);
         let dailyBudget: number = Number((this.totalBudget / (mealDateList.length)).toFixed(2));
-        let events: Set<string> = new Set(this.meals.map(m => m.declaredType));
+        let events: Set<string> = new Set(this.meals.map(m => m.categoryType));
         let eventList: JSX.Element[] = Array.from(events).map(
             (ev: string, i: number) =>
                 <div key={i}>
@@ -191,13 +191,13 @@ class BudgetAndDinersLimitationsComp extends PureComponent {
         );
         let chosenDateMeals: Meal[] = this.meals.filter(m => m.date.toLocaleDateString() === this.selectedMealStore.selectedDate);
         let totalEventExpense: number = Array.from(events).reduce((ttl, ev) => ttl + this.mealBudget[ev], 0);
-        let chosenMeal: Meal[] = chosenDateMeals.filter(m => m.declaredType === this.selectedMealStore.selectedMeal);
+        let chosenMeal: Meal[] = chosenDateMeals.filter(m => m.categoryType === this.selectedMealStore.selectedMeal);
         let chosenMealEvent: JSX.Element[] = chosenMeal.map((m, i) =>
             <div key={i}>
                 <Typography variant="h6"
                     key={m._id}
                     className="chosenMealForm">
-                    {m.declaredType}:
+                    {m.categoryType}:
                 </Typography>
                 <TextField label="Budget ₪"
                     value={this.mealBudget[m._id]}

@@ -27,11 +27,28 @@ export abstract class DataModel<TypeModel extends ClassType> {
     // getItemsFromServer(): void {
     getListFromServer(): void {
             axios.get(this.resourceUrl).then(objList => {
-                if(this.resourcePath() === 'users') console.log('line 27 - data model list: ', objList.data);
                 objList.data.forEach((obj: TypeModel) => {
                     this.updateObjFromServer(obj);
                 });
             });
+    }
+
+    isUserConnected = async (inputId: string): Promise<boolean> => {
+        let resValidate = false;
+        axios.post('http://localhost:3000/api/users/user-validate', inputId).then(res => resValidate = res.data);
+    //     const response = await fetch('http://localhost:3000/api/users/register', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     // camp: this.camp,
+        
+    //   })
+    // });
+
+    // const jsonData = await response.json();
+        return resValidate;
     }
 
     // getUserTokenFromServer(): void {

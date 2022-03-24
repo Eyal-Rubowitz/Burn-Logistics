@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let mealSchema = new Schema({
-    chef: String,
+    chefId: String,
     date: Date,
-    name: String,
+    categoryType: String,
     diners: Array({'count': Number, dietType: String}),
     budget: Number,
     portion: Number,

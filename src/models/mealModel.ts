@@ -2,6 +2,8 @@ import { observable, computed } from 'mobx';
 import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 import { Dish } from './dishModel';
+import jwt from 'jsonwebtoken';
+
 // import { User } from './userModel';
 // import { AppRootModel } from '../modelsContext';
 
@@ -20,12 +22,14 @@ export class DinersDiet {
     constructor(public count: number, public dietType: string) { }
 }
 
+type IUserData = { name: string; email: string; iat: number; };
+
+
 export class Meal extends ClassType {
 
-    @observable chef: string = '';
     @observable chefId: string = '';
     @observable date: Date = new Date();
-    @observable declaredType: string = '';
+    @observable categoryType: string = '';
     @observable diners: DinersDiet[] = [];
     @observable budget: number = 0;
     @observable portion: number = 0;
@@ -40,10 +44,9 @@ export class Meal extends ClassType {
     }
 
     updateFromJson(obj: any): void {
-        this.chef = obj.chef;
         this.chefId = obj.chefId;
         this.date = (typeof obj.date === 'string') ? new Date(obj.date) : obj.date;
-        this.declaredType = obj.mealType;
+        this.categoryType = obj.categoryType;
         this.diners = obj.diners || [];
         this.budget = Number(obj.budget);
         this.portion = Number(obj.portion);
@@ -54,12 +57,15 @@ export class Meal extends ClassType {
     }
 
     @computed get chefName(): string {
-        // console.log('mealModel chef name: ', this.store.root.userModel.items.find(u => (u._id === this.chefId))?.fullName)
-        return this.chef || "No chef found";
+        return this.store.root.userModel.objectList.find(u => u._id === this.chefId)?.fullName || "No chef found";
     } 
 
-    @computed get memberListData(): [string, string][] {
-        return this.store.root.userModel.objectList.map(u => [u._id, u.fullName]);
+    @computed get memberListData(): Record<string, string> { 
+        return this.store.root.userModel.objectList.reduce((o, user) => {
+            o[user._id] = user.fullName
+            return o;
+        }, {} as Record<string, string>);
+        // return this.store.root.userModel.objectList.map(u => [u._id] = u.fullName);
     }
 
     @computed get disList(): string[] {
@@ -74,6 +80,11 @@ export class Meal extends ClassType {
         return this.diners.reduce((ttl, diet) => ttl + diet.count, 0);
     }
 
+    isConnectedUser(inputId: string): boolean {
+        let userFound = this.store.root.userModel.objectList.find(u => u._id === inputId);
+        let token = jwt.decode(localStorage.getItem('token') || '', {json: true}) as IUserData;
+            return (userFound?.email === token.email) ? true : false;
+    }
 
     deleteSousChefFromList(inputName: string): void {
         this.sousChefList = this.sousChefList.filter(name => name !== inputName);

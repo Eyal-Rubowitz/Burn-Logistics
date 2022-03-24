@@ -17,7 +17,7 @@ class MealListComp extends PureComponent {
     onAddMeal(date: Date): void {
         let newId = (new ObjectID()).toHexString();
         let time = new Date(date.setHours(12, 0));
-        let newMeal = new Meal(this.mealModel, { _id: newId, chef: "Chef Name", date: date, name: "Brunch", preparing: time, serving: time });
+        let newMeal = new Meal(this.mealModel, { _id: newId, chefId: "", date: date, name: "Brunch", preparing: time, serving: time });
         newMeal.store.createObject(newMeal);
     }
 

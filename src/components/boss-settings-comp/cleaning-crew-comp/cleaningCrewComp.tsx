@@ -42,7 +42,7 @@ class CleaningCrewComp extends PureComponent {
 
     mealInfo(): string {
         let info = "";
-        if (this.meal) info = `${this.meal.chef} - ${this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.meal.date.toLocaleDateString()}`;
+        if (this.meal) info = `${this.meal.chefName} - ${this.meal.date.toLocaleDateString('en-EN', { weekday: 'long' })} ${this.meal.date.toLocaleDateString()}`;
         return info;
     }
 

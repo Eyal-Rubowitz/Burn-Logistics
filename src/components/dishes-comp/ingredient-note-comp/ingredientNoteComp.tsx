@@ -59,8 +59,8 @@ class IngredientNoteComp extends PureComponent<IngCompProps> {
         if(this.ingredient && this.meal && this.meal) {
             ingName = this.ingredient.name;
             day = this.meal.date.toLocaleDateString('en-EN', {weekday: 'long'})
-            mealName = this.meal.declaredType;
-            chefName = this.meal.chef;
+            mealName = this.meal.categoryType;
+            chefName = this.meal.chefName;
         }
         return (
             <div id="noteDiv">

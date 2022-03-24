@@ -20,7 +20,7 @@ export default class DatePickerComp extends PureComponent {
 
     addNewMealDate = (): void => {
         let newId = (new ObjectID()).toHexString()
-        let newMeal = new Meal(AppRootModel.mealModel, { _id: newId, chef: "Chef Name", date: this.selectedDay, name: "Brunch" });
+        let newMeal = new Meal(AppRootModel.mealModel, { _id: newId, chefId: "", date: this.selectedDay, name: "Brunch" });
         newMeal.store.createObject(newMeal);
     }
 

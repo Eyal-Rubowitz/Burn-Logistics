@@ -60,11 +60,13 @@ class ScheduleTableComp extends Component {
                     className={`tableTr 
                                 ${(i % 2 === 0) ? 'evn' : 'odd'} 
                                 ${(borderBool) ? 'borderDays' : 'none'}
-                                ${(this.activatedTr[i]) ? 'trActive' : ''}`} 
+                                ${(this.activatedTr[i]) ? 'trActive' : ''}
+                                ${(m.isConnectedUser(m.chefId)) ? 'userData' : ''}
+                                `} 
                                 >
-                    <td>{m.chefName}</td>
+                    <td id="chefName">{m.chefName}</td>
                     <td>{m.date.toLocaleDateString()}</td>
-                    <td>{m.declaredType} </td>
+                    <td>{m.categoryType} </td>
                     <td className="servingTd">{m.serving.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
                     <td>
                         <Checkbox

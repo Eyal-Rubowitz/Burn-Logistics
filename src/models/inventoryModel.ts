@@ -60,7 +60,7 @@ export class InventoryItem extends ClassType {
         if(this.checkForHexRegExpObjectID.test(this.dishIdOwnedItem)) {
             let dish: Dish | undefined = AppRootModel.dishModel.objectList.find(d => d._id === this.dishIdOwnedItem);
             let meal: Meal | undefined = AppRootModel.mealModel.objectList.find(m => m._id === ((dish) ? dish.mealId : ''));
-            return (meal !== undefined) ? meal.chef : 'Item Is Free';
+            return (meal !== undefined) ? meal.chefName : 'Item Is Free';
         } else {
             return 'Item Is Free';
         }

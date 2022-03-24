@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.route('/register').post( async (req, res) => {
-	console.log('index 58 req.body: ', req.body);
+	console.log('index 18 req.body: ', req.body);
     try {
 		const newPassword = await bcrypt.hash(req.body.password, 10)
 		await userModel.create({
@@ -34,10 +34,7 @@ router.route('/login').post( async (req, res) => {
 
 	if (!user) return { status: 'error', error: 'Invalid login' }
 	
-	const isPasswordValid = await bcrypt.compare(
-		req.body.password,
-		user.password
-	)
+	const isPasswordValid = await bcrypt.compare(req.body.password, user.password)
 
 	if (isPasswordValid) {
 		const token = jwt.sign({ fullName: user.fullName, email: user.email }, 'secret123');
