@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import {
-    Paper, Typography, TextField,
-    Fab, Icon, IconButton
+    Paper, Typography,
+    Fab, Icon, IconButton, Select, InputLabel, MenuItem
 } from '@material-ui/core';
 import { observer } from "mobx-react";
 import { observable, computed, IReactionDisposer, autorun } from 'mobx';
@@ -17,7 +17,7 @@ class CleaningCrewComp extends PureComponent {
 
     disposeAutorun: IReactionDisposer;
 
-    @observable cleaningMemberName: string = "";
+    @observable cleaningMemberId: string = "";
     @observable selectedMealStore = new SelectedMealStore();
 
     constructor(props: {}) {
@@ -46,30 +46,37 @@ class CleaningCrewComp extends PureComponent {
         return info;
     }
 
-    onEnterCleaningMemberName(e: React.ChangeEvent<any>): void {
-        this.cleaningMemberName = e.target.value;
+    onSelectCleaningMember(e: React.ChangeEvent<any>): void {
+        this.cleaningMemberId = e.target.value;
     }
 
     onAddNewCleaningMember(): void {
         if (this.meal) {
-            this.meal.cleaningCrewList.push(this.cleaningMemberName);
+            let isAlreadyInList = this.meal.cleaningCrewIdList.some(mmbrId => mmbrId === this.cleaningMemberId);
+            if(!isAlreadyInList) {
+                this.meal.cleaningCrewIdList.push(this.cleaningMemberId);
             AppRootModel.mealModel.updateItem(this.meal);
-            this.cleaningMemberName = '';
+            this.cleaningMemberId = '';
+            } else {
+                alert('member is already in position!')
+            }
         }
     }
 
     getKitchenCrew(): JSX.Element[] {
-        let team: string[] = [];
+        let cleaningTeamId: string[] = [];
         if (this.meal) {
-            team = this.meal.cleaningCrewList;
+            cleaningTeamId = this.meal.cleaningCrewIdList;
         }
 
-        let crew: JSX.Element[] = team.map(name => {
+        let members: Record<string, string> = (this.meal) ? this.meal.memberListData : {};
+
+        let crew: JSX.Element[] = cleaningTeamId.map(cleanerId => {
             return (
                 <div>
-                    <Typography variant="h6" key={name} className="tgClnName">{name}</Typography>
-                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
-                        <DeleteForeverIcon className="tgClnName" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                    <Typography variant="h6" key={cleanerId} className="tgCrewMmbr">{members[cleanerId]}</Typography>
+                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteCleaningMemberFromList(cleanerId)} color="secondary" size="medium">
+                        <DeleteForeverIcon className="tgCrewMmbr" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
             )
@@ -79,16 +86,28 @@ class CleaningCrewComp extends PureComponent {
     }
 
     render() {
+        let members: Record<string, string> = this.meal?.memberListData || {};
+        let memberList: JSX.Element[] = Object.keys(members).map((mmbrId) => 
+                (this.meal?.chefId !== mmbrId) ? 
+                <MenuItem key={mmbrId} value={mmbrId}>{(this.meal?.sousChefIdList.includes(mmbrId)) ? members[mmbrId] + ' 😇' : members[mmbrId]}</MenuItem> : <></>)
         return (
             <Fragment>
                 <Paper className="paper">
                     <MealSelectComp store={this.selectedMealStore} />
                     <div className={`${(this.meal !== undefined) ? 'visible' : 'hide' }`} >
                         <Typography variant="h4" className="cleaningTitle">{this.mealInfo()}</Typography>
-                        <TextField label="Enter cleaning member"
+                        {/* <TextField label="Enter cleaning member"
                             onChange={(e: React.ChangeEvent<any>) => { this.onEnterCleaningMemberName(e) }}
                             value={this.cleaningMemberName}
-                            variant="outlined"/>
+                            variant="outlined"/> */}
+                            <InputLabel id="sous-label">Select cleaning member</InputLabel>
+                            <Select labelId="sous-label"
+                                    value={this.cleaningMemberId} 
+                                    name='sousChefId' 
+                                    className="txtFldSousInput"
+                                    onChange={(e: React.ChangeEvent<any>) => { this.onSelectCleaningMember(e) }}>
+                                {memberList}
+                            </Select>
                         <Fab
                             onClick={() => { this.onAddNewCleaningMember() }}
                             variant='extended'

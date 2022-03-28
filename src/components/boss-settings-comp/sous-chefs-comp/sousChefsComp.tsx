@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Paper, Typography, TextField, 
-         Fab, Icon, IconButton } from '@material-ui/core';
+         Fab, Icon, IconButton, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 import { observer } from "mobx-react";
 import { observable, computed, IReactionDisposer, autorun } from 'mobx';
 import { Meal } from '../../../models/mealModel';
@@ -10,6 +10,8 @@ import SelectedMealStore from '../../../stores/SelectedMealStore';
 import MealSelectComp from '../meal-select-comp/mealSelectComp';
 import './sousChefsStyle.scss';
 
+type IMealProps = { meal: Meal };
+
 @observer
 class SousChefsComp extends PureComponent {
 
@@ -17,9 +19,9 @@ class SousChefsComp extends PureComponent {
 
     selectedMealStore = new SelectedMealStore();
    
-    @observable sousChefName: string = "";
+    @observable sousChefId: string = "";
 
-    constructor(props: {}) {
+    constructor(props: IMealProps) {
         super(props);
         this.disposeAutorun = autorun(() => {
                 let dates: Set<string> = new Set(this.meals.map(m => m.date.toLocaleDateString()));
@@ -45,30 +47,36 @@ class SousChefsComp extends PureComponent {
         return info;
     }
 
-    onEnterSousChefName(e: React.ChangeEvent<any>): void {
-        this.sousChefName = e.target.value;
+    onEnterSousChefId(e: React.ChangeEvent<any>): void {
+        this.sousChefId = e.target.value;
     }
 
     onAddNewSousChef(): void {
         if (this.meal) {
-            this.meal.sousChefList.push(this.sousChefName);
-            AppRootModel.mealModel.updateItem(this.meal);
-            this.sousChefName = '';
+            let isAlreadyInList = this.meal.sousChefIdList.some(mmbrId => mmbrId === this.sousChefId);
+            if(!isAlreadyInList) {
+                this.meal.sousChefIdList.push(this.sousChefId);
+                AppRootModel.mealModel.updateItem(this.meal);
+                this.sousChefId = '';
+            } else {
+                alert('member is already in position!')
+            }
         }
     }
 
     getKitchenCrew(): JSX.Element[] {
         let team: string[] = [];
         if (this.meal) {
-            team = this.meal.sousChefList;
+            team = this.meal.sousChefIdList;
         }
+        let members: Record<string, string> = (this.meal) ? this.meal.memberListData : {};
 
-        let crew: JSX.Element[] = team.map(name => {
+        let crew: JSX.Element[] = team.map(mmbrId => {
             return (
                 <div>
-                    <Typography variant="h6" key={name} className="inlineBlock">{name}</Typography>
-                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(name)} color="secondary" size="medium">
-                        <DeleteForeverIcon className="inlineBlock" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
+                    <Typography variant="h6" key={mmbrId} className="tgCrewMmbr">{members[mmbrId]}</Typography>
+                    <IconButton className="hoverAlertColor" onClick={() => (this.meal as Meal).deleteSousChefFromList(mmbrId)} color="secondary" size="medium">
+                        <DeleteForeverIcon className="tgCrewMmbr" fontSize="medium" color='secondary' enableBackground="red"></DeleteForeverIcon>
                     </IconButton>
                 </div>
             )
@@ -77,18 +85,27 @@ class SousChefsComp extends PureComponent {
         return crew;
     }
 
+    
+    
     render() {
+        let members: Record<string, string> = this.meal?.memberListData || {};
+        let memberList: JSX.Element[] = Object.keys(members).map((mmbrId) => 
+                (this.meal?.chefId !== mmbrId) ? 
+                <MenuItem key={mmbrId} value={mmbrId}>{(this.meal?.sousChefIdList.includes(mmbrId)) ? members[mmbrId] + ' 😇' : members[mmbrId]}</MenuItem> : <></>)
         return (
             <Fragment>
                 <Paper className="paper">
                     <MealSelectComp store={this.selectedMealStore} />
                     <div className={`${(this.meal !== undefined) ? 'visible' : 'hide'}`}>
                         <Typography variant="h4" className="tgMealInfo">{this.mealInfo()}</Typography>
-                        <TextField label="Enter sous chef"
-                            onChange={(e: React.ChangeEvent<any>) => { this.onEnterSousChefName(e) }}
-                            value={this.sousChefName}
-                            variant="outlined"
-                            className="txtFldSousInput"/>
+                        <InputLabel id="sous-label">Select sous chef</InputLabel>
+                            <Select labelId="sous-label"
+                                    value={this.sousChefId} 
+                                    name='sousChefId' 
+                                    className="txtFldSousInput"
+                                    onChange={(e: React.ChangeEvent<any>) => { this.onEnterSousChefId(e) }}>
+                                {memberList}
+                            </Select>
                         <Fab
                             onClick={() => { this.onAddNewSousChef() }}
                             variant='extended'

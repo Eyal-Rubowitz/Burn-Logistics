@@ -1,120 +1,124 @@
 #sideToolBar {
-    display: inline-block;
-    position: fixed; 
-    height: 100%; 
-    left: 0vw !important; 
-    top: 9vh !important;
-    width: 14.8vw !important;
-    background-color: darken($color: #3646A3, $amount: 4%) ;
-    
-    .navLink {
-        position: absolute; 
-        width: 100%;
-        text-decoration: none; 
-        color: #91FFFF; 
-        margin-left: 0.8vw; 
-        left: 0px !important;
-        z-index: 1;
-        border: transparent 0.2vw solid;    
-        
-        &:not(.active)::after {
-            content: '';
-            position: absolute;
-            top: -0.6vh;
-            left: -0.6vw;
-            width: 100%;
-            height: 8.8vh;
-            background-color: lighten($color: #3646A3, $amount: 30%);
-            border: transparent 0.18vw solid;
-            border-radius: 0.25vw 0vw 0vw 0.25vw;
-            z-index: -1;
-            transform: scaleX(0);
-            transition: transform 350ms ease-in;
-            transform-origin: right;
-        }
+  display: inline-block;
+  position: fixed;
+  height: 100%;
+  left: 0vw !important;
+  top: 9vh !important;
+  width: 14.8vw !important;
+  background-color: darken($color: #3646a3, $amount: 4%);
 
-        &:not(.active):hover::after {
-            top: -0.6vh;
-            height: 8.4vh;
-            border: transparent 0.18vw solid;
-            border-radius: 0.25vw 0 0  0.25vw;
-            transform: scaleX(1);
-        }
+  .navLink {
+    position: absolute;
+    width: 100%;
+    text-decoration: none;
+    color: #91ffff;
+    margin-left: 0.8vw;
+    left: 0px !important;
+    z-index: 1;
+    border: transparent 0.2vw solid;
 
-        &:hover:not(:focus):not(.active) {
-            border: transparent 0.2vw solid;
-            border-radius: 0.25vw;
-            text-shadow: 0.16rem 0.16rem 0.4rem black;
-        }
-        
-        &#mealType {
-            top: 4vh !important;
-        }
-
-        &#addDate {
-            top: 14vh !important;
-        }
-
-        &#customUnit {
-            top: 24vh !important;
-        }
-
-        &#settings {
-            top: 34vh !important;
-        }
-
-        &#allergens {
-            top: 44vh !important;
-        }
-
-        &#chefsCrew {
-            top: 54vh !important;
-        }
-
-        &#dinersDiet {
-            top: 64vh !important;
-        }
-
-        &#cleaningCrew {
-            top: 74vh !important;
-            // left: -0.4vw !important;
-            // width: 95%;
-        }
-        
-        .img {
-            position: relative;
-            z-index: 3;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .sSize {
-            margin-left: 0.5vw !important;
-            width: 3.4vw !important;
-            margin-right: 2.2vw !important;
-            min-height: 2.8vh;
-        }
-
-        .midSize {
-            width: 5.2vw !important;
-            min-height: 2.8vh;
-            margin-right: 0.78vw !important;
-        }
-
-        .lSize {
-            width: 5.8vw !important;
-            min-height: 2.8vh;
-            margin-right: 0.5vw !important;
-        }
-
-        .tgNav {
-            display: inline-block;
-            margin-left: 0.25vw !important;
-            font-size: 1vw;
-        }
+    &:not(.active)::after {
+      content: "";
+      position: absolute;
+      top: -0.6vh;
+      left: -0.6vw;
+      width: 100%;
+      height: 8.8vh;
+      background-color: lighten($color: #3646a3, $amount: 30%);
+      border: transparent 0.18vw solid;
+      border-radius: 0.25vw 0vw 0vw 0.25vw;
+      z-index: -1;
+      transform: scaleX(0);
+      transition: transform 350ms ease-in;
+      transform-origin: right;
     }
+
+    &:not(.active):hover::after {
+      top: -0.6vh;
+      height: 8.4vh;
+      border: transparent 0.18vw solid;
+      border-radius: 0.25vw 0 0 0.25vw;
+      transform: scaleX(1);
+    }
+
+    &:hover:not(:focus):not(.active) {
+      border: transparent 0.2vw solid;
+      border-radius: 0.25vw;
+      text-shadow: 0.16rem 0.16rem 0.4rem black;
+    }
+
+    &#mealType {
+      top: 4vh !important;
+    }
+
+    &#addDate {
+      top: 14vh !important;
+    }
+
+    &#customUnit {
+      top: 24vh !important;
+    }
+
+    &#settings {
+      top: 34vh !important;
+    }
+
+    &#allergens {
+      top: 44vh !important;
+    }
+
+    &#chefsCrew {
+      top: 54vh !important;
+    }
+
+    &#dinersDiet {
+      top: 64vh !important;
+    }
+
+    &#cleaningCrew {
+      top: 74vh !important;
+      // left: -0.4vw !important;
+      // width: 95%;
+    }
+
+    .img {
+      position: relative;
+      z-index: 3;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .sSize {
+      margin-left: 0.5vw !important;
+      width: 3.4vw !important;
+      margin-right: 2.2vw !important;
+      min-height: 2.8vh;
+    }
+
+    .midSize {
+      width: 5.2vw !important;
+      min-height: 2.8vh;
+      margin-right: 0.78vw !important;
+    }
+
+    .lSize {
+      width: 5.8vw !important;
+      min-height: 2.8vh;
+      margin-right: 0.5vw !important;
+    }
+
+    .tgNav {
+      display: inline-block;
+      margin-left: 0.25vw !important;
+      font-size: 1vw;
+    }
+  }
 }
 
 #switchContainer {
-    margin-top: 12vh;
+  margin-top: 12vh;
+}
+
+.tgCrewMmbr {
+  display: inline-block !important;
 }

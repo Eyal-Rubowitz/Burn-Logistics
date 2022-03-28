@@ -82,9 +82,18 @@ class BossSettingsComp extends PureComponent {
                                     Settings
                                 </Typography>
                             </NavLink>
-                            <NavLink id="allergens" 
+                            <NavLink id="dinersDiet" 
                                      className={`navLink ${(this.isActive[4]) ? 'active' : ''}`} 
                                      onClick={() => this.onActive(4)}
+                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/diners-nutrition'}>
+                                <img className="img midSize" alt="dietary conscience" src={DietaryConcerns} />
+                                <Typography variant="h6" className="tgNav">
+                                    Diners Diet
+                                </Typography>
+                            </NavLink>
+                            <NavLink id="allergens" 
+                                     className={`navLink ${(this.isActive[5]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(5)}
                                      activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/allergens'}>
                                 <img className="img sSize" alt="allergens" src={Emergency} />
                                 <Typography variant="h6" className="tgNav">
@@ -92,21 +101,12 @@ class BossSettingsComp extends PureComponent {
                                 </Typography>
                             </NavLink>
                             <NavLink id="chefsCrew" 
-                                     className={`navLink ${(this.isActive[5]) ? 'active' : ''}`} 
-                                     onClick={() => this.onActive(5)}
+                                     className={`navLink ${(this.isActive[6]) ? 'active' : ''}`} 
+                                     onClick={() => this.onActive(6)}
                                      activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/sous-chefs'}>
                                 <img className="img midSize" alt="sous chefs" src={kitchenCrew} />
                                 <Typography variant="h6" className="tgNav">
                                     Chef's Crew
-                                </Typography>
-                            </NavLink>
-                            <NavLink id="dinersDiet" 
-                                     className={`navLink ${(this.isActive[6]) ? 'active' : ''}`} 
-                                     onClick={() => this.onActive(6)}
-                                     activeStyle={{ backgroundColor: 'white', color: '#3646A3', borderRadius: '5px', width: '100%', textShadow: 'none' }} exact to={'/settings/diners-nutrition'}>
-                                <img className="img midSize" alt="dietary conscience" src={DietaryConcerns} />
-                                <Typography variant="h6" className="tgNav">
-                                    Diners Diet
                                 </Typography>
                             </NavLink>
                             <NavLink id="cleaningCrew" 
@@ -126,9 +126,9 @@ class BossSettingsComp extends PureComponent {
                                 <Route path={'/settings/add-date'} exact component={DatePickerComp} />
                                 <Route path={'/settings/custom-unit'} exact component={CustomUnitComp} />
                                 <Route path={'/settings/limitations'} exact component={BudgetAndDinersLimitationsComp} />
+                                <Route path={'/settings/diners-nutrition'} exact component={DinersNutritionComp} />
                                 <Route path={'/settings/allergens'} exact component={AllergensComp} />
                                 <Route path={'/settings/sous-chefs'} exact component={SousChefsComp} />
-                                <Route path={'/settings/diners-nutrition'} exact component={DinersNutritionComp} />
                                 <Route path={'/settings/cleaning-crew'} exact component={CleaningCrewComp} />
                             </Switch>
                         </Container>

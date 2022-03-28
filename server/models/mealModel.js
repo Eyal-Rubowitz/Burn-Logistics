@@ -10,8 +10,8 @@ let mealSchema = new Schema({
     portion: Number,
     preparing: Date,
     serving: Date,
-    sousChefList: Array(String),
-    cleaningCrewList: Array(String)
+    sousChefIdList: Array(String), 
+    cleaningCrewIdList: Array(String)
 });
 
 module.exports = mongoose.model('meal', mealSchema);

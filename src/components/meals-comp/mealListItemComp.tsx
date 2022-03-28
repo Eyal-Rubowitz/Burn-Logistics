@@ -3,7 +3,7 @@ import { Meal } from '../../models/mealModel';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { Card, CardContent, Typography, 
-         Box, List, ListItem, TextField, 
+         Box, List, ListItem, 
          FormControl, Select, MenuItem, 
          CardActions, IconButton, Grid } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -44,29 +44,20 @@ const MealListItemComp = observer((props: IMealProps) => {
     let mealCategoryList: JSX.Element[] = Array.from(mealCategories).map((mc, i) => <MenuItem key={i} value={mc}>{mc}</MenuItem>)
     // let chefsSet: Set<string> = new Set(props.meal.store.objectList.map(m => m.categoryType));
     let members: Record<string, string> = props.meal.memberListData;
-    // let memberList: JSX.Element[] = Array.from(members).map((mmbr, id) => <MenuItem key={id} value={id}>{mmbr}</MenuItem>)
+    let memberList: JSX.Element[] = Object.keys(members).map((mmbrId) => <MenuItem key={mmbrId} value={mmbrId}>{(props.meal.chefId === mmbrId) ? members[mmbrId] +  " 👨‍🍳" : "" + members[mmbrId]}</MenuItem>)
+
     return (
         <Box my={1} key={props.meal._id} className="grow">
             <Card >
                 <CardContent >
-                    <FormControl className={classes.formControl}>
-                        <TextField label='👨‍🍳'
-                            name='chef'
-                            onChange={onHandleInputChange}
-                            value={members[props.meal.chefId]}
-                            variant="outlined" />
-                    </FormControl>
-                    {/* <div>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select value={props.meal.chef} name='chefId' onChange={onHandleInputChange}>
+                            <Select value={props.meal.chefId} name='chefId' onChange={onHandleInputChange}>
                                 {memberList}
                             </Select>
                         </FormControl>
-                    </div> */}
-
                     <div>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select value={props.meal.categoryType} name='name' onChange={onHandleInputChange}>
+                            <Select value={props.meal.categoryType} name='categoryType' onChange={onHandleInputChange}>
                                 {mealCategoryList}
                             </Select>
                         </FormControl>

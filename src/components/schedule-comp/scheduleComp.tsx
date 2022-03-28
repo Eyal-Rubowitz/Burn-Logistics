@@ -38,19 +38,23 @@ class ScheduleTableComp extends Component {
 
 
     @observable ScheduleTableFunc = ((mealList: Meal[]): JSX.Element => {
+        
+        
         let scheduleTable: JSX.Element[] = mealList.slice().sort((a, b) => a.date.getTime() - b.date.getTime()).map((m, i) => {
             let borderBool: boolean = (this.dividerDate.toLocaleDateString() !== m.date.toLocaleDateString() && i !== 0);
             this.dividerDate = m.date;
-
-            let sousChefNames: JSX.Element[] = m.sousChefList.map(name => {
+            
+            let members: Record<string, string> = m.memberListData;
+ 
+            let sousChefIdList: JSX.Element[] = m.sousChefIdList.map(suChefId => {
                 return (
-                    <div key={name} className="sousName name">{name}</div>
+                    <div key={suChefId} className={`sousName name ${(m.isConnectedUser(suChefId)) ? 'bringOutUserName' : ''}`}>{members[suChefId]}</div>
                 )
             })
 
-            let cleaningCrewNames: JSX.Element[] = m.cleaningCrewList.map(name => {
+            let cleaningCrewIdList: JSX.Element[] = m.cleaningCrewIdList.map(cleanerId => {
                 return (
-                    <div key={name}  className="cleanName name">{name}</div>
+                    <div key={cleanerId} className={`cleanName name ${(m.isConnectedUser(cleanerId)) ? 'bringOutUserName' : ''}`}>{members[cleanerId]}</div>
                 )
             })
 
@@ -61,10 +65,10 @@ class ScheduleTableComp extends Component {
                                 ${(i % 2 === 0) ? 'evn' : 'odd'} 
                                 ${(borderBool) ? 'borderDays' : 'none'}
                                 ${(this.activatedTr[i]) ? 'trActive' : ''}
-                                ${(m.isConnectedUser(m.chefId)) ? 'userData' : ''}
+                                
                                 `} 
                                 >
-                    <td id="chefName">{m.chefName}</td>
+                    <td className={`${(m.isConnectedUser(m.chefId)) ? 'bringOutUserName' : ''}`}>{m.chefName}</td>
                     <td>{m.date.toLocaleDateString()}</td>
                     <td>{m.categoryType} </td>
                     <td className="servingTd">{m.serving.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
@@ -78,10 +82,10 @@ class ScheduleTableComp extends Component {
                         />
                     </td>
                     <td>
-                        {sousChefNames}
+                        {sousChefIdList}
                     </td>
                     <td>
-                        {cleaningCrewNames}
+                        {cleaningCrewIdList}
                     </td>
                 </tr>
             )

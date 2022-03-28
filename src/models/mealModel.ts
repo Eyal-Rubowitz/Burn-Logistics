@@ -35,8 +35,8 @@ export class Meal extends ClassType {
     @observable portion: number = 0;
     @observable preparing: Date = new Date();
     @observable serving: Date = new Date();
-    @observable sousChefList: string[] = [];
-    @observable cleaningCrewList: string[] = [];
+    @observable sousChefIdList: string[] = [];
+    @observable cleaningCrewIdList: string[] = [];
 
     constructor(store: MealModel, obj: any) {
         super(store, obj);
@@ -52,8 +52,8 @@ export class Meal extends ClassType {
         this.portion = Number(obj.portion);
         this.preparing = (typeof obj.date === 'string') ? new Date(obj.preparing) : obj.preparing;
         this.serving = (typeof obj.date === 'string') ? new Date(obj.serving) : obj.serving;
-        this.sousChefList = obj.sousChefList;
-        this.cleaningCrewList = obj.cleaningCrewList;
+        this.sousChefIdList = obj.sousChefIdList;
+        this.cleaningCrewIdList = obj.cleaningCrewIdList;
     }
 
     @computed get chefName(): string {
@@ -65,7 +65,6 @@ export class Meal extends ClassType {
             o[user._id] = user.fullName
             return o;
         }, {} as Record<string, string>);
-        // return this.store.root.userModel.objectList.map(u => [u._id] = u.fullName);
     }
 
     @computed get disList(): string[] {
@@ -86,13 +85,13 @@ export class Meal extends ClassType {
             return (userFound?.email === token.email) ? true : false;
     }
 
-    deleteSousChefFromList(inputName: string): void {
-        this.sousChefList = this.sousChefList.filter(name => name !== inputName);
+    deleteSousChefFromList(inputId: string): void {
+        this.sousChefIdList = this.sousChefIdList.filter(id => id !== inputId);
         this.store.updateItem(this);
     }
 
     deleteCleaningMemberFromList(inputName: string): void {
-        this.cleaningCrewList = this.cleaningCrewList.filter(name => name !== inputName);
+        this.cleaningCrewIdList = this.cleaningCrewIdList.filter(id => id !== inputName);
         this.store.updateItem(this);
     }
 
