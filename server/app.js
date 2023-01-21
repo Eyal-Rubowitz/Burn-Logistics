@@ -67,6 +67,7 @@ var path = require('path');
 //var cookieParser = require('cookie-parser');
 var bodyParser = require("body-parser");
 var logger = require('morgan');
+// const { auth, requiresAuth } = require('express-openid-connect');
 
 // let userRouter = require('./routes/usersRegistration');
 // let userLogin = require('./routes/usersLogin');
@@ -79,6 +80,7 @@ var dishesRouter = require('./routes/dishes');
 var inventoryRouter = require('./routes/inventory');
 var allergensRouter = require('./routes/allergens');
 var kitchenToolsRouter = require('./routes/kitchenTools')
+var authUsers = require('./routes/authUsers')
 var app = express();
 
 // view engine setup
@@ -91,6 +93,27 @@ app.use(bodyParser.json());
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   baseURL: 'http://localhost:3000',
+//   clientID: 'YOUR_CLIENT_ID',
+//   issuerBaseURL: 'https://YOUR_DOMAIN',
+//   secret: 'LONG_RANDOM_STRING'
+// };
+
+// The `auth` router attaches /login, /logout
+// and /callback routes to the baseURL
+// app.use(auth(config));
+
+// req.oidc.isAuthenticated is provided from the auth router
+// app.get('/', (req, res) => {
+//   res.send(
+//     req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out'
+//   )
+// });
+
 app.use('/', indexRouter);
 // app.use('/api/user', userRouter);
 // app.use('/api/userLogin', userLogin);
@@ -102,6 +125,8 @@ app.use('/api/dishes', dishesRouter);
 app.use('/api/inventory', inventoryRouter);
 app.use('/api/allergens', allergensRouter);
 app.use('/api/kitchenTools', kitchenToolsRouter);
+app.use('/api/authUsers', authUsers);
+
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/burn-logistics', { 

@@ -1,0 +1,3 @@
+0. How to add headers while launch axios request.
+1. Find out how to get the Auth0 token for use it on Axios request.
+2. recive the token on the backend server and show its data.

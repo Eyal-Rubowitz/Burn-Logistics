@@ -5,10 +5,12 @@ let kitchenToolsModel = require('../models/kitchenToolsModel');
 let wsMessageModel = require('../models/wsMessageModel');
 
 router.get('/', (req, res, next) => {
-    kitchenToolsModel.find().exec((err, inventoryList) => {
-        if (err) console.log(err);
-        res.json(inventoryList);
-    });
+    if(req.token === 'valid'){
+        kitchenToolsModel.find().exec((err, inventoryList) => {
+            if (err) console.log(err);
+            res.json(inventoryList);
+        });
+    }
 });
 
 router.route("/").post(async (req, res) => {
