@@ -1,20 +1,27 @@
 import { observable } from 'mobx';
 import { RootModel } from './rootModel';
 import axios from 'axios';
+// import { useAuth0 } from '@auth0/auth0-react';
+// const { getAccessTokenSilently } = useAuth0();
 
 export abstract class DataModel<TypeModel extends ClassType> {
     @observable objectList: Array<TypeModel>;
     root: RootModel;
     modelFactory: { new(dm: DataModel<any>, tm: TypeModel): TypeModel }
-    host = process.env.apiHost || 'localhost:3000';
+    host = process.env.apiHost || 'localhost:3000'; 
+    userToken: string; 
+    
 
     constructor(root: RootModel, mf: { new(dm: DataModel<any>, tm: TypeModel): TypeModel }) {
         this.root = root;
         this.modelFactory = mf;
         this.objectList = [];
         this.getListFromServer();
+        this.userToken = root.userToken;
+        console.log('user token from data model: ', this.userToken)
         // this.getUserTokenFromServer();
     }
+    
 
     abstract resourcePath(): String
 
@@ -24,14 +31,20 @@ export abstract class DataModel<TypeModel extends ClassType> {
 
     // changed getItemsFromServer() to getListFromServer()
     // and itemList to objList
-    // getItemsFromServer(): void {
-    getListFromServer(): void {
-            axios.get(this.resourceUrl).then(objList => {
-                objList.data.forEach((obj: TypeModel) => {
-                    this.updateObjFromServer(obj);
-                });
+    async getListFromServer() {
+            let objList = await axios.get(this.resourceUrl, {headers: {token: this.userToken}});
+             objList.data.forEach((obj: TypeModel) => {
+                this.updateObjFromServer(obj);
             });
     }
+
+    methodThatNeedsToRetrieveAToken = async () => {
+        // let funcToken: string = '';
+        // const token:string = await getAccessTokenSilently().then((token) => funcToken = token);
+        // use token
+        // console.log('data model token: ',token);
+        // return funcToken;
+      }
 
     isUserConnected = async (inputId: string): Promise<boolean> => {
         let resValidate = false;
@@ -104,12 +117,14 @@ export abstract class ClassType {
     constructor(store: DataModel<any>, obj: any) {
         this.store = store;
         this._id = obj._id;
+        this.userToken = obj.userToken;
         if (obj.hasOwnProperty('isDeleted')) this.isObjDeleted = obj.isDeleted;
     }
 
     store: DataModel<any>;
     @observable _id: string;
     @observable isObjDeleted: boolean = false;
+    @observable userToken: string = '';
 
     abstract updateFromJson(obj: any): void;
 

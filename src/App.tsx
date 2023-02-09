@@ -15,6 +15,7 @@ function App() {
   // colors or typography and return a new theme to the react components.
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
+  console.log("We're inside App.tsx!");
 
   return (
     <Auth0Provider

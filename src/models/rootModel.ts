@@ -9,7 +9,8 @@ import { KitchenToolsModel } from './kitchenToolsModel';
 
 
 export class RootModel {
-    constructor() {
+    constructor(token: string) {
+        this.userToken = token;
         this.userModel = new UserModel(this);
         this.ingredientModel = new IngredientModel(this);
         this.mealModel = new MealModel(this);
@@ -20,6 +21,7 @@ export class RootModel {
         this.kitchenToolsModel = new KitchenToolsModel(this);
     }
 
+    userToken: string;
     userModel: UserModel;
     ingredientModel: IngredientModel;
     mealModel: MealModel;

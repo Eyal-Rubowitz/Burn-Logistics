@@ -1,3 +1,32 @@
-0. How to add headers while launch axios request.
-1. Find out how to get the Auth0 token for use it on Axios request.
-2. recive the token on the backend server and show its data.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        U S E       G I T
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+* Move AppRootModel into a React Context
+** Make the AppRootModel accept a user token from auth0 before fetching the data
+====================
+IMPLEMENTATION DETAIL
+
+1. remove the call getListFromServer from the DataModel constructor
+2. add a method to AppRootModel class that calls getListFromServer on all its models
+
+3. add a new React Context and Context Provider into the App
+4. the new React Context will hold the AppRootModel object
+
+5. after the user has logged in, add a call to the initialization method from 2
+6 til infitiy: Change the AppRootModel implementation in all the relevant places
+6.* - the data you're getting now should come from the relevant context instead of 
+coming from the Singleton object as it does currently.
+
+====================
+
+
+0. Move AppRootModel into Context and it's constractor to the main app function.
+    and then, initiante of the AppRootModel in the constractor.
+1. Choose & implement 1 of the 2 option, to initiate AppDataModel variable to be empty when initiate the App,
+    ,or to initiate the AppDataModel with token & objectLists from models after user logedin.   
+2. How to add headers while launch axios request.
+3. Find out how to get the Auth0 token for use it on Axios request.
+4. recive the token on the backend server and show its data.
