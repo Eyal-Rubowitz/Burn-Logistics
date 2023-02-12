@@ -1,6 +1,6 @@
 import { Meal } from "../models/mealModel";
 import { observable, action, computed } from "mobx";
-import { AppRootModel } from "../modelsContext";
+import { AppRootModelsContext } from "../App";
 
 export class SelectedEventStore {
   @observable selectedDate: string = "";
@@ -15,7 +15,7 @@ export class SelectedEventStore {
   }
 
   @computed get meals(): Meal[] {
-    return AppRootModel.mealModel.objectList.map(m => m);
+    return AppRootModelsContext.mealModel.objectList.map(m => m);
   }
 
   @action onSelectedDate(newSelectedDate: string) {

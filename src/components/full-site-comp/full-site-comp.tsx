@@ -14,7 +14,7 @@ import {
 
 // import jwt from 'jsonwebtoken';
 
-import { AppRootModel } from "../../modelsContext";
+import { AppRootModelsContext } from "../../App";
 // import UserAuthComp from "../user-auth-comp/userAuthComp";
 
 import MealComp from "../meals-comp/mealComp";
@@ -53,47 +53,42 @@ function FullSiteComp() {
     switch (data.type) {
       case "users": {
         console.log("register case");
-        AppRootModel.userModel.updateObjFromServer(data.obj);
+        AppRootModelsContext.userModel.updateObjFromServer(data.obj);
         break;
       }
-      // case "login": {
-      //   console.log("login case");
-      //   AppRootModel.userModel.updateItemFromServer(data.item);
-      //   break;
-      // }
       case "meal": {
         console.log("meal case");
-        AppRootModel.mealModel.updateObjFromServer(data.item);
+        AppRootModelsContext.mealModel.updateObjFromServer(data.item);
         break;
       }
       case "dish": {
         console.log("dish case");
-        AppRootModel.dishModel.updateObjFromServer(data.item);
+        AppRootModelsContext.dishModel.updateObjFromServer(data.item);
         break;
       }
       case "ingredient": {
         console.log("ingredient case");
-        AppRootModel.ingredientModel.updateObjFromServer(data.item);
+        AppRootModelsContext.ingredientModel.updateObjFromServer(data.item);
         break;
       }
       case "foodItem": {
         console.log("foodItem case");
-        AppRootModel.foodItemModel.updateObjFromServer(data.item);
+        AppRootModelsContext.foodItemModel.updateObjFromServer(data.item);
         break;
       }
       case "inventory": {
         console.log("inventory case");
-        AppRootModel.inventoryModel.updateObjFromServer(data.item);
+        AppRootModelsContext.inventoryModel.updateObjFromServer(data.item);
         break;
       }
       case "allergens": {
         console.log("allergens case");
-        AppRootModel.allergensModel.updateObjFromServer(data.item);
+        AppRootModelsContext.allergensModel.updateObjFromServer(data.item);
         break;
       }
       case "kitchenTools": {
         console.log("Kitchen tools case");
-        AppRootModel.kitchenToolsModel.updateObjFromServer(data.item);
+        AppRootModelsContext.kitchenToolsModel.updateObjFromServer(data.item);
         console.log("ws: ", data.item);
         break;
       }

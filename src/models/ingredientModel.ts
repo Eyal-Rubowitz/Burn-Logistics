@@ -5,7 +5,7 @@ import { FoodItem } from './foodItemModel';
 import UnitEnum from '../enums/unitEnum';
 import { Dish } from './dishModel';
 import { Meal } from './mealModel';
-import { AppRootModel } from '../modelsContext';
+import { AppRootModelsContext } from '../App';
 
 export class IngredientModel extends DataModel<Ingredient> {
 
@@ -84,7 +84,7 @@ export class Ingredient extends ClassType {
     
     // is ingredient already includes in inventory...
     @computed get getInvIdByItem(): string {
-        let inv = AppRootModel.inventoryModel.objectList.find(inv => inv.dishIdOwnedItem === this.dishId && inv.foodItemId === this.foodItemId);
+        let inv = AppRootModelsContext.inventoryModel.objectList.find(inv => inv.dishIdOwnedItem === this.dishId && inv.foodItemId === this.foodItemId);
         return (inv) ? inv._id : "";
     }
 }

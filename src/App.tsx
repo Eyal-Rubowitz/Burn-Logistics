@@ -5,10 +5,13 @@ import {
 } from "@material-ui/core";
 
 import React from "react";
+import { RootModel } from "./models/rootModel";
 
 import "./AppStyle/style.scss";
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginGatekeeper from "./components/login-gatekeeper-comp/login-gatekeeper";
+
+export const AppRootModelsContext = new RootModel("token1");
 
 function App() {
   // createTheme takes an options object as argument containing custom
@@ -16,6 +19,7 @@ function App() {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   console.log("We're inside App.tsx!");
+  console.log("We're initializing the RootModel!");
 
   return (
     <Auth0Provider

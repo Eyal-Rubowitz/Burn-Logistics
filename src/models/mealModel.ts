@@ -4,8 +4,6 @@ import { DataModel, ClassType } from './dataModel';
 import { Dish } from './dishModel';
 import jwt from 'jsonwebtoken';
 
-// import { User } from './userModel';
-// import { AppRootModel } from '../modelsContext';
 
 export class MealModel extends DataModel<Meal> {
 

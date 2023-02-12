@@ -3,7 +3,7 @@ import { RootModel } from './rootModel';
 import { DataModel, ClassType } from './dataModel';
 import FoodCategoryEnum from '../enums/foodCategoryEnum';
 import UnitEnum from '../enums/unitEnum';
-import { AppRootModel } from '../modelsContext';
+import { AppRootModelsContext } from '../App';
 
 export class FoodItemModel extends DataModel<FoodItem> {
 
@@ -52,7 +52,7 @@ export class FoodItem extends ClassType {
     }
 
     deleteCustomUnit(customUnit: string): void {
-        let foodItemIngList = AppRootModel.ingredientModel.objectList.filter(ing => ing.foodItemId === this._id)
+        let foodItemIngList = AppRootModelsContext.ingredientModel.objectList.filter(ing => ing.foodItemId === this._id)
         let ingUseCustomUnit = foodItemIngList.find(ing => ing.unit === customUnit);
         if(!ingUseCustomUnit){
             this.customUnits = this.customUnits.filter(cu => cu.unitName !== customUnit);
