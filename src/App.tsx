@@ -11,6 +11,7 @@ import "./AppStyle/style.scss";
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginGatekeeper from "./components/login-gatekeeper-comp/login-gatekeeper";
 
+console.log("We're initializing the RootModel!");
 export const AppRootModelsContext = new RootModel("token1");
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   console.log("We're inside App.tsx!");
-  console.log("We're initializing the RootModel!");
 
   return (
     <Auth0Provider
