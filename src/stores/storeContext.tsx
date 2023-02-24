@@ -1,10 +1,6 @@
 import React from "react";
 import { SelectedEventStore } from "./selectEventContext";
 import { useLocalStore } from "mobx-react";
-// import { RootModel } from "../models/rootModel";
-
-// console.log("We're initializing the RootModel!");
-// export const AppRootModelsContext = new RootModel("token1");
 
 export const storesContext = React.createContext({
   selectedEventStore: new SelectedEventStore(),
